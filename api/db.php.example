@@ -1,0 +1,22 @@
+<?php
+// Данные для подключения
+$host = 'localhost';
+$db   = 'finance_db';
+$user = 'postgres'; 
+$pass = 'YOUR_PASSWORD';     
+$port = '5432';
+
+$dsn = "pgsql:host=$host;port=$port;dbname=$db";
+
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Ошибки будут вызывать исключения
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       // Данные возвращаются как ассоциативный массив
+    PDO::ATTR_EMULATE_PREPARES   => false,                  // Использовать реальные подготовленные запросы
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+    // echo "Связь с PostgreSQL установлена!"; 
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
