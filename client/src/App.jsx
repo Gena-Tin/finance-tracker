@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import TransactionForm from "./components/TransactionForm";
 import BalanceBoard from "./components/BalanceBoard";
+import TransactionTable from "./components/TransactionTable";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -394,56 +395,6 @@ function App() {
       </section>
 
       <section style={{ marginTop: "40px" }}>
-        {/* <form
-          onSubmit={handleSubmit}
-          style={{
-            background: "#f9f9f9",
-            padding: "20px",
-            borderRadius: "10px",
-            marginBottom: "30px",
-          }}
-        >
-          <h3>{editingId ? "Редактировать операцию" : "Добавить операцию"}</h3>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-          <input
-            type="number"
-            placeholder="Сумма"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Описание"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-          <select value={catId} onChange={(e) => setCatId(e.target.value)}>
-            {categories.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="expense">Расход</option>
-            <option value="income">Доход</option>
-          </select>
-          <button type="submit">
-            {editingId ? "Сохранить изменения" : "Добавить"}
-          </button>
-          {editingId && (
-            <button onClick={cancelEdit} style={{ marginLeft: "10px" }}>
-              Отмена
-            </button>
-          )}
-        </form> */}
         <TransactionForm
           editingId={editingId}
           date={date}
@@ -460,50 +411,28 @@ function App() {
           handleSubmit={handleSubmit}
           cancelEdit={cancelEdit}
         />
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            background: "#f0f2f5",
-            padding: "20px",
-            borderRadius: "12px",
-            marginBottom: "30px",
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <p style={{ color: "#666", margin: 0 }}>Доходы</p>
-            <h3 style={{ color: "green", margin: "5px 0" }}>
-              +{totalIncome.toFixed(2)} ₴
-            </h3>
-          </div>
-          <div
-            style={{
-              borderLeft: "1px solid #ccc",
-              borderRight: "1px solid #ccc",
-              padding: "0 40px",
-            }}
-          >
-            <p style={{ color: "#666", margin: 0 }}>Расходы</p>
-            <h3 style={{ color: "red", margin: "5px 0" }}>
-              -{totalExpense.toFixed(2)} ₴
-            </h3>
-          </div>
-          <div>
-            <p style={{ color: "#666", margin: 0 }}>Итого</p>
-            <h3
-              style={{ color: balance >= 0 ? "#333" : "red", margin: "5px 0" }}
-            >
-              {balance.toFixed(2)} ₴
-            </h3>
-          </div>
-        </div> */}
+
         <BalanceBoard
           totalIncome={totalIncome}
           totalExpense={totalExpense}
           balance={balance}
         />
-        <div
+
+        <TransactionTable
+          transactions={transactions}
+          filteredByCategory={filteredByCategory}
+          selectedIds={selectedIds}
+          onToggleSelect={toggleSelect}
+          onToggleAll={(isChecked) => {
+            if (isChecked) setSelectedIds(transactions.map((t) => t.id));
+            else setSelectedIds([]);
+          }}
+          onDelete={handleDelete}
+          onEdit={startEdit}
+          editingId={editingId}
+        />
+
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -527,7 +456,6 @@ function App() {
             </button>
           )}
         </div>
-
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ borderBottom: "2px solid #eee", textAlign: "left" }}>
@@ -605,7 +533,7 @@ function App() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </section>
     </div>
   );
