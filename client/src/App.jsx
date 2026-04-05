@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import TransactionForm from "./components/TransactionForm";
+import BalanceBoard from "./components/BalanceBoard";
+
 function App() {
   const [categories, setCategories] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -391,7 +394,7 @@ function App() {
       </section>
 
       <section style={{ marginTop: "40px" }}>
-        <form
+        {/* <form
           onSubmit={handleSubmit}
           style={{
             background: "#f9f9f9",
@@ -440,9 +443,24 @@ function App() {
               Отмена
             </button>
           )}
-        </form>
-
-        <div
+        </form> */}
+        <TransactionForm
+          editingId={editingId}
+          date={date}
+          setDate={setDate}
+          amount={amount}
+          setAmount={setAmount}
+          description={description}
+          setDescription={setDescription}
+          catId={catId}
+          setCatId={setCatId}
+          type={type}
+          setType={setType}
+          categories={categories}
+          handleSubmit={handleSubmit}
+          cancelEdit={cancelEdit}
+        />
+        {/* <div
           style={{
             display: "flex",
             justifyContent: "space-around",
@@ -479,8 +497,12 @@ function App() {
               {balance.toFixed(2)} ₴
             </h3>
           </div>
-        </div>
-
+        </div> */}
+        <BalanceBoard
+          totalIncome={totalIncome}
+          totalExpense={totalExpense}
+          balance={balance}
+        />
         <div
           style={{
             display: "flex",
