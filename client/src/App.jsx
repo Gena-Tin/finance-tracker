@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import TransactionForm from "./components/TransactionForm";
 import BalanceBoard from "./components/BalanceBoard";
 import TransactionTable from "./components/TransactionTable";
+import Filters from "./components/Filters";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -196,7 +197,7 @@ function App() {
     >
       <h1>Финансовый трекер</h1>
 
-      <section>
+      {/* <section>
         <h2>Фильтры</h2>
         <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
           {categories.map((cat) => {
@@ -304,7 +305,7 @@ function App() {
         )}
       </section>
       <section>
-        {/* Строка поиска */}
+        {/* Строка поиска 
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span style={{ fontSize: "20px" }}>🔍</span>
           <input
@@ -392,7 +393,22 @@ function App() {
             </button>
           )}
         </div>
-      </section>
+      </section> */}
+
+      <Filters
+        categories={categories}
+        filterCatIds={filterCatIds}
+        toggleFilterCategory={toggleFilterCategory}
+        setFilterCatIds={setFilterCatIds}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        filterType={filterType}
+        setFilterType={setFilterType}
+      />
 
       <section style={{ marginTop: "40px" }}>
         <TransactionForm
@@ -431,109 +447,6 @@ function App() {
           onEdit={startEdit}
           editingId={editingId}
         />
-
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h2>Последние операции</h2>
-          {selectedIds.length > 0 && (
-            <button
-              onClick={handleDelete}
-              style={{
-                background: "#ff4d4f",
-                color: "white",
-                border: "none",
-                padding: "8px 15px",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              🗑 Удалить ({selectedIds.length})
-            </button>
-          )}
-        </div>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr style={{ borderBottom: "2px solid #eee", textAlign: "left" }}>
-              <th style={{ width: "40px" }}>
-                <input
-                  type="checkbox"
-                  onChange={(e) => {
-                    if (e.target.checked)
-                      setSelectedIds(transactions.map((t) => t.id));
-                    else setSelectedIds([]);
-                  }}
-                  checked={
-                    selectedIds.length === transactions.length &&
-                    transactions.length > 0
-                  }
-                />
-              </th>
-              <th>Дата</th>
-              <th>Категория</th>
-              <th>Описание</th>
-              <th>Сумма</th>
-              <th style={{ width: "40px" }}></th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredByCategory.map((t) => (
-              <tr
-                key={t.id}
-                style={{
-                  borderBottom: "1px solid #eee",
-                  background: selectedIds.includes(t.id)
-                    ? "#fff1f0"
-                    : "transparent",
-                }}
-              >
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedIds.includes(t.id)}
-                    onChange={() => toggleSelect(t.id)}
-                  />
-                </td>
-                <td style={{ padding: "10px 0" }}>
-                  {new Date(t.created_at).toLocaleDateString()}
-                </td>
-                <td>
-                  {t.category_icon} {t.category_name}
-                </td>
-                <td>{t.description}</td>
-                <td
-                  style={{
-                    color: t.type === "expense" ? "red" : "green",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {t.type === "expense" ? "-" : "+"}
-                  {t.amount} ₴
-                </td>
-                <td>
-                  {selectedIds.includes(t.id) && !editingId && (
-                    <button
-                      onClick={() => startEdit(t)}
-                      style={{
-                        border: "none",
-                        background: "none",
-                        cursor: "pointer",
-                        fontSize: "18px",
-                      }}
-                      title="Редактировать"
-                    >
-                      ✏️
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
       </section>
     </div>
   );
