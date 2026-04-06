@@ -1,0 +1,106 @@
+.filtersContainer {
+  margin-bottom: 20px;
+}
+
+/* Секция категорий */
+.categoryList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.categoryCard {
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.categoryCardActive {
+  border: 2px solid #007bff;
+  background: #e7f3ff;
+}
+
+/* Секция дат */
+.dateSection {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.dateGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputField {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Поиск */
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Тип транзакции */
+.typeSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.typeBtn {
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.incomeBtnActive {
+  border: 2px solid green;
+  background: #e6ffed;
+  font-weight: bold;
+}
+
+.expenseBtnActive {
+  border: 2px solid red;
+  background: #fff1f0;
+  font-weight: bold;
+}
+
+.resetBtn {
+  border: none;
+  background: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 13px;
+}

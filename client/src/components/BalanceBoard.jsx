@@ -1,39 +1,29 @@
 import React from "react";
 
+import styles from "./BalanceBoard.module.css";
+
 const BalanceBoard = ({ totalIncome, totalExpense, balance }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-        background: "#f0f2f5",
-        padding: "20px",
-        borderRadius: "12px",
-        marginBottom: "30px",
-        textAlign: "center",
-      }}
-    >
+    <div className={styles.container}>
       <div>
-        <p style={{ color: "#666", margin: 0 }}>Доходы</p>
-        <h3 style={{ color: "green", margin: "5px 0" }}>
+        <p className={styles.label}>Доходы</p>
+        <h3 className={` ${styles.value} ${styles.income}`}>
           +{totalIncome.toFixed(2)} ₴
         </h3>
       </div>
-      <div
-        style={{
-          borderLeft: "1px solid #ccc",
-          borderRight: "1px solid #ccc",
-          padding: "0 40px",
-        }}
-      >
-        <p style={{ color: "#666", margin: 0 }}>Расходы</p>
-        <h3 style={{ color: "red", margin: "5px 0" }}>
+      <div className={styles.centerBlock}>
+        <p className={styles.label}>Расходы</p>
+        <h3 className={`${styles.value} ${styles.expense}`}>
           -{totalExpense.toFixed(2)} ₴
         </h3>
       </div>
       <div>
-        <p style={{ color: "#666", margin: 0 }}>Итого</p>
-        <h3 style={{ color: balance >= 0 ? "#333" : "red", margin: "5px 0" }}>
+        <p className={styles.label}>Итого</p>
+        <h3
+          className={`${styles.value} ${
+            balance >= 0 ? styles.totalPositive : styles.totalNegative
+          }`}
+        >
           {balance.toFixed(2)} ₴
         </h3>
       </div>

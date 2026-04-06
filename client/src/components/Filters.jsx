@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./Filters.module.css";
+
 const Filters = ({
   categories,
   filterCatIds,
@@ -15,28 +17,21 @@ const Filters = ({
   setFilterType,
 }) => {
   return (
-    <div className="filters-container">
+    <div className={styles.filtersContainer}>
       {/* 1. Категории */}
       <section>
         <h2>Фильтры</h2>
-        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+        <div className={styles.categoryList}>
           {categories.map((cat) => {
             const isSelected = filterCatIds.includes(cat.id);
+
             return (
               <div
                 key={cat.id}
                 onClick={() => toggleFilterCategory(cat.id)}
-                style={{
-                  border: isSelected ? "2px solid #007bff" : "1px solid #ddd",
-                  padding: "10px",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  background: isSelected ? "#e7f3ff" : "white",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  transition: "0.2s",
-                }}
+                className={`${styles.categoryCard} ${
+                  isSelected ? styles.categoryCardActive : ""
+                }`}
               >
                 <input
                   type="checkbox"
@@ -51,12 +46,7 @@ const Filters = ({
           {filterCatIds.length > 0 && (
             <button
               onClick={() => setFilterCatIds([])}
-              style={{
-                border: "none",
-                background: "none",
-                color: "#007bff",
-                cursor: "pointer",
-              }}
+              className={styles.resetBtn}
             >
               Сбросить
             </button>
@@ -65,43 +55,23 @@ const Filters = ({
       </section>
 
       {/* 2. Даты */}
-      <section
-        style={{
-          background: "#fff",
-          padding: "15px",
-          borderRadius: "10px",
-          border: "1px solid #eee",
-          marginTop: "20px",
-          display: "flex",
-          alignItems: "center",
-          gap: "15px",
-          flexWrap: "wrap",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <section className={styles.dateSection}>
+        <div className={styles.dateGroup}>
           <span>Период с:</span>
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            style={{
-              padding: "5px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
+            className={styles.inputField}
           />
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div className={styles.dateGroup}>
           <span>по:</span>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            style={{
-              padding: "5px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
+            className={styles.inputField}
           />
         </div>
         {(startDate || endDate) && (
@@ -110,14 +80,7 @@ const Filters = ({
               setStartDate("");
               setEndDate("");
             }}
-            style={{
-              border: "none",
-              background: "#f0f2f5",
-              padding: "5px 10px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              color: "#007bff",
-            }}
+            className={styles.resetBtn}
           >
             ✖ Сбросить даты
           </button>
@@ -125,92 +88,49 @@ const Filters = ({
       </section>
 
       {/* 3. Поиск */}
-      <section style={{ marginTop: "20px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span style={{ fontSize: "20px" }}>🔍</span>
-          <input
-            type="text"
-            placeholder="Поиск по описанию..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{
-              flex: 1,
-              padding: "8px 12px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-              fontSize: "14px",
-            }}
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              style={{
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-                color: "#999",
-              }}
-            >
-              ✖ Очистить
-            </button>
-          )}
-        </div>
+      <section className={styles.searchWrapper}>
+        <span style={{ fontSize: "20px" }}>🔍</span>
+        <input
+          type="text"
+          placeholder="Поиск по описанию..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className={styles.searchInput}
+        />
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery("")}
+            className={styles.resetBtn}
+          >
+            ✖ Очистить
+          </button>
+        )}
       </section>
 
       {/* 4. Тип (Доход/Расход) */}
-      <section style={{ marginTop: "20px" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            paddingTop: "10px",
-          }}
+      <section className={styles.typeSection}>
+        <span>Тип:</span>
+        <button
+          onClick={() => setFilterType("income")}
+          className={`${styles.typeBtn} ${
+            filterType === "income" ? styles.incomeBtnActive : ""
+          }`}
         >
-          <span>Тип:</span>
-          <button
-            onClick={() => setFilterType("income")}
-            style={{
-              padding: "5px 15px",
-              borderRadius: "20px",
-              border:
-                filterType === "income" ? "2px solid green" : "1px solid #ccc",
-              background: filterType === "income" ? "#e6ffed" : "white",
-              cursor: "pointer",
-              fontWeight: filterType === "income" ? "bold" : "normal",
-            }}
-          >
-            📈 Доходы
+          📈 Доходы
+        </button>
+        <button
+          onCick={() => setFilterType("expense")}
+          className={`${styles.typeBtn} ${
+            filterType === "expense" ? styles.expenseBtnActive : ""
+          }`}
+        >
+          📉 Расходы
+        </button>
+        {filterType && (
+          <button onClick={() => setFilterType("")} className={styles.resetBtn}>
+            ✖ Сбросить тип
           </button>
-          <button
-            onClick={() => setFilterType("expense")}
-            style={{
-              padding: "5px 15px",
-              borderRadius: "20px",
-              border:
-                filterType === "expense" ? "2px solid red" : "1px solid #ccc",
-              background: filterType === "expense" ? "#fff1f0" : "white",
-              cursor: "pointer",
-              fontWeight: filterType === "expense" ? "bold" : "normal",
-            }}
-          >
-            📉 Расходы
-          </button>
-          {filterType && (
-            <button
-              onClick={() => setFilterType("")}
-              style={{
-                border: "none",
-                background: "none",
-                color: "#007bff",
-                cursor: "pointer",
-                fontSize: "13px",
-              }}
-            >
-              ✖ Сбросить тип
-            </button>
-          )}
-        </div>
+        )}
       </section>
     </div>
   );

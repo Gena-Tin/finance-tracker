@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f0f2f5;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.label {
+  color: #666;
+  margin: 0;
+}
+
+.value {
+  margin: 5px 0;
+}
+
+.income {
+  color: green;
+}
+
+.expense {
+  color: red;
+}
+
+.totalPositive {
+  color: #333;
+}
+
+.totalNegative {
+  color: red;
+}
+
+.centerBlock {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 0 40px;
+}

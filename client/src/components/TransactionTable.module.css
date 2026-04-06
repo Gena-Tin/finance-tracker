@@ -1,0 +1,69 @@
+.tableContainer {
+  margin-top: 20px;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteBtn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.deleteBtn:hover {
+  opacity: 0.8;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.headRow {
+  border-bottom: 2px solid #eee;
+  text-align: left;
+}
+
+.row {
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.rowSelected {
+  background-color: #fff1f0;
+}
+
+.cell {
+  padding: 10px 0;
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.expense {
+  color: red;
+}
+
+.income {
+  color: green;
+}
+
+.editBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.checkboxCell {
+  width: 40px;
+}

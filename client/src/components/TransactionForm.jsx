@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./TransactionForm.module.css";
+
 const TransactionForm = ({
   editingId,
   date,
@@ -17,59 +19,68 @@ const TransactionForm = ({
   cancelEdit,
 }) => {
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        background: "#f9f9f9",
-        padding: "20px",
-        borderRadius: "10px",
-        marginBottom: "30px",
-      }}
-    >
-      <h3>{editingId ? "Редактировать операцию" : "Добавить операцию"}</h3>
-      <input
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Сумма"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Описание"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      />
-      <select value={catId} onChange={(e) => setCatId(e.target.value)}>
-        {categories.map((c) => (
-          <option key={c.id} value={c.id}>
-            {c.name}
-          </option>
-        ))}
-      </select>
-      <select value={type} onChange={(e) => setType(e.target.value)}>
-        <option value="expense">Расход</option>
-        <option value="income">Доход</option>
-      </select>
-      <button type="submit">
-        {editingId ? "Сохранить изменения" : "Добавить"}
-      </button>
-      {editingId && (
-        <button
-          type="button"
-          onClick={cancelEdit}
-          style={{ marginLeft: "10px" }}
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
+      <h3 className={styles.title}>
+        {editingId ? "Редактировать операцию" : "Добавить операцию"}
+      </h3>
+      <div className={styles.inputGroup}>
+        <input
+          className={styles.field}
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          required
+        />
+        <input
+          className={styles.field}
+          type="number"
+          placeholder="Сумма"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          required
+        />
+        <input
+          className={styles.field}
+          type="text"
+          placeholder="Описание"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <select
+          className={styles.field}
+          value={catId}
+          onChange={(e) => setCatId(e.target.value)}
         >
-          Отмена
-        </button>
-      )}
+          {categories.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <select
+          className={styles.field}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="expense">Расход</option>
+          <option value="income">Доход</option>
+        </select>
+        <div>
+          <button type="submit" className={styles.submitBtn}>
+            {editingId ? "Сохранить изменения" : "Добавить"}
+          </button>
+          {editingId && (
+            <button
+              type="button"
+              onClick={cancelEdit}
+              className={styles.cancelBtn}
+            >
+              Отмена
+            </button>
+          )}
+        </div>
+      </div>
     </form>
   );
 };
