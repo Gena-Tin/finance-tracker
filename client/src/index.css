@@ -26,6 +26,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root.dark-theme {
+  --text: #9ca3af;
+  --text-h: #5c738a;
+  --bg: #191b23;
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+}
+
 /* Адаптивный шрифт для корня */
 @media (max-width: 1024px) {
   :root {
@@ -34,7 +48,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root :not(.light-theme) {
     --text: #9ca3af;
     --text-h: #f3f4f6;
     --bg: #16171d;
@@ -186,4 +200,11 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* Явно указываем браузеру цветовую схему для инпутов в темной теме */
+:root.dark-theme input,
+:root.dark-theme select,
+:root.dark-theme textarea {
+  color-scheme: dark; /* Говорим браузеру, что это темный инпут */
 }

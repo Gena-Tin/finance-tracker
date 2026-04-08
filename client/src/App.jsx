@@ -33,6 +33,11 @@ function App() {
 
   const [filterType, setFilterType] = useState(""); // "" | "income" | "expense"
 
+  const [isDark, setIsDark] = useState(() => {
+    // Проверяем, сохранял ли пользователь тему ранее
+    return localStorage.getItem("theme") === "dark";
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const transactionData = {
@@ -108,8 +113,11 @@ function App() {
   };
 
   const toggleFilterCategory = (id) => {
+    const numericId = Number(id);
     setFilterCatIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      prev.includes(numericId)
+        ? prev.filter((item) => item !== numericId)
+        : [...prev, numericId]
     );
   };
 
@@ -137,6 +145,16 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark-theme");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark-theme");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
 
   if (loading) return <p className={styles.loading}>Загрузка данных...</p>;
 
@@ -191,6 +209,20 @@ function App() {
   return (
     <div className={styles.container}>
       <h1>Финансовый трекер</h1>
+
+      <button
+        onClick={() => setIsDark(!isDark)}
+        style={{
+          padding: "8px 15px",
+          borderRadius: "20px",
+          border: "1px solid var(--border)",
+          background: "var(--accent-bg)",
+          color: "var(--accent)",
+          fontWeight: "bold",
+        }}
+      >
+        {isDark ? "🌙 Темная" : "☀️ Светлая"}
+      </button>
 
       <Filters
         categories={categories}

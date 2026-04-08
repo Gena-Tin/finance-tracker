@@ -28,17 +28,17 @@
 }
 
 .headRow {
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid var(--border);
   text-align: left;
 }
 
 .row {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   transition: background 0.2s;
 }
 
 .rowSelected {
-  background-color: #fff1f0;
+  background-color: var(--bg);
 }
 
 .cell {

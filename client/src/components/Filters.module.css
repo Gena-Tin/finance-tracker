@@ -17,21 +17,21 @@
   align-items: center;
   gap: 8px;
   transition: 0.2s;
-  border: 1px solid #ddd;
-  background: white;
+  border: 1px solid var(--border);
+  background: var(--bg);
 }
 
 .categoryCardActive {
   border: 2px solid #007bff;
-  background: #e7f3ff;
+  background: var(--bg);
 }
 
 /* Секция дат */
 .dateSection {
-  background: #fff;
+  background: var(--bg);
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
   margin-top: 20px;
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@
 .inputField {
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
 }
 
 /* Поиск */
@@ -63,7 +63,7 @@
   flex: 1;
   padding: 8px 12px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   font-size: 14px;
 }
 
@@ -78,22 +78,23 @@
 
 .typeBtn {
   padding: 5px 15px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  background: white;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
   cursor: pointer;
   transition: 0.2s;
 }
 
 .incomeBtnActive {
   border: 2px solid green;
-  background: #e6ffed;
+  background: var(--bg);
   font-weight: bold;
 }
 
 .expenseBtnActive {
   border: 2px solid red;
-  background: #fff1f0;
+  background: var(--bg);
   font-weight: bold;
 }
 

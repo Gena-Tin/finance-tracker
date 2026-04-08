@@ -1,15 +1,15 @@
 .formContainer {
-  background: #f9f9f9;
+  background: var(--bg);
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 30px;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
 }
 
 .title {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #333;
+  color: var(--text-h);
 }
 
 .inputGroup {
@@ -22,7 +22,7 @@
 .field {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
@@ -46,7 +46,7 @@
 .cancelBtn {
   margin-left: 10px;
   background-color: #f0f2f5;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;

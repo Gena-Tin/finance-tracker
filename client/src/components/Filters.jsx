@@ -116,15 +116,15 @@ const Filters = ({
             filterType === "income" ? styles.incomeBtnActive : ""
           }`}
         >
-          📈 Доходы
+          ✅ Доходы
         </button>
         <button
-          onCick={() => setFilterType("expense")}
+          onClick={() => setFilterType("expense")}
           className={`${styles.typeBtn} ${
             filterType === "expense" ? styles.expenseBtnActive : ""
           }`}
         >
-          📉 Расходы
+          ❌ Расходы
         </button>
         {filterType && (
           <button onClick={() => setFilterType("")} className={styles.resetBtn}>
