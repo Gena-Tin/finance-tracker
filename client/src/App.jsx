@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 import styles from "./App.module.css";
 
+/* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
+import { motion, AnimatePresence } from "framer-motion";
+
 import TransactionForm from "./components/TransactionForm";
 import BalanceBoard from "./components/BalanceBoard";
 import TransactionTable from "./components/TransactionTable";
@@ -32,6 +35,9 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [filterType, setFilterType] = useState(""); // "" | "income" | "expense"
+
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const [isDark, setIsDark] = useState(() => {
     // Проверяем, сохранял ли пользователь тему ранее
@@ -96,6 +102,8 @@ function App() {
     setType(t.type);
     // Подставляем дату из транзакции (обрезаем время, если оно есть)
     setDate(t.created_at.split(" ")[0]);
+    // Автоматически открываем форму при редактировании!
+    setIsFormOpen(true);
   };
 
   const cancelEdit = () => {
@@ -207,55 +215,113 @@ function App() {
   const balance = totalIncome - totalExpense;
 
   return (
-    <div className={styles.container}>
-      <h1>Финансовый трекер</h1>
-
-      <button
-        onClick={() => setIsDark(!isDark)}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={styles.container}
+    >
+      <div
         style={{
-          padding: "8px 15px",
-          borderRadius: "20px",
-          border: "1px solid var(--border)",
-          background: "var(--accent-bg)",
-          color: "var(--accent)",
-          fontWeight: "bold",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        {isDark ? "🌙 Темная" : "☀️ Светлая"}
-      </button>
+        <h1>Финансовый трекер</h1>
 
-      <Filters
-        categories={categories}
-        filterCatIds={filterCatIds}
-        toggleFilterCategory={toggleFilterCategory}
-        setFilterCatIds={setFilterCatIds}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        filterType={filterType}
-        setFilterType={setFilterType}
-      />
+        <button
+          onClick={() => setIsDark(!isDark)}
+          style={{
+            padding: "8px 15px",
+            borderRadius: "20px",
+            border: "1px solid var(--border)",
+            background: "var(--accent-bg)",
+            color: "var(--accent)",
+            fontWeight: "bold",
+          }}
+        >
+          {isDark ? "🌙 Темная" : "☀️ Светлая"}
+        </button>
+      </div>
+
+      <div
+        className={styles.accordionHeader}
+        onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+      >
+        <h2>🔍 Фильтры</h2>
+        <span
+          className={`${styles.icon} ${isFiltersOpen ? styles.iconOpen : ""}`}
+        >
+          ▼
+        </span>
+      </div>
+
+      <AnimatePresence>
+        {isFiltersOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Filters
+              categories={categories}
+              filterCatIds={filterCatIds}
+              toggleFilterCategory={toggleFilterCategory}
+              setFilterCatIds={setFilterCatIds}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              filterType={filterType}
+              setFilterType={setFilterType}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <section className={styles.mainContent}>
-        <TransactionForm
-          editingId={editingId}
-          date={date}
-          setDate={setDate}
-          amount={amount}
-          setAmount={setAmount}
-          description={description}
-          setDescription={setDescription}
-          catId={catId}
-          setCatId={setCatId}
-          type={type}
-          setType={setType}
-          categories={categories}
-          handleSubmit={handleSubmit}
-          cancelEdit={cancelEdit}
-        />
+        <div
+          className={styles.accordionHeader}
+          onClick={() => setIsFormOpen(!isFormOpen)}
+        >
+          <h2>{editingId ? "✏️ Редактирование" : "➕ Добавить операцию"}</h2>
+          <span
+            className={`${styles.icon} ${isFormOpen ? styles.iconOpen : ""}`}
+          >
+            ▼
+          </span>
+        </div>
+
+        <AnimatePresence>
+          {isFormOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <TransactionForm
+                editingId={editingId}
+                date={date}
+                setDate={setDate}
+                amount={amount}
+                setAmount={setAmount}
+                description={description}
+                setDescription={setDescription}
+                catId={catId}
+                setCatId={setCatId}
+                type={type}
+                setType={setType}
+                categories={categories}
+                handleSubmit={handleSubmit}
+                cancelEdit={cancelEdit}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <BalanceBoard
           totalIncome={totalIncome}
@@ -277,7 +343,7 @@ function App() {
           editingId={editingId}
         />
       </section>
-    </div>
+    </motion.div>
   );
 }
 

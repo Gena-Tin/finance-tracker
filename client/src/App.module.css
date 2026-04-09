@@ -15,3 +15,34 @@
   margin-top: 50px;
   font-size: 1.2rem;
 }
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: var(--accent-bg);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  border: 1px solid var(--accent-border);
+  transition: background 0.2s;
+}
+
+.accordionHeader:hover {
+  background: rgba(170, 59, 255, 0.2);
+}
+
+.accordionHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}

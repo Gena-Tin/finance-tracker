@@ -1,5 +1,8 @@
 import React from "react";
 
+/* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
+import { motion, AnimatePresence } from "framer-motion";
+
 import styles from "./TransactionTable.module.css";
 
 const TransactionTable = ({
@@ -44,52 +47,59 @@ const TransactionTable = ({
           </tr>
         </thead>
         <tbody>
-          {filteredByCategory.map((t) => {
-            const isSelected = selectedIds.includes(t.id);
+          <AnimatePresence mode="popLayout">
+            {filteredByCategory.map((t) => {
+              const isSelected = selectedIds.includes(t.id);
 
-            return (
-              <tr
-                key={t.id}
-                className={`${styles.row} ${
-                  isSelected ? styles.rowSelected : ""
-                }`}
-              >
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={isSelected}
-                    onChange={() => onToggleSelect(t.id)}
-                  />
-                </td>
-                <td className={styles.cell}>
-                  {new Date(t.created_at).toLocaleDateString()}
-                </td>
-                <td>
-                  {t.category_icon} {t.category_name}
-                </td>
-                <td>{t.description}</td>
-                <td
-                  className={`${styles.amount} ${
-                    t.type === "expense" ? styles.expense : styles.income
+              return (
+                <motion.tr
+                  key={t.id}
+                  layout // <--- ЭТО заставляет строки плавно съезжаться
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, x: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className={`${styles.row} ${
+                    isSelected ? styles.rowSelected : ""
                   }`}
                 >
-                  {t.type === "expense" ? "-" : "+"}
-                  {t.amount} ₴
-                </td>
-                <td>
-                  {isSelected && !editingId && (
-                    <button
-                      onClick={() => onEdit(t)}
-                      className={styles.editBtn}
-                      title="Редактировать"
-                    >
-                      ✏️
-                    </button>
-                  )}
-                </td>
-              </tr>
-            );
-          })}
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => onToggleSelect(t.id)}
+                    />
+                  </td>
+                  <td className={styles.cell}>
+                    {new Date(t.created_at).toLocaleDateString()}
+                  </td>
+                  <td>
+                    {t.category_icon} {t.category_name}
+                  </td>
+                  <td>{t.description}</td>
+                  <td
+                    className={`${styles.amount} ${
+                      t.type === "expense" ? styles.expense : styles.income
+                    }`}
+                  >
+                    {t.type === "expense" ? "-" : "+"}
+                    {t.amount} ₴
+                  </td>
+                  <td>
+                    {isSelected && !editingId && (
+                      <button
+                        onClick={() => onEdit(t)}
+                        className={styles.editBtn}
+                        title="Редактировать"
+                      >
+                        ✏️
+                      </button>
+                    )}
+                  </td>
+                </motion.tr>
+              );
+            })}
+          </AnimatePresence>
         </tbody>
       </table>
     </div>
