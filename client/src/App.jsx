@@ -9,6 +9,7 @@ import TransactionForm from "./components/TransactionForm";
 import BalanceBoard from "./components/BalanceBoard";
 import TransactionTable from "./components/TransactionTable";
 import Filters from "./components/Filters";
+import Analytics from "./components/Analytics";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -38,6 +39,8 @@ function App() {
 
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
 
   const [isDark, setIsDark] = useState(() => {
     // Проверяем, сохранял ли пользователь тему ранее
@@ -214,6 +217,30 @@ function App() {
   // Итоговый баланс
   const balance = totalIncome - totalExpense;
 
+  // Аналитика:
+  // 1. Группируем внешнее кольцо (категории)
+  const categoryStats = filteredByCategory.reduce((acc, t) => {
+    const existing = acc.find(
+      (item) => item.name === t.category_name && item.type === t.type
+    );
+    if (existing) {
+      existing.value += parseFloat(t.amount);
+    } else {
+      acc.push({
+        name: t.category_name,
+        value: parseFloat(t.amount),
+        type: t.type,
+      });
+    }
+    return acc;
+  }, []);
+
+  // 2. Группируем внутреннее кольцо (общие Доходы и Расходы)
+  const totalStats = [
+    { name: "Доходы", value: totalIncome, fill: "#10b981" }, // Зеленый
+    { name: "Расходы", value: totalExpense, fill: "#ef4444" }, // Красный
+  ].filter((item) => item.value > 0); // Показываем только если сумма > 0
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -243,46 +270,76 @@ function App() {
           {isDark ? "🌙 Темная" : "☀️ Светлая"}
         </button>
       </div>
-
-      <div
-        className={styles.accordionHeader}
-        onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-      >
-        <h2>🔍 Фильтры</h2>
-        <span
-          className={`${styles.icon} ${isFiltersOpen ? styles.iconOpen : ""}`}
-        >
-          ▼
-        </span>
-      </div>
-
-      <AnimatePresence>
-        {isFiltersOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Filters
-              categories={categories}
-              filterCatIds={filterCatIds}
-              toggleFilterCategory={toggleFilterCategory}
-              setFilterCatIds={setFilterCatIds}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              endDate={endDate}
-              setEndDate={setEndDate}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              filterType={filterType}
-              setFilterType={setFilterType}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <section className={styles.mainContent}>
+        <div
+          className={styles.accordionHeader}
+          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+        >
+          <h2>🔍 Фильтры</h2>
+          <span
+            className={`${styles.icon} ${isFiltersOpen ? styles.iconOpen : ""}`}
+          >
+            ▼
+          </span>
+        </div>
+
+        <AnimatePresence>
+          {isFiltersOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Filters
+                categories={categories}
+                filterCatIds={filterCatIds}
+                toggleFilterCategory={toggleFilterCategory}
+                setFilterCatIds={setFilterCatIds}
+                startDate={startDate}
+                setStartDate={setStartDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                filterType={filterType}
+                setFilterType={setFilterType}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <div
+          className={styles.accordionHeader}
+          onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
+        >
+          <h2>📊 Аналитика</h2>
+          <span
+            className={`${styles.icon} ${
+              isAnalyticsOpen ? styles.iconOpen : ""
+            }`}
+          >
+            ▼
+          </span>
+        </div>
+
+        <AnimatePresence>
+          {isAnalyticsOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Analytics
+                categoryStats={categoryStats}
+                totalStats={totalStats}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* <section className={styles.mainContent}> */}
         <div
           className={styles.accordionHeader}
           onClick={() => setIsFormOpen(!isFormOpen)}
