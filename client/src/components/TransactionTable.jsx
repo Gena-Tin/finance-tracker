@@ -71,7 +71,11 @@ const TransactionTable = ({
                     />
                   </td>
                   <td className={styles.cell}>
-                    {new Date(t.created_at).toLocaleDateString()}
+                    {new Date(t.created_at).toLocaleDateString("ru-RU", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "2-digit",
+                    })}
                   </td>
                   <td>
                     {t.category_icon} {t.category_name}

@@ -208,3 +208,8 @@ code {
 :root.dark-theme textarea {
   color-scheme: dark; /* Говорим браузеру, что это темный инпут */
 }
+
+html {
+  /* Резервирует место под скроллбар, даже если его нет */
+  scrollbar-gutter: stable;
+}

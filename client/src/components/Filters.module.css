@@ -7,6 +7,7 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .categoryCard {
@@ -104,4 +105,27 @@
   color: #007bff;
   cursor: pointer;
   font-size: 13px;
+}
+
+.settingsButton {
+  background: var(--accent-bg, #2d2845); /* Темно-фиолетовый фон */
+  border: 1px solid #4a3f6e; /* Цвет границ как у твоих карточек */
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  /* margin-right: auto;  */
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+}
+
+.settingsButton:hover {
+  border-color: #a78bfa; /* Светло-фиолетовый при наведении */
+  background: #362f55;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.3); /* Легкое фиолетовое свечение */
 }

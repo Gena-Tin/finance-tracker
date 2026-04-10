@@ -2,6 +2,9 @@ import React from "react";
 
 import styles from "./Filters.module.css";
 
+/* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
+// import { motion, AnimatePresence } from "framer-motion";
+
 const Filters = ({
   categories,
   filterCatIds,
@@ -15,13 +18,21 @@ const Filters = ({
   setSearchQuery,
   filterType,
   setFilterType,
+  setIsCategoryManagerOpen,
 }) => {
   return (
     <div className={styles.filtersContainer}>
       {/* 1. Категории */}
       <section>
-        <h2>Фильтры</h2>
         <div className={styles.categoryList}>
+          <button
+            type="button"
+            className={styles.settingsButton}
+            onClick={() => setIsCategoryManagerOpen(true)}
+          >
+            ⚙️
+          </button>
+
           {categories.map((cat) => {
             const isSelected = filterCatIds.includes(cat.id);
 

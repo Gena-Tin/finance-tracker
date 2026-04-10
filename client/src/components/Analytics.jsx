@@ -20,7 +20,7 @@ const Analytics = ({ categoryStats, totalStats }) => {
   }));
 
   return (
-    <div style={{ width: "100%", height: 350, marginTop: "20px" }}>
+    <div style={{ width: "100%", height: 380, marginTop: "20px" }}>
       <ResponsiveContainer>
         <PieChart>
           {/* Внутреннее кольцо: Общие итоги */}
@@ -52,10 +52,10 @@ const Analytics = ({ categoryStats, totalStats }) => {
             }}
           />
           <Legend
-            verticalAlign="bottom"
-            height={36}
+            verticalAlign="top"
+            height="fit-content"
             align="center"
-            wrapperStyle={{ paddingTop: "20px" }}
+            wrapperStyle={{ paddingTop: "2px" }}
           />
         </PieChart>
       </ResponsiveContainer>

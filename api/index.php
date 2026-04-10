@@ -9,7 +9,8 @@ header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 try {
-    $stmt = $pdo->query("SELECT id, name, icon FROM categories");
+    // $stmt = $pdo->query("SELECT id, name, icon FROM categories");
+    $stmt = $pdo->query("SELECT id, name, icon, is_system FROM categories ORDER BY is_system DESC, name ASC");
     echo json_encode($stmt->fetchAll(), JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
     http_response_code(500);

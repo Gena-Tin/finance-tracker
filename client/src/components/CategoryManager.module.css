@@ -1,0 +1,212 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  background: #1f1b2e; /* Твой темно-фиолетовый фон */
+  border: 1px solid #4a3f6e;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  color: #e2e2e2;
+}
+
+.modal h3 {
+  margin-top: 0;
+  color: #a78bfa;
+  border-bottom: 1px solid #4a3f6e;
+  padding-bottom: 10px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #2d2845;
+  transition: background 0.2s;
+}
+
+.item:hover {
+  background: #2d2845;
+}
+
+.item span {
+  font-size: 1.1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btnDelete,
+.btnEdit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform 0.1s;
+}
+
+.btnDelete:hover {
+  transform: scale(1.2);
+}
+.btnEdit:hover {
+  transform: scale(1.2);
+}
+
+.addForm {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #4a3f6e;
+}
+
+.input {
+  background: #13111c;
+  border: 1px solid #4a3f6e;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  flex: 1;
+}
+
+.btnAdd,
+.btnClose {
+  background: #6d28d9;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btnAdd:hover {
+  background: #7c3aed;
+}
+.btnClose {
+  background: transparent;
+  border: 1px solid #4a3f6e;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.closeX {
+  background: none;
+  border: none;
+  color: #a78bfa;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.inputIcon {
+  width: 50px;
+  text-align: center;
+  background: #13111c;
+  border: 1px solid #4a3f6e;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.inputName {
+  flex: 1;
+  background: #13111c;
+  border: 1px solid #4a3f6e;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Стилизация скроллбара для списка категорий */
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #4a3f6e;
+  border-radius: 10px;
+}
+
+.iconPickerWrapper {
+  position: relative;
+}
+
+.iconPreview {
+  width: 45px;
+  height: 45px;
+  font-size: 1.5rem;
+  background: #13111c;
+  border: 2px solid #4a3f6e;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.iconPreview:hover {
+  border-color: #a78bfa;
+}
+
+.iconGrid {
+  position: absolute;
+  bottom: 55px; /* Панель открывается вверх */
+  left: 0;
+  background: #1f1b2e;
+  border: 1px solid #4a3f6e;
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.gridEmoji {
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridEmoji:hover {
+  background: #4a3f6e;
+}

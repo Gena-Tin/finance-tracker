@@ -10,6 +10,7 @@ import BalanceBoard from "./components/BalanceBoard";
 import TransactionTable from "./components/TransactionTable";
 import Filters from "./components/Filters";
 import Analytics from "./components/Analytics";
+import CategoryManager from "./components/CategoryManager";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -46,6 +47,8 @@ function App() {
     // Проверяем, сохранял ли пользователь тему ранее
     return localStorage.getItem("theme") === "dark";
   });
+
+  const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -242,165 +245,180 @@ function App() {
   ].filter((item) => item.value > 0); // Показываем только если сумма > 0
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className={styles.container}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+    <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className={styles.container}
       >
-        <h1>Финансовый трекер</h1>
-
-        <button
-          onClick={() => setIsDark(!isDark)}
+        <div
           style={{
-            padding: "8px 15px",
-            borderRadius: "20px",
-            border: "1px solid var(--border)",
-            background: "var(--accent-bg)",
-            color: "var(--accent)",
-            fontWeight: "bold",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          {isDark ? "🌙 Темная" : "☀️ Светлая"}
-        </button>
-      </div>
-      <section className={styles.mainContent}>
-        <div
-          className={styles.accordionHeader}
-          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-        >
-          <h2>🔍 Фильтры</h2>
-          <span
-            className={`${styles.icon} ${isFiltersOpen ? styles.iconOpen : ""}`}
+          <h1>Финансовый трекер</h1>
+
+          <button
+            onClick={() => setIsDark(!isDark)}
+            style={{
+              padding: "8px 15px",
+              borderRadius: "10px",
+              border: "1px solid var(--accent-border)",
+              background: "var(--accent-bg)",
+              color: "var(--accent)",
+              fontWeight: "bold",
+            }}
           >
-            ▼
-          </span>
+            {isDark ? " 🌙 " : " ☀️ "}
+          </button>
         </div>
-
-        <AnimatePresence>
-          {isFiltersOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Filters
-                categories={categories}
-                filterCatIds={filterCatIds}
-                toggleFilterCategory={toggleFilterCategory}
-                setFilterCatIds={setFilterCatIds}
-                startDate={startDate}
-                setStartDate={setStartDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                filterType={filterType}
-                setFilterType={setFilterType}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <div
-          className={styles.accordionHeader}
-          onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
-        >
-          <h2>📊 Аналитика</h2>
-          <span
-            className={`${styles.icon} ${
-              isAnalyticsOpen ? styles.iconOpen : ""
-            }`}
+        <section className={styles.mainContent}>
+          <div
+            className={styles.accordionHeader}
+            onClick={() => setIsFiltersOpen(!isFiltersOpen)}
           >
-            ▼
-          </span>
-        </div>
-
-        <AnimatePresence>
-          {isAnalyticsOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+            <h2>🔍 Фильтры</h2>
+            <span
+              className={`${styles.icon} ${
+                isFiltersOpen ? styles.iconOpen : ""
+              }`}
             >
-              <Analytics
-                categoryStats={categoryStats}
-                totalStats={totalStats}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+              {" "}
+              ▼
+            </span>
+          </div>
 
-        {/* <section className={styles.mainContent}> */}
-        <div
-          className={styles.accordionHeader}
-          onClick={() => setIsFormOpen(!isFormOpen)}
-        >
-          <h2>{editingId ? "✏️ Редактирование" : "➕ Добавить операцию"}</h2>
-          <span
-            className={`${styles.icon} ${isFormOpen ? styles.iconOpen : ""}`}
+          <AnimatePresence>
+            {isFiltersOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Filters
+                  categories={categories}
+                  filterCatIds={filterCatIds}
+                  toggleFilterCategory={toggleFilterCategory}
+                  setFilterCatIds={setFilterCatIds}
+                  startDate={startDate}
+                  setStartDate={setStartDate}
+                  endDate={endDate}
+                  setEndDate={setEndDate}
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                  filterType={filterType}
+                  setFilterType={setFilterType}
+                  isCategoryManagerOpen={isCategoryManagerOpen}
+                  setIsCategoryManagerOpen={setIsCategoryManagerOpen}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div
+            className={styles.accordionHeader}
+            onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
           >
-            ▼
-          </span>
-        </div>
-
-        <AnimatePresence>
-          {isFormOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+            <h2>📊 Аналитика</h2>
+            <span
+              className={`${styles.icon} ${
+                isAnalyticsOpen ? styles.iconOpen : ""
+              }`}
             >
-              <TransactionForm
-                editingId={editingId}
-                date={date}
-                setDate={setDate}
-                amount={amount}
-                setAmount={setAmount}
-                description={description}
-                setDescription={setDescription}
-                catId={catId}
-                setCatId={setCatId}
-                type={type}
-                setType={setType}
-                categories={categories}
-                handleSubmit={handleSubmit}
-                cancelEdit={cancelEdit}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+              ▼
+            </span>
+          </div>
 
-        <BalanceBoard
-          totalIncome={totalIncome}
-          totalExpense={totalExpense}
-          balance={balance}
-        />
+          <AnimatePresence>
+            {isAnalyticsOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Analytics
+                  categoryStats={categoryStats}
+                  totalStats={totalStats}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-        <TransactionTable
-          transactions={transactions}
-          filteredByCategory={filteredByCategory}
-          selectedIds={selectedIds}
-          onToggleSelect={toggleSelect}
-          onToggleAll={(isChecked) => {
-            if (isChecked) setSelectedIds(transactions.map((t) => t.id));
-            else setSelectedIds([]);
-          }}
-          onDelete={handleDelete}
-          onEdit={startEdit}
-          editingId={editingId}
-        />
-      </section>
-    </motion.div>
+          <div
+            className={styles.accordionHeader}
+            onClick={() => setIsFormOpen(!isFormOpen)}
+          >
+            <h2>{editingId ? "✏️ Редактирование" : "➕ Добавить операцию"}</h2>
+            <span
+              className={`${styles.icon} ${isFormOpen ? styles.iconOpen : ""}`}
+            >
+              ▼
+            </span>
+          </div>
+
+          <AnimatePresence>
+            {isFormOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <TransactionForm
+                  editingId={editingId}
+                  date={date}
+                  setDate={setDate}
+                  amount={amount}
+                  setAmount={setAmount}
+                  description={description}
+                  setDescription={setDescription}
+                  catId={catId}
+                  setCatId={setCatId}
+                  type={type}
+                  setType={setType}
+                  categories={categories}
+                  handleSubmit={handleSubmit}
+                  cancelEdit={cancelEdit}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <BalanceBoard
+            totalIncome={totalIncome}
+            totalExpense={totalExpense}
+            balance={balance}
+          />
+
+          <TransactionTable
+            transactions={transactions}
+            filteredByCategory={filteredByCategory}
+            selectedIds={selectedIds}
+            onToggleSelect={toggleSelect}
+            onToggleAll={(isChecked) => {
+              if (isChecked) setSelectedIds(transactions.map((t) => t.id));
+              else setSelectedIds([]);
+            }}
+            onDelete={handleDelete}
+            onEdit={startEdit}
+            editingId={editingId}
+          />
+        </section>
+      </motion.div>
+      <AnimatePresence>
+        {isCategoryManagerOpen && (
+          <CategoryManager
+            categories={categories}
+            onUpdate={fetchData} // Функция, которая делает GET запрос к категориям
+            onClose={() => setIsCategoryManagerOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

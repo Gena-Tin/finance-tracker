@@ -4,10 +4,11 @@
   margin: 0 auto;
   font-family: sans-serif;
   color: var(--text-h);
+  width: 100%;
 }
 
 .mainContent {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .loading {
