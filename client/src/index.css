@@ -40,37 +40,39 @@
     rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 }
 
-/* Адаптивный шрифт для корня */
-@media (max-width: 1024px) {
-  :root {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root :not(.light-theme) {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
-      rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* Глобальный сброс и стабилизация скролла */
+html {
+  scrollbar-gutter: stable;
+  overflow-y: scroll; /* Принудительный скролл для надежности */
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0; /* Убираем все внешние отступы по умолчанию у ВСЕХ элементов */
+  padding: 0; /* Убираем все внутренние отступы по умолчанию */
+}
+
+/* Обнуление отступов для всех заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+/* Адаптивный шрифт для корня */
+@media (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
 }
 
 body {
@@ -104,61 +106,40 @@ button {
   padding-inline: 20px;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
 h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: -0.03em;
-  margin: 32px 0;
-}
-
-@media (max-width: 1024px) {
-  h1 {
-    font-size: 36px;
-    margin: 20px 0;
-  }
 }
 
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
-  margin: 1.5rem 0 1rem;
 }
 
 @media (max-width: 1024px) {
+  h1 {
+    font-size: 36px;
+  }
   h2 {
     font-size: 20px;
   }
 }
 
 p {
-  margin: 0 0 1rem;
+  margin-bottom: 1rem; /* Оставляем отступ только для абзацев текста */
 }
 
 button {
   cursor: pointer;
   font-family: inherit;
   border-radius: 6px;
+  border: none; /* Убираем дефолтную рамку */
   transition: filter 0.2s;
 }
 
 button:hover {
   filter: brightness(1.1);
-}
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 /* Базовые стили форм */
@@ -179,6 +160,15 @@ input:focus,
 select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 img,
@@ -207,9 +197,4 @@ code {
 :root.dark-theme select,
 :root.dark-theme textarea {
   color-scheme: dark; /* Говорим браузеру, что это темный инпут */
-}
-
-html {
-  /* Резервирует место под скроллбар, даже если его нет */
-  scrollbar-gutter: stable;
 }

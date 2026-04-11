@@ -2,9 +2,6 @@ import React from "react";
 
 import styles from "./Filters.module.css";
 
-/* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
-// import { motion, AnimatePresence } from "framer-motion";
-
 const Filters = ({
   categories,
   filterCatIds,

@@ -21,7 +21,7 @@ const TransactionTable = ({
         <h2>Последние операции</h2>
         {selectedIds.length > 0 && (
           <button onClick={onDelete} className={styles.deleteBtn}>
-            🗑 Удалить ({selectedIds.length})
+            🗑 ({selectedIds.length})
           </button>
         )}
       </div>

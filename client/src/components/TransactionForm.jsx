@@ -20,9 +20,9 @@ const TransactionForm = ({
 }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <h3 className={styles.title}>
+      {/* <h3 className={styles.title}>
         {editingId ? "Редактировать операцию" : "Добавить операцию"}
-      </h3>
+      </h3> */}
       <div className={styles.inputGroup}>
         <input
           className={styles.field}

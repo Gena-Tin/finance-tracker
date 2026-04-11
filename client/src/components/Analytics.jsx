@@ -20,8 +20,9 @@ const Analytics = ({ categoryStats, totalStats }) => {
   }));
 
   return (
-    <div style={{ width: "100%", height: 380, marginTop: "20px" }}>
-      <ResponsiveContainer>
+    <div style={{ width: "100%", height: 380, marginTop: "20px", minWidth: 0 }}>
+      {/* Дублируем стили для правильной работы ResponsiveContainer и motion*/}
+      <ResponsiveContainer width="100%" height={380} minWidth={0}>
         <PieChart>
           {/* Внутреннее кольцо: Общие итоги */}
           <Pie
