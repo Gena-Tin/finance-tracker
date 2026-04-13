@@ -39,11 +39,11 @@ const TransactionTable = ({
                 }
               />
             </th>
-            <th>Дата</th>
-            <th>Категория</th>
-            <th>Описание</th>
             <th>Сумма</th>
+            <th>Описание</th>
+            <th>Дата</th>
             <th className={styles.checkboxCell}></th>
+            <th>Категория</th>
           </tr>
         </thead>
         <tbody>
@@ -70,24 +70,24 @@ const TransactionTable = ({
                       onChange={() => onToggleSelect(t.id)}
                     />
                   </td>
-                  <td className={styles.cell}>
-                    {new Date(t.created_at).toLocaleDateString("ru-RU", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "2-digit",
-                    })}
-                  </td>
-                  <td>
-                    {t.category_icon} {t.category_name}
-                  </td>
-                  <td>{t.description}</td>
+
                   <td
                     className={`${styles.amount} ${
                       t.type === "expense" ? styles.expense : styles.income
                     }`}
                   >
                     {t.type === "expense" ? "-" : "+"}
-                    {t.amount} ₴
+                    {t.amount}
+                  </td>
+
+                  <td>{t.description}</td>
+
+                  <td className={styles.cell}>
+                    {new Date(t.created_at).toLocaleDateString("ru-RU", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "2-digit",
+                    })}
                   </td>
                   <td>
                     {isSelected && !editingId && (
@@ -99,6 +99,9 @@ const TransactionTable = ({
                         ✏️
                       </button>
                     )}
+                  </td>
+                  <td>
+                    {t.category_icon} {t.category_name}
                   </td>
                 </motion.tr>
               );

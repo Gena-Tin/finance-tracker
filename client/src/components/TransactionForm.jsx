@@ -68,7 +68,7 @@ const TransactionForm = ({
         </select>
         <div>
           <button type="submit" className={styles.submitBtn}>
-            {editingId ? "Сохранить изменения" : "Добавить"}
+            {editingId ? "Сохранить" : "Добавить"}
           </button>
           {editingId && (
             <button

@@ -84,6 +84,7 @@
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid #4a3f6e;
+  flex-direction: column;
 }
 
 .input {
@@ -104,6 +105,9 @@
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  width: 100%;
+  margin-top: 15px;
+  min-height: 46px;
 }
 
 .btnAdd:hover {
@@ -112,8 +116,8 @@
 .btnClose {
   background: transparent;
   border: 1px solid #4a3f6e;
-  width: 100%;
-  margin-top: 15px;
+  /* width: 100%; */
+  /* margin-top: 15px; */
 }
 
 .modalHeader {
@@ -129,6 +133,10 @@
   color: #a78bfa;
   font-size: 1.2rem;
   cursor: pointer;
+}
+.inputWrapper {
+  display: flex;
+  width: 100%;
 }
 
 .inputIcon {
@@ -148,6 +156,7 @@
   color: white;
   padding: 8px;
   border-radius: 6px;
+  width: 100%;
 }
 
 /* Стилизация скроллбара для списка категорий */

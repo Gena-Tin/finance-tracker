@@ -90,7 +90,7 @@ const Filters = ({
             }}
             className={styles.resetBtn}
           >
-            ✖ Сбросить даты
+            ✖ Сбросить
           </button>
         )}
       </section>
@@ -136,7 +136,7 @@ const Filters = ({
         </button>
         {filterType && (
           <button onClick={() => setFilterType("")} className={styles.resetBtn}>
-            ✖ Сбросить тип
+            Сбросить
           </button>
         )}
       </section>

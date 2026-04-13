@@ -8,6 +8,29 @@
   text-align: center;
 }
 
+@media (max-width: 450px) {
+  .container {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 450px) {
+  .block {
+    width: 100%;
+  }
+  .centerBlock {
+    width: 100%;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+}
+
+.block,
+.centerBlock {
+  padding: 0 20px;
+}
+
 .label {
   color: var(--text-h);
   margin: 0;
@@ -31,10 +54,4 @@
 
 .totalNegative {
   color: red;
-}
-
-.centerBlock {
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  padding: 0 40px;
 }

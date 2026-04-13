@@ -50,8 +50,9 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  color: var(--text-h);
 }
 
 .cancelBtn:hover {
-  background: #e2e6ea;
+  opacity: 0.8;
 }

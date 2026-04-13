@@ -75,11 +75,15 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
     e.preventDefault();
     if (!name.trim()) return;
 
-    await fetch("http://localhost:8000/categories_manage.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, icon }),
-    });
+    await fetch(
+      // "http://localhost:8000/categories_manage.php",
+      `${import.meta.env.VITE_API_URL}/categories_manage.php`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, icon }),
+      }
+    );
 
     setName("");
     onUpdate(); // Обновляем список категорий в App.jsx
@@ -87,7 +91,8 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        "http://localhost:8000/categories_manage.php",
+        // "http://localhost:8000/categories_manage.php",
+        `${import.meta.env.VITE_API_URL}/categories_manage.php`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -161,45 +166,45 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
             onChange={(e) => setIcon(e.target.value)}
             className={styles.inputIcon}
           /> */}
+          <div className={styles.inputWrapper}>
+            <div className={styles.iconPickerWrapper}>
+              <button
+                type="button"
+                className={styles.iconPreview}
+                onClick={() => setIsPickerOpen(!isPickerOpen)}
+              >
+                {icon}
+              </button>
 
-          <div className={styles.iconPickerWrapper}>
-            <button
-              type="button"
-              className={styles.iconPreview}
-              onClick={() => setIsPickerOpen(!isPickerOpen)}
-            >
-              {icon}
-            </button>
+              {isPickerOpen && (
+                <div className={styles.iconGrid}>
+                  {commonIcons.map((emoji) => (
+                    <span
+                      key={emoji}
+                      className={styles.gridEmoji}
+                      onClick={() => selectIcon(emoji)}
+                    >
+                      {emoji}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
 
-            {isPickerOpen && (
-              <div className={styles.iconGrid}>
-                {commonIcons.map((emoji) => (
-                  <span
-                    key={emoji}
-                    className={styles.gridEmoji}
-                    onClick={() => selectIcon(emoji)}
-                  >
-                    {emoji}
-                  </span>
-                ))}
-              </div>
-            )}
+            <input
+              type="text"
+              placeholder="Название категории..."
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={styles.inputName}
+            />
           </div>
-
-          <input
-            type="text"
-            placeholder="Название категории..."
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={styles.inputName}
-          />
           <button type="submit" className={styles.btnAdd}>
             +
           </button>
         </form>
-
         <button className={styles.btnClose} onClick={onClose}>
-          Готово
+          Ok
         </button>
       </motion.div>
     </motion.div>

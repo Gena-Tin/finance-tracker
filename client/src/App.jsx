@@ -64,11 +64,16 @@ function App() {
     const method = editingId ? "PUT" : "POST";
 
     try {
-      const res = await fetch("http://localhost:8000/transactions.php", {
-        method: method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(transactionData),
-      });
+      const res = await fetch(
+        // "http://localhost:8000/transactions.php"
+        `${import.meta.env.VITE_API_URL}/transactions.php`,
+
+        {
+          method: method,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(transactionData),
+        }
+      );
 
       if (res.ok) {
         setEditingId(null);
@@ -84,8 +89,14 @@ function App() {
   const fetchData = async () => {
     try {
       const [catRes, transRes] = await Promise.all([
-        fetch("http://localhost:8000/index.php"),
-        fetch("http://localhost:8000/transactions.php"),
+        fetch(
+          // "http://localhost:8000/index.php"
+          `${import.meta.env.VITE_API_URL}/index.php`
+        ),
+        fetch(
+          // "http://localhost:8000/transactions.php"
+          `${import.meta.env.VITE_API_URL}/transactions.php`
+        ),
       ]);
 
       const catData = await catRes.json();
@@ -142,11 +153,16 @@ function App() {
     if (!confirm(`Удалить выбранные записи (${selectedIds.length})?`)) return;
 
     try {
-      const res = await fetch("http://localhost:8000/transactions.php", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ids: selectedIds }),
-      });
+      const res = await fetch(
+        // "http://localhost:8000/transactions.php"
+        `${import.meta.env.VITE_API_URL}/transactions.php`,
+
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids: selectedIds }),
+        }
+      );
 
       if (res.ok) {
         setSelectedIds([]); // Очищаем выбор

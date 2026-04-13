@@ -68,13 +68,6 @@ h6 {
   color: var(--text-h);
 }
 
-/* Адаптивный шрифт для корня */
-@media (max-width: 1024px) {
-  :root {
-    font-size: 16px;
-  }
-}
-
 body {
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -102,8 +95,35 @@ button {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+
   border-inline: 1px solid var(--border);
   padding-inline: 20px;
+}
+
+@media (max-width: 768px) {
+  #root {
+    border-inline: none;
+    padding-inline: 0px;
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 20px;
+  }
 }
 
 h1 {
@@ -115,15 +135,6 @@ h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
-}
-
-@media (max-width: 1024px) {
-  h1 {
-    font-size: 36px;
-  }
-  h2 {
-    font-size: 20px;
-  }
 }
 
 p {
