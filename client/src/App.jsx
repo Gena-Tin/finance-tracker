@@ -372,6 +372,7 @@ function App() {
                         <Analytics
                           categoryStats={categoryStats}
                           totalStats={totalStats}
+                          filteredByCategory={filteredByCategory}
                         />
                       </motion.div>
                     )}
