@@ -1,5 +1,5 @@
 # --- Backend (PHP) ---
-api/db.php
+# api/db.php
 api/vendor/
 api/composer.lock
 

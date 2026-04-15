@@ -1,12 +1,15 @@
 <?php
-// Данные для подключения
-$host = 'localhost';
-$db   = 'finance_db';
-$user = 'postgres'; 
-$pass = 'YOUR_PASSWORD';     
-$port = '5432';
 
-$dsn = "pgsql:host=$host;port=$port;dbname=$db";
+$host = getenv('DB_HOST') ?: 'localhost';
+$db   = getenv('DB_NAME') ?: 'finance_db';
+$user = getenv('DB_USER') ?: 'postgres';
+$pass = getenv('DB_PASS') ?: '123qwe';
+$port = getenv('DB_PORT') ?: '5432';
+
+$sslMode = getenv('RENDER') ? ";sslmode=require" : "";
+
+$dsn = "pgsql:host=$host;port=$port;dbname=$db" . $sslMode;
+
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Ошибки будут вызывать исключения
@@ -16,7 +19,6 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    // echo "Связь с PostgreSQL установлена!"; 
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
