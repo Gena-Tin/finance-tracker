@@ -6,6 +6,11 @@
   color: var(--text-h);
   width: 100%;
 }
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .mainContent {
   margin-top: 20px;
@@ -46,4 +51,21 @@
 
 .iconOpen {
   transform: rotate(180deg);
+}
+
+.containerBtnHeader {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100px;
+}
+.themeButton,
+.toolsButton {
+  padding: 8px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: bold;
+  min-height: 45px;
+  min-width: 45px;
 }

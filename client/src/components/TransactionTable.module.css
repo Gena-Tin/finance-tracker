@@ -95,8 +95,8 @@
 .tableContainer td:first-child {
   position: sticky;
   left: 0;
-  z-index: 3; /* Выше остальных ячеек */
-  background: var(--social-bg); /* Чтобы контент не просвечивал */
+  z-index: 3;
+  background: var(--bg);
 }
 /* Фиксируем вторую колонку (Сумма) */
 .tableContainer th:nth-child(2),
@@ -105,7 +105,7 @@
   left: 20px;
   z-index: 3;
   background: var(--bg);
-  /* box-shadow: 2px 0 5px -1px rgba(0, 0, 0, 0.1); */
+  box-shadow: 2px 0 5px -1px rgba(0, 0, 0, 0.1);
 }
 
 .tableContainer th:first-child,
