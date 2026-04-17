@@ -11,6 +11,8 @@ import TransactionTable from "./components/TransactionTable";
 import Filters from "./components/Filters";
 import Analytics from "./components/Analytics";
 import CategoryManager from "./components/CategoryManager";
+import Spinner from "./components/Spinner";
+import Skeleton from "./components/Skeleton";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -191,8 +193,6 @@ function App() {
       localStorage.setItem("theme", "light");
     }
   }, [isDark]);
-
-  if (loading) return <p className={styles.loading}>Загрузка данных...</p>;
 
   // 1. Фильтруем по категориям
   let filteredData =
@@ -457,20 +457,26 @@ function App() {
               </motion.div>
             )}
           </AnimatePresence>
-
-          <TransactionTable
-            transactions={transactions}
-            filteredByCategory={filteredByCategory}
-            selectedIds={selectedIds}
-            onToggleSelect={toggleSelect}
-            onToggleAll={(isChecked) => {
-              if (isChecked) setSelectedIds(transactions.map((t) => t.id));
-              else setSelectedIds([]);
-            }}
-            onDelete={handleDelete}
-            onEdit={startEdit}
-            editingId={editingId}
-          />
+          {loading ? (
+            <>
+              <Spinner />
+              <Skeleton />
+            </>
+          ) : (
+            <TransactionTable
+              transactions={transactions}
+              filteredByCategory={filteredByCategory}
+              selectedIds={selectedIds}
+              onToggleSelect={toggleSelect}
+              onToggleAll={(isChecked) => {
+                if (isChecked) setSelectedIds(transactions.map((t) => t.id));
+                else setSelectedIds([]);
+              }}
+              onDelete={handleDelete}
+              onEdit={startEdit}
+              editingId={editingId}
+            />
+          )}
         </section>
       </motion.div>
       <AnimatePresence>
