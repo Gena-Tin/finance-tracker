@@ -52,7 +52,7 @@ function App() {
     return localStorage.getItem("theme") === "dark";
   });
 
-  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(true);
 
   const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
 
@@ -273,25 +273,25 @@ function App() {
         animate={{ opacity: 1 }}
         className={styles.container}
       >
-        <div className={styles.mainHeader}>
-          <h1>Финансовый трекер</h1>
-          <div className={styles.containerBtnHeader}>
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className={styles.themeButton}
-            >
-              {isDark ? " 🌙 " : " ☀️ "}
-            </button>
-            <button
-              onClick={() => setIsToolsOpen(!isToolsOpen)}
-              className={styles.toolsButton}
-            >
-              {isToolsOpen ? "✕" : " 🛠️ "}
-            </button>
+        <section className={styles.toolsSection}>
+          <div className={styles.mainHeader}>
+            <h1>Финансовый трекер</h1>
+            <div className={styles.containerBtnHeader}>
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={styles.themeButton}
+              >
+                {isDark ? " 🌙 " : " ☀️ "}
+              </button>
+              <button
+                onClick={() => setIsToolsOpen(!isToolsOpen)}
+                className={styles.toolsButton}
+              >
+                {isToolsOpen ? "✕" : " 🛠️ "}
+              </button>
+            </div>
           </div>
-        </div>
 
-        <section className={styles.mainContent}>
           <AnimatePresence>
             {isToolsOpen && (
               <motion.div
@@ -300,163 +300,161 @@ function App() {
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <section>
-                  {/* Добавление/редактирование транзакции */}
-                  <div
-                    className={styles.accordionHeader}
-                    onClick={() => setIsFormOpen(!isFormOpen)}
+                {/* Добавление/редактирование транзакции */}
+                <div
+                  className={styles.accordionHeader}
+                  onClick={() => setIsFormOpen(!isFormOpen)}
+                >
+                  <h2>
+                    {editingId ? "✏️ Редактирование" : "➕ Добавить операцию"}
+                  </h2>
+                  <span
+                    className={`${styles.icon} ${
+                      isFormOpen ? styles.iconOpen : ""
+                    }`}
                   >
-                    <h2>
-                      {editingId ? "✏️ Редактирование" : "➕ Добавить операцию"}
-                    </h2>
-                    <span
-                      className={`${styles.icon} ${
-                        isFormOpen ? styles.iconOpen : ""
-                      }`}
+                    ▼
+                  </span>
+                </div>
+
+                <AnimatePresence>
+                  {isFormOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      ▼
-                    </span>
-                  </div>
+                      <TransactionForm
+                        editingId={editingId}
+                        date={date}
+                        setDate={setDate}
+                        amount={amount}
+                        setAmount={setAmount}
+                        description={description}
+                        setDescription={setDescription}
+                        catId={catId}
+                        setCatId={setCatId}
+                        type={type}
+                        setType={setType}
+                        categories={categories}
+                        handleSubmit={handleSubmit}
+                        cancelEdit={cancelEdit}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                  <AnimatePresence>
-                    {isFormOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <TransactionForm
-                          editingId={editingId}
-                          date={date}
-                          setDate={setDate}
-                          amount={amount}
-                          setAmount={setAmount}
-                          description={description}
-                          setDescription={setDescription}
-                          catId={catId}
-                          setCatId={setCatId}
-                          type={type}
-                          setType={setType}
-                          categories={categories}
-                          handleSubmit={handleSubmit}
-                          cancelEdit={cancelEdit}
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/*  Аналитика */}
-                  <div
-                    className={styles.accordionHeader}
-                    onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
+                {/*  Аналитика */}
+                <div
+                  className={styles.accordionHeader}
+                  onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
+                >
+                  <h2>📊 Аналитика</h2>
+                  <span
+                    className={`${styles.icon} ${
+                      isAnalyticsOpen ? styles.iconOpen : ""
+                    }`}
                   >
-                    <h2>📊 Аналитика</h2>
-                    <span
-                      className={`${styles.icon} ${
-                        isAnalyticsOpen ? styles.iconOpen : ""
-                      }`}
+                    ▼
+                  </span>
+                </div>
+
+                <AnimatePresence>
+                  {isAnalyticsOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      ▼
-                    </span>
-                  </div>
+                      <Analytics
+                        categoryStats={categoryStats}
+                        totalStats={totalStats}
+                        filteredByCategory={filteredByCategory}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                  <AnimatePresence>
-                    {isAnalyticsOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Analytics
-                          categoryStats={categoryStats}
-                          totalStats={totalStats}
-                          filteredByCategory={filteredByCategory}
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Фильтры */}
-                  <div
-                    className={styles.accordionHeader}
-                    onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+                {/* Фильтры */}
+                <div
+                  className={styles.accordionHeader}
+                  onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+                >
+                  <h2>🔍 Фильтры</h2>
+                  <span
+                    className={`${styles.icon} ${
+                      isFiltersOpen ? styles.iconOpen : ""
+                    }`}
                   >
-                    <h2>🔍 Фильтры</h2>
-                    <span
-                      className={`${styles.icon} ${
-                        isFiltersOpen ? styles.iconOpen : ""
-                      }`}
+                    ▼
+                  </span>
+                </div>
+
+                <AnimatePresence>
+                  {isFiltersOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {" "}
-                      ▼
-                    </span>
-                  </div>
+                      <Filters
+                        categories={categories}
+                        filterCatIds={filterCatIds}
+                        toggleFilterCategory={toggleFilterCategory}
+                        setFilterCatIds={setFilterCatIds}
+                        startDate={startDate}
+                        setStartDate={setStartDate}
+                        endDate={endDate}
+                        setEndDate={setEndDate}
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                        filterType={filterType}
+                        setFilterType={setFilterType}
+                        isCategoryManagerOpen={isCategoryManagerOpen}
+                        setIsCategoryManagerOpen={setIsCategoryManagerOpen}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                  <AnimatePresence>
-                    {isFiltersOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Filters
-                          categories={categories}
-                          filterCatIds={filterCatIds}
-                          toggleFilterCategory={toggleFilterCategory}
-                          setFilterCatIds={setFilterCatIds}
-                          startDate={startDate}
-                          setStartDate={setStartDate}
-                          endDate={endDate}
-                          setEndDate={setEndDate}
-                          searchQuery={searchQuery}
-                          setSearchQuery={setSearchQuery}
-                          filterType={filterType}
-                          setFilterType={setFilterType}
-                          isCategoryManagerOpen={isCategoryManagerOpen}
-                          setIsCategoryManagerOpen={setIsCategoryManagerOpen}
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Баланс */}
-                  <div
-                    className={styles.accordionHeader}
-                    onClick={() => setIsBalanceOpen(!isBalanceOpen)}
+                {/* Баланс */}
+                <div
+                  className={styles.accordionHeader}
+                  onClick={() => setIsBalanceOpen(!isBalanceOpen)}
+                >
+                  <h2>💰 Баланс </h2>
+                  <span
+                    className={`${styles.icon} ${
+                      isBalanceOpen ? styles.iconOpen : ""
+                    }`}
                   >
-                    <h2>💰 Баланс </h2>
-                    <span
-                      className={`${styles.icon} ${
-                        isBalanceOpen ? styles.iconOpen : ""
-                      }`}
+                    ▼
+                  </span>
+                </div>
+                <AnimatePresence>
+                  {isBalanceOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {" "}
-                      ▼
-                    </span>
-                  </div>
-                  <AnimatePresence>
-                    {isBalanceOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <BalanceBoard
-                          totalIncome={totalIncome}
-                          totalExpense={totalExpense}
-                          balance={balance}
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </section>
+                      <BalanceBoard
+                        totalIncome={totalIncome}
+                        totalExpense={totalExpense}
+                        balance={balance}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
           </AnimatePresence>
+        </section>
+        <section className={styles.tableSection}>
           {loading ? (
             <>
               <Spinner />
@@ -479,6 +477,7 @@ function App() {
           )}
         </section>
       </motion.div>
+
       <AnimatePresence>
         {isCategoryManagerOpen && (
           <CategoryManager

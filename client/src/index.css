@@ -1,3 +1,4 @@
+/* --- БАЗОВЫЕ ПЕРЕМЕННЫЕ --- */
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -10,7 +11,6 @@
   --social-bg: rgba(244, 243, 236, 0.8);
   --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
   --skeleton-base: #ececec;
   --skeleton-highlight: #f5f5f5;
 
@@ -18,15 +18,10 @@
   --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  font: 16px/145% var(--sans);
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 :root.dark-theme {
@@ -41,125 +36,100 @@
   --social-bg: rgba(47, 48, 58, 0.8);
   --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
     rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-
   --skeleton-base: #333333;
   --skeleton-highlight: #444444;
 }
 
-/* Глобальный сброс и стабилизация скролла */
+/* --- СБРОС И ОСНОВНАЯ СТРУКТУРА --- */
 html {
   scrollbar-gutter: stable;
-  overflow-y: scroll; /* Принудительный скролл для надежности */
+  overflow-y: scroll;
 }
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0; /* Убираем все внешние отступы по умолчанию у ВСЕХ элементов */
-  padding: 0; /* Убираем все внутренние отступы по умолчанию */
-}
-
-/* Обнуление отступов для всех заголовков */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
   margin: 0;
   padding: 0;
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
 }
-
 body {
-  margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Плавный переход для всех элементов при смене темы */
-body,
-div,
-section,
-table,
-tr,
-td,
-header,
-input,
-select,
-button {
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #root {
   width: 100%;
-  max-width: 1100px;
   min-height: 100vh;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-
-  border-inline: 1px solid var(--border);
-  padding-inline: 20px;
+  padding-inline: 16px;
 }
 
-@media (max-width: 768px) {
+/* --- ТИПОГРАФИКА (MOBILE-FIRST) --- */
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-h);
+  margin-bottom: 1rem;
+}
+h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-h);
+  margin-bottom: 0.5rem;
+}
+p {
+  margin-bottom: 1rem;
+}
+
+/* --- АДАПТАЦИЯ --- */
+@media (min-width: 768px) {
+  :root {
+    font-size: 18px;
+  }
   #root {
-    border-inline: none;
-    padding-inline: 0px;
-    font-size: 16px;
+    padding-inline: 20px;
+    border-inline: 1px solid var(--border);
+    max-width: 720px;
+    margin: 0 auto;
   }
   h1 {
-    font-size: 20px;
+    font-size: 32px;
   }
   h2 {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
-@media (max-width: 1024px) {
-  :root {
-    font-size: 16px;
+@media (min-width: 1024px) {
+  #root {
+    max-width: 960px;
   }
   h1 {
     font-size: 36px;
   }
-  h2 {
-    font-size: 20px;
+}
+
+@media (min-width: 1280px) {
+  #root {
+    max-width: 1280px;
+  }
+  h1 {
+    font-size: 40px;
   }
 }
 
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: -0.03em;
-}
-
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-}
-
-p {
-  margin-bottom: 1rem; /* Оставляем отступ только для абзацев текста */
-}
-
+/* --- КОМПОНЕНТЫ --- */
 button {
   cursor: pointer;
   font-family: inherit;
   border-radius: 6px;
-  border: none; /* Убираем дефолтную рамку */
+  border: none;
   transition: filter 0.2s;
 }
-
 button:hover {
   filter: brightness(1.1);
 }
 
-/* Базовые стили форм */
 input,
 select,
 textarea {
@@ -172,7 +142,6 @@ textarea {
   padding: 8px 12px;
   outline: none;
 }
-
 input:focus,
 select:focus {
   border-color: var(--accent);
@@ -183,7 +152,6 @@ a {
   color: var(--accent);
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
@@ -194,24 +162,18 @@ svg {
   display: block;
 }
 
-code,
-.counter {
+/* code {
   font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
   font-size: 15px;
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
-}
+  border-radius: 4px;
+  color: var(--text-h);
+} */
 
-/* Явно указываем браузеру цветовую схему для инпутов в темной теме */
 :root.dark-theme input,
 :root.dark-theme select,
 :root.dark-theme textarea {
-  color-scheme: dark; /* Говорим браузеру, что это темный инпут */
+  color-scheme: dark;
 }
