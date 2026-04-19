@@ -287,7 +287,7 @@ function App() {
                 onClick={() => setIsToolsOpen(!isToolsOpen)}
                 className={styles.toolsButton}
               >
-                {isToolsOpen ? "✕" : " 🛠️ "}
+                {isToolsOpen ? "⋀" : " 🛠️ "}
               </button>
             </div>
           </div>
@@ -313,7 +313,7 @@ function App() {
                       isFormOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ▼
+                    ⋁
                   </span>
                 </div>
 
@@ -356,7 +356,7 @@ function App() {
                       isAnalyticsOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ▼
+                    ⋁
                   </span>
                 </div>
 
@@ -388,7 +388,7 @@ function App() {
                       isFiltersOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ▼
+                    ⋁
                   </span>
                 </div>
 
@@ -431,7 +431,7 @@ function App() {
                       isBalanceOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ▼
+                    ⋁
                   </span>
                 </div>
                 <AnimatePresence>
