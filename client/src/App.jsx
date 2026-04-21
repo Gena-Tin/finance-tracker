@@ -13,6 +13,7 @@ import Analytics from "./components/Analytics";
 import CategoryManager from "./components/CategoryManager";
 import Spinner from "./components/Spinner";
 import Skeleton from "./components/Skeleton";
+import ProjectsManager from "./components/ProjectsManager";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -56,6 +57,10 @@ function App() {
 
   const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
 
+  const [projects, setProjects] = useState([]);
+  const [projId, setProjId] = useState(1); // ID проекта "All"
+  const [isProjectManagerOpen, setIsProjectManagerOpen] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const transactionData = {
@@ -65,6 +70,7 @@ function App() {
       description: description,
       type: type,
       created_at: date,
+      project_id: projId,
     };
 
     const method = editingId ? "PUT" : "POST";
@@ -94,7 +100,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const [catRes, transRes] = await Promise.all([
+      const [catRes, transRes, projRes] = await Promise.all([
         fetch(
           // "http://localhost:8000/index.php"
           `${import.meta.env.VITE_API_URL}/index.php`
@@ -103,10 +109,13 @@ function App() {
           // "http://localhost:8000/transactions.php"
           `${import.meta.env.VITE_API_URL}/transactions.php`
         ),
+        fetch(`${import.meta.env.VITE_API_URL}/projects_manage.php`),
       ]);
 
       const catData = await catRes.json();
       const transData = await transRes.json();
+      const projData = await projRes.json();
+      setProjects(projData);
 
       setCategories(catData);
       setTransactions(transData);
@@ -128,6 +137,7 @@ function App() {
     // Автоматически открываем форму при редактировании!
     setIsFormOpen(true);
     setIsToolsOpen(true);
+    setProjId(t.project_id);
   };
 
   const cancelEdit = () => {
@@ -180,6 +190,26 @@ function App() {
     }
   };
 
+  const handleMove = async (ids, targetProjectId) => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/transactions.php`,
+        {
+          method: "PATCH", // Используем PATCH для частичного обновления
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids, targetProjectId }),
+        }
+      );
+
+      if (res.ok) {
+        setSelectedIds([]);
+        fetchData();
+      }
+    } catch (error) {
+      console.error("Ошибка переноса:", error);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -195,10 +225,23 @@ function App() {
   }, [isDark]);
 
   // 1. Фильтруем по категориям
-  let filteredData =
-    filterCatIds.length > 0
-      ? transactions.filter((t) => filterCatIds.includes(Number(t.category_id)))
-      : transactions;
+  // let filteredData =
+  //   filterCatIds.length > 0
+  //     ? transactions.filter((t) => filterCatIds.includes(Number(t.category_id)))
+  //     : transactions;
+  let filteredData = transactions;
+
+  // 1. Фильтр по проекту (если projId !== 1, то есть не "All")
+  if (projId !== 1) {
+    filteredData = filteredData.filter((t) => Number(t.project_id) === projId);
+  }
+
+  // 2. Фильтр по категориям
+  if (filterCatIds.length > 0) {
+    filteredData = filteredData.filter((t) =>
+      filterCatIds.includes(Number(t.category_id))
+    );
+  }
 
   // 2. Добавляем фильтр по диапазону дат
   if (startDate) {
@@ -278,14 +321,18 @@ function App() {
             <h1>Финансовый трекер</h1>
             <div className={styles.containerBtnHeader}>
               <button
+                type="button"
                 onClick={() => setIsDark(!isDark)}
                 className={styles.themeButton}
+                aria-label="Сменить тему оформления"
               >
                 {isDark ? " 🌙 " : " ☀️ "}
               </button>
               <button
+                type="button"
                 onClick={() => setIsToolsOpen(!isToolsOpen)}
                 className={styles.toolsButton}
+                aria-label="Открыть инструменты"
               >
                 {isToolsOpen ? "⋀" : " 🛠️ "}
               </button>
@@ -340,6 +387,9 @@ function App() {
                         categories={categories}
                         handleSubmit={handleSubmit}
                         cancelEdit={cancelEdit}
+                        projects={projects}
+                        projId={projId}
+                        setProjId={setProjId}
                       />
                     </motion.div>
                   )}
@@ -461,19 +511,45 @@ function App() {
               <Skeleton />
             </>
           ) : (
-            <TransactionTable
-              transactions={transactions}
-              filteredByCategory={filteredByCategory}
-              selectedIds={selectedIds}
-              onToggleSelect={toggleSelect}
-              onToggleAll={(isChecked) => {
-                if (isChecked) setSelectedIds(transactions.map((t) => t.id));
-                else setSelectedIds([]);
-              }}
-              onDelete={handleDelete}
-              onEdit={startEdit}
-              editingId={editingId}
-            />
+            <>
+              <div className={styles.projectHeader}>
+                <select
+                  name="project-select"
+                  value={projId}
+                  onChange={(e) => setProjId(Number(e.target.value))}
+                  className={styles.projectSelect}
+                >
+                  {projects.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.icon} {p.name}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={() => setIsProjectManagerOpen(true)}
+                  className={styles.settingsBtn}
+                  aria-label="Настройки проектов"
+                >
+                  ⚙️
+                </button>
+              </div>
+              <TransactionTable
+                transactions={transactions}
+                filteredByCategory={filteredByCategory}
+                selectedIds={selectedIds}
+                onToggleSelect={toggleSelect}
+                onToggleAll={(isChecked) => {
+                  if (isChecked) setSelectedIds(transactions.map((t) => t.id));
+                  else setSelectedIds([]);
+                }}
+                onDelete={handleDelete}
+                onEdit={startEdit}
+                editingId={editingId}
+                projects={projects}
+                onMove={handleMove}
+              />
+            </>
           )}
         </section>
       </motion.div>
@@ -484,6 +560,15 @@ function App() {
             categories={categories}
             onUpdate={fetchData} // Функция, которая делает GET запрос к категориям
             onClose={() => setIsCategoryManagerOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isProjectManagerOpen && (
+          <ProjectsManager
+            projects={projects}
+            onUpdate={fetchData}
+            onClose={() => setIsProjectManagerOpen(false)}
           />
         )}
       </AnimatePresence>

@@ -17,6 +17,9 @@ const TransactionForm = ({
   categories,
   handleSubmit,
   cancelEdit,
+  projects,
+  projId,
+  setProjId,
 }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
@@ -65,6 +68,17 @@ const TransactionForm = ({
         >
           <option value="expense">Расход</option>
           <option value="income">Доход</option>
+        </select>
+        <select
+          className={styles.field}
+          value={projId}
+          onChange={(e) => setProjId(e.target.value)}
+        >
+          {projects.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.icon} {p.name}
+            </option>
+          ))}
         </select>
         <div>
           <button type="submit" className={styles.submitBtn}>

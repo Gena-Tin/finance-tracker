@@ -41,6 +41,20 @@
   opacity: 0.8;
 }
 
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.moveBtn {
+  background: #369bca;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  color: white;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

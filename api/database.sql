@@ -6,19 +6,39 @@ CREATE TABLE categories (
     is_system BOOLEAN DEFAULT false
 );
 
+-- Таблица проекты
+CREATE TABLE projects (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    icon VARCHAR(10), -- Например, '💎'
+    is_system BOOLEAN DEFAULT false
+);
+
+-- Начальные данные для поекты
+INSERT INTO projects (name, icon, is_system) VALUES 
+('All', '💎', true);
+
 -- Таблица транзакций
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
-    category_id INTEGER REFERENCES categories(id),
+    category_id INTEGER REFERENCES categories(id) NOT NULL,
+    project_id INTEGER REFERENCES projects(id) DEFAULT 1,
     amount DECIMAL(10, 2) NOT NULL,
     description TEXT,
     type VARCHAR(10) CHECK (type IN ('income', 'expense')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Добавляем столбец project_id в таблицк transactions
+ALTER TABLE transactions 
+ADD COLUMN project_id INTEGER DEFAULT 1 REFERENCES projects(id);
+
 -- Начальные данные для категорий (опционально)
-INSERT INTO categories (name, icon) VALUES 
-('Food', '🍎'), 
-('Transport', '🚌'), 
-('Salary', '💰'), 
-('Entertainment', '🎬');
+INSERT INTO categories (name, icon, is_system) VALUES 
+('Other', '🎁', true), 
+('Food', '🍎', false), 
+('Transport', '🚌', false), 
+('Salary', '💰', false), 
+('Entertainment', '🎬', false);
+
+

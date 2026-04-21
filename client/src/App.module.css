@@ -65,6 +65,26 @@
   margin-left: 5px;
 }
 
+.projectHeader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.projectSelect {
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--text);
+}
+.settingsBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
 @media (min-width: 1280px) {
   .container {
     max-width: 1300px;
