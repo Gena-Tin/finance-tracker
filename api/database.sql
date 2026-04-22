@@ -14,10 +14,6 @@ CREATE TABLE projects (
     is_system BOOLEAN DEFAULT false
 );
 
--- Начальные данные для поекты
-INSERT INTO projects (name, icon, is_system) VALUES 
-('All', '💎', true);
-
 -- Таблица транзакций
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
@@ -29,9 +25,9 @@ CREATE TABLE transactions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Добавляем столбец project_id в таблицк transactions
-ALTER TABLE transactions 
-ADD COLUMN project_id INTEGER DEFAULT 1 REFERENCES projects(id);
+-- Начальные данные для поекты
+INSERT INTO projects (name, icon, is_system) VALUES 
+('All', '💎', true);
 
 -- Начальные данные для категорий (опционально)
 INSERT INTO categories (name, icon, is_system) VALUES 
@@ -40,5 +36,6 @@ INSERT INTO categories (name, icon, is_system) VALUES
 ('Transport', '🚌', false), 
 ('Salary', '💰', false), 
 ('Entertainment', '🎬', false);
+
 
 

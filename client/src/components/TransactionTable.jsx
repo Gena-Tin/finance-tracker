@@ -127,6 +127,7 @@ const TransactionTable = ({
                   <td>
                     {isSelected && !editingId && (
                       <button
+                        type="button"
                         onClick={() => onEdit(t)}
                         className={styles.editBtn}
                         title="Редактировать"
@@ -138,7 +139,9 @@ const TransactionTable = ({
                   <td>
                     {t.category_icon} {t.category_name}
                   </td>
-                  <td>{t.project_name}</td>
+                  <td>
+                    {t.project_icon} {t.project_name}
+                  </td>
                 </motion.tr>
               );
             })}

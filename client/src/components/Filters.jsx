@@ -53,6 +53,7 @@ const Filters = ({
           })}
           {filterCatIds.length > 0 && (
             <button
+              type="button"
               onClick={() => setFilterCatIds([])}
               className={styles.resetBtn}
             >
@@ -84,6 +85,7 @@ const Filters = ({
         </div>
         {(startDate || endDate) && (
           <button
+            type="button"
             onClick={() => {
               setStartDate("");
               setEndDate("");
@@ -107,6 +109,7 @@ const Filters = ({
         />
         {searchQuery && (
           <button
+            type="button"
             onClick={() => setSearchQuery("")}
             className={styles.resetBtn}
           >
@@ -119,6 +122,7 @@ const Filters = ({
       <section className={styles.typeSection}>
         <span>Тип:</span>
         <button
+          type="button"
           onClick={() => setFilterType("income")}
           className={`${styles.typeBtn} ${
             filterType === "income" ? styles.incomeBtnActive : ""
@@ -135,7 +139,11 @@ const Filters = ({
           ❌ Расходы
         </button>
         {filterType && (
-          <button onClick={() => setFilterType("")} className={styles.resetBtn}>
+          <button
+            type="button"
+            onClick={() => setFilterType("")}
+            className={styles.resetBtn}
+          >
             Сбросить
           </button>
         )}

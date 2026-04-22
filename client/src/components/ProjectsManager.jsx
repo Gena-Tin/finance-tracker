@@ -113,7 +113,7 @@ const ProjectsManager = ({ projects, onUpdate, onClose }) => {
       >
         <div className={styles.modalHeader}>
           <h3>Настройка проектов</h3>
-          <button className={styles.closeX} onClick={onClose}>
+          <button type="button" className={styles.closeX} onClick={onClose}>
             ✖
           </button>
         </div>
@@ -126,6 +126,7 @@ const ProjectsManager = ({ projects, onUpdate, onClose }) => {
               </span>
               {!proj.is_system && (
                 <button
+                  type="button"
                   className={styles.btnDelete}
                   onClick={() => handleDelete(proj.id)}
                   title="Удалить"

@@ -76,6 +76,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
         }}
       >
         <button
+          type="button"
           onClick={() => setViewType("pie")}
           style={{
             padding: "6px 16px",
@@ -90,6 +91,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
           🥧 Состав
         </button>
         <button
+          type="button"
           onClick={() => setViewType("line")}
           style={{
             padding: "6px 16px",

@@ -134,7 +134,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
       >
         <div className={styles.modalHeader}>
           <h3>Настройка категорий</h3>
-          <button className={styles.closeX} onClick={onClose}>
+          <button type="button" className={styles.closeX} onClick={onClose}>
             ✖
           </button>
         </div>
@@ -147,6 +147,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
               </span>
               {!cat.is_system && (
                 <button
+                  type="button"
                   className={styles.btnDelete}
                   onClick={() => handleDelete(cat.id)}
                   title="Удалить"
@@ -203,7 +204,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
             +
           </button>
         </form>
-        <button className={styles.btnClose} onClick={onClose}>
+        <button type="button" className={styles.btnClose} onClick={onClose}>
           Ok
         </button>
       </motion.div>

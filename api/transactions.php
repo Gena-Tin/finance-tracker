@@ -17,10 +17,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 try {
     if ($method === 'GET') {
-        // Добавили LEFT JOIN для получения данных о проекте
         $query = "SELECT t.*, 
                          c.name as category_name, c.icon as category_icon,
-                         p.name as project_name
+                         p.name as project_name, p.icon as project_icon
                   FROM transactions t 
                   JOIN categories c ON t.category_id = c.id 
                   LEFT JOIN projects p ON t.project_id = p.id
