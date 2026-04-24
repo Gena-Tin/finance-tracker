@@ -77,7 +77,6 @@ function App() {
 
     try {
       const res = await fetch(
-        // "http://localhost:8000/transactions.php"
         `${import.meta.env.VITE_API_URL}/transactions.php`,
 
         {
@@ -91,7 +90,7 @@ function App() {
         setEditingId(null);
         setAmount("");
         setDescription("");
-        fetchData(); // Обновляем список
+        fetchData();
       }
     } catch (error) {
       console.error("Ошибка:", error);
@@ -101,14 +100,8 @@ function App() {
   const fetchData = async () => {
     try {
       const [catRes, transRes, projRes] = await Promise.all([
-        fetch(
-          // "http://localhost:8000/index.php"
-          `${import.meta.env.VITE_API_URL}/index.php`
-        ),
-        fetch(
-          // "http://localhost:8000/transactions.php"
-          `${import.meta.env.VITE_API_URL}/transactions.php`
-        ),
+        fetch(`${import.meta.env.VITE_API_URL}/index.php`),
+        fetch(`${import.meta.env.VITE_API_URL}/transactions.php`),
         fetch(`${import.meta.env.VITE_API_URL}/projects_manage.php`),
       ]);
 
@@ -171,7 +164,6 @@ function App() {
 
     try {
       const res = await fetch(
-        // "http://localhost:8000/transactions.php"
         `${import.meta.env.VITE_API_URL}/transactions.php`,
 
         {
@@ -195,7 +187,7 @@ function App() {
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/transactions.php`,
         {
-          method: "PATCH", // Используем PATCH для частичного обновления
+          method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ids, targetProjectId }),
         }
@@ -224,26 +216,21 @@ function App() {
     }
   }, [isDark]);
 
-  // 1. Фильтруем по категориям
-  // let filteredData =
-  //   filterCatIds.length > 0
-  //     ? transactions.filter((t) => filterCatIds.includes(Number(t.category_id)))
-  //     : transactions;
   let filteredData = transactions;
 
-  // 1. Фильтр по проекту (если projId !== 1, то есть не "All")
+  //  Фильтр по проекту (если projId !== 1, то есть не "All")
   if (projId !== 1) {
     filteredData = filteredData.filter((t) => Number(t.project_id) === projId);
   }
 
-  // 2. Фильтр по категориям
+  //  Фильтр по категориям
   if (filterCatIds.length > 0) {
     filteredData = filteredData.filter((t) =>
       filterCatIds.includes(Number(t.category_id))
     );
   }
 
-  // 2. Добавляем фильтр по диапазону дат
+  //  Добавляем фильтр по диапазону дат
   if (startDate) {
     filteredData = filteredData.filter((t) => t.created_at >= startDate);
   }
@@ -253,21 +240,21 @@ function App() {
       (t) => t.created_at <= endDate + " 23:59:59"
     );
   }
-  // 3. Фильтр по тексту в описании (регистронезависимый)
+  //  Фильтр по тексту в описании (регистронезависимый)
   if (searchQuery) {
     filteredData = filteredData.filter((t) =>
       t.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }
 
-  // 4. Фильтр по типу (Доход / Расход)
+  //  Фильтр по типу (Доход / Расход)
   if (filterType) {
     filteredData = filteredData.filter((t) => t.type === filterType);
   }
   // Эту переменную используем для отрисовки таблицы
   const filteredByCategory = filteredData;
 
-  // 2. Для расчетов баланса берем отфильтрованные, но исключаем те, что помечены на удаление
+  //  Для расчетов баланса берем отфильтрованные, но исключаем те, что помечены на удаление
   const activeTransactions = filteredByCategory.filter(
     (t) => !selectedIds.includes(t.id)
   );
@@ -318,7 +305,7 @@ function App() {
       >
         <section className={styles.toolsSection}>
           <div className={styles.mainHeader}>
-            <h1>Финансовый трекер</h1>
+            <h1>Finance tracker</h1>
             <div className={styles.containerBtnHeader}>
               <button
                 type="button"
@@ -342,7 +329,12 @@ function App() {
           <AnimatePresence>
             {isToolsOpen && (
               <motion.div
-                initial={{ height: 0, opacity: 0, overflow: "hidden" }}
+                initial={{
+                  height: 0,
+                  opacity: 0,
+                  overflow: "hidden",
+                  paddingBottom: 10,
+                }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
@@ -528,7 +520,7 @@ function App() {
                 <button
                   type="button"
                   onClick={() => setIsProjectManagerOpen(true)}
-                  className={styles.settingsBtn}
+                  className={styles.projectsSettingsBtn}
                   aria-label="Настройки проектов"
                 >
                   ⚙️
@@ -553,12 +545,12 @@ function App() {
           )}
         </section>
       </motion.div>
-
+      {/* Модалки: */}
       <AnimatePresence>
         {isCategoryManagerOpen && (
           <CategoryManager
             categories={categories}
-            onUpdate={fetchData} // Функция, которая делает GET запрос к категориям
+            onUpdate={fetchData}
             onClose={() => setIsCategoryManagerOpen(false)}
           />
         )}

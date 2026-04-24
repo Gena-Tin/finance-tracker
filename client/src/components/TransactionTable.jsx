@@ -23,8 +23,9 @@ const TransactionTable = ({
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableHeader}>
-        <h2>Последние операции</h2>
-        {selectedIds.length > 0 && (
+        {selectedIds.length <= 0 ? (
+          <h2>Последние операции</h2>
+        ) : (
           <>
             <button
               type="button"
@@ -34,28 +35,27 @@ const TransactionTable = ({
             >
               ({selectedIds.length}) Delete 🗑
             </button>
-            <div>
-              <button
-                type="button"
-                onClick={() => onMove(selectedIds, targetProjectId)}
-                className={styles.moveBtn}
-                title="Перенести выбранные"
-              >
-                ({selectedIds.length}) move to 👉
-              </button>
-              <select
-                name="project-target"
-                className={styles.projectSelect}
-                value={targetProjectId}
-                onChange={(e) => setTargetProjectId(Number(e.target.value))}
-              >
-                {projects.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <button
+              type="button"
+              onClick={() => onMove(selectedIds, targetProjectId)}
+              className={styles.moveBtn}
+              title="Перенести выбранные"
+            >
+              ({selectedIds.length}) move to 👉
+            </button>
+
+            <select
+              name="project-target"
+              className={styles.projectSelect}
+              value={targetProjectId}
+              onChange={(e) => setTargetProjectId(Number(e.target.value))}
+            >
+              {projects.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
           </>
         )}
       </div>
@@ -107,8 +107,10 @@ const TransactionTable = ({
                   </td>
 
                   <td
-                    className={`${styles.amount} ${
-                      t.type === "expense" ? styles.expense : styles.income
+                    className={`${styles.amountCell} ${
+                      t.type === "expense"
+                        ? styles.expenseStyle
+                        : styles.incomeStyle
                     }`}
                   >
                     {t.type === "expense" ? "-" : "+"}
@@ -117,7 +119,7 @@ const TransactionTable = ({
 
                   <td>{t.description}</td>
 
-                  <td className={styles.cell}>
+                  <td className={styles.dataCell}>
                     {new Date(t.created_at).toLocaleDateString("ru-RU", {
                       day: "2-digit",
                       month: "2-digit",
@@ -137,10 +139,10 @@ const TransactionTable = ({
                     )}
                   </td>
                   <td>
-                    {t.category_icon} {t.category_name}
+                    {t.category_icon}&nbsp;{t.category_name}
                   </td>
                   <td>
-                    {t.project_icon} {t.project_name}
+                    {t.project_icon}&nbsp;{t.project_name}
                   </td>
                 </motion.tr>
               );

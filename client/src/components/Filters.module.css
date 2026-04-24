@@ -109,8 +109,8 @@
 }
 
 .settingsButton {
-  background: var(--accent-bg, #2d2845); /* Темно-фиолетовый фон */
-  border: 1px solid #4a3f6e; /* Цвет границ как у твоих карточек */
+  background: var(--accent-bg, #2d2845);
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   padding: 6px 10px;
   cursor: pointer;
@@ -120,9 +120,6 @@
   justify-content: center;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  /* margin-right: auto;  */
-  /* margin-top: 10px; */
-  /* margin-bottom: 10px; */
 }
 
 .settingsButton:hover {

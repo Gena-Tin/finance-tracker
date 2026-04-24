@@ -63,7 +63,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
     );
   }, [filteredByCategory]);
 
-  console.log("Данные для графика:", timelineData);
+  // console.log("Данные для графика:", timelineData);
   return (
     <div style={{ marginTop: "20px" }}>
       {/* Переключатель графиков */}
