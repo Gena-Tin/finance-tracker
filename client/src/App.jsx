@@ -130,7 +130,7 @@ function App() {
     // Автоматически открываем форму при редактировании!
     setIsFormOpen(true);
     setIsToolsOpen(true);
-    setProjId(t.project_id);
+    // setProjId(t.project_id);
   };
 
   const cancelEdit = () => {

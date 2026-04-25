@@ -17,6 +17,7 @@
   --skeleton-highlight: #f5f5f5;
   --incomeColor: green;
   --expenseColor: rgb(201, 0, 0);
+  --overlay: rgba(0, 0, 0, 0.7);
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
   --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;

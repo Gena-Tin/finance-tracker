@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,29 +13,31 @@
 }
 
 .modal {
-  background: #1f1b2e;
-  border: 1px solid #4a3f6e;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   padding: 24px;
   width: 90%;
   max-width: 450px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  color: #e2e2e2;
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .modal h3 {
   margin-top: 0;
-  color: #a78bfa;
-  border-bottom: 1px solid #4a3f6e;
+  color: var(--text);
   padding-bottom: 10px;
 }
 
 .list {
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin-top: 15px;
   max-height: 250px;
   overflow-y: auto;
+  box-shadow: inset 0px 2px 2px var(--shadow);
 }
 
 .item {
@@ -43,12 +45,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #2d2845;
+  border-bottom: 1px solid var(--accent-border);
   transition: background 0.2s;
 }
 
 .item:hover {
-  background: #2d2845;
+  background: var(--accent-bg);
 }
 
 .item span {
@@ -69,6 +71,7 @@
   padding: 4px;
   border-radius: 8px;
   transition: transform 0.1s;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .btnDelete:hover {
@@ -80,25 +83,13 @@
 
 .addForm {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #4a3f6e;
+  margin-top: 15px;
   flex-direction: column;
-}
-
-.input {
-  background: #13111c;
-  border: 1px solid #4a3f6e;
-  color: white;
-  padding: 8px;
-  border-radius: 8px;
-  flex: 1;
 }
 
 .btnAdd,
 .btnClose {
-  background: #6d28d9;
+  background: var(--accent);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -108,29 +99,24 @@
   width: 100%;
   margin-top: 15px;
   min-height: 46px;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
-.btnAdd:hover {
-  background: #7c3aed;
-}
 .btnClose {
-  background: transparent;
-  border: 1px solid #4a3f6e;
-  /* width: 100%; */
-  /* margin-top: 15px; */
+  background: var(--accent);
+  border: 1px solid var(--accent-border);
 }
 
 .modalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
 }
 
 .closeX {
   background: none;
   border: none;
-  color: #a78bfa;
+  color: var(--text);
   font-size: 1.2rem;
   cursor: pointer;
 }
@@ -139,24 +125,15 @@
   width: 100%;
 }
 
-.inputIcon {
-  width: 50px;
-  text-align: center;
-  background: #13111c;
-  border: 1px solid #4a3f6e;
-  color: white;
-  padding: 8px;
-  border-radius: 8px;
-}
-
 .inputName {
   flex: 1;
-  background: #13111c;
-  border: 1px solid #4a3f6e;
-  color: white;
+  background: var(--bg);
+  border: 1px solid var(--accent-border);
+  color: var(--text);
   padding: 8px;
   border-radius: 8px;
   width: 100%;
+  box-shadow: inset 0px 2px 2px var(--shadow);
 }
 
 /* Стилизация скроллбара для списка категорий */
@@ -164,7 +141,7 @@
   width: 6px;
 }
 .list::-webkit-scrollbar-thumb {
-  background: #4a3f6e;
+  background: var(--accent);
   border-radius: 8px;
 }
 
@@ -176,32 +153,33 @@
   width: 45px;
   height: 45px;
   font-size: 1.5rem;
-  background: #13111c;
-  border: 2px solid #4a3f6e;
+  background: var(--bg);
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+  box-shadow: inset 0px 2px 2px var(--shadow);
 }
 
 .iconPreview:hover {
-  border-color: #a78bfa;
+  border-color: var(--text-h);
 }
 
 .iconGrid {
   position: absolute;
   bottom: 55px; /* Панель открывается вверх */
   left: 0;
-  background: #1f1b2e;
-  border: 1px solid #4a3f6e;
+  background: var(--bg);
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   padding: 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px var(--shadow);
   z-index: 10;
 }
 
@@ -217,5 +195,5 @@
 }
 
 .gridEmoji:hover {
-  background: #4a3f6e;
+  background: var(--accent-bg-hover);
 }

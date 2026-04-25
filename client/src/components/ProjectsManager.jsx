@@ -48,9 +48,19 @@ const ProjectsManager = ({ projects, onUpdate, onClose }) => {
     "☎️",
     "🔈",
     "🍎",
+    "🍋",
+    "🍊",
+    "🍒",
+    "☕️",
     "🎲",
     "🎖️",
     "🎱",
+    "💊",
+    "🪣",
+    "😁",
+    "🙁",
+    "😎",
+    "😍",
   ];
 
   const selectIcon = (emoji) => {
@@ -165,6 +175,7 @@ const ProjectsManager = ({ projects, onUpdate, onClose }) => {
             </div>
 
             <input
+              name="project name"
               type="text"
               placeholder="Название проекта..."
               value={name}

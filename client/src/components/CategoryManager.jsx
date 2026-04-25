@@ -25,6 +25,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
   // Набор иконок для быстрого выбора
   const commonIcons = [
     "💰",
+    "💎",
     "🍕",
     "🚗",
     "🏠",
@@ -57,7 +58,6 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
     "🎲",
     "🎖️",
     "🎱",
-    "💎",
     "💊",
     "🪣",
     "😁",
@@ -193,6 +193,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
             </div>
 
             <input
+              name="category name"
               type="text"
               placeholder="Название категории..."
               value={name}
