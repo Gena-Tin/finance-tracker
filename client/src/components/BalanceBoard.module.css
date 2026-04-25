@@ -1,9 +1,9 @@
 .container {
   display: flex;
   justify-content: space-around;
-  background-color: var(--bg);
+  background: var(--accent-bg-alt);
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-top: 10px;
   text-align: center;
 }
@@ -41,11 +41,11 @@
 }
 
 .income {
-  color: green;
+  color: var(--incomeColor);
 }
 
 .expense {
-  color: red;
+  color: var(--expenseColor);
 }
 
 .totalPositive {
@@ -53,5 +53,5 @@
 }
 
 .totalNegative {
-  color: red;
+  color: var(--expenseColor);
 }

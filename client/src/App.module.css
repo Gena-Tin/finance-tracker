@@ -28,13 +28,13 @@
 }
 
 .accordionHeader:hover {
-  background: var(--accent-border);
+  background: var(--accent-bg-hover);
 }
 
 .accordionHeader h2 {
   margin: 0;
   font-size: 1.2rem;
-  color: var(--accent);
+  color: var(--text);
 }
 
 .icon {
@@ -54,7 +54,7 @@
 .themeButton,
 .toolsButton {
   padding: 8px 13px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--accent-border);
   background: var(--accent-bg);
   color: var(--text-h);

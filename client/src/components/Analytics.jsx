@@ -13,12 +13,14 @@ import {
 } from "recharts";
 
 const COLORS = [
+  "#580063",
   "#8884d8",
-  "#82ca9d",
-  "#ffc658",
+  "#c30000",
   "#ff8042",
+  "#ffc658",
+  "#26d440",
   "#0088FE",
-  "#00C49F",
+  "#171bff",
 ];
 
 const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
@@ -28,7 +30,10 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
   const coloredCategoryStats = useMemo(() => {
     return categoryStats.map((entry, index) => ({
       ...entry,
-      fill: entry.type === "income" ? "#10b981" : COLORS[index % COLORS.length],
+      fill:
+        entry.type === "income"
+          ? "var(--incomeColor)"
+          : COLORS[index % COLORS.length],
     }));
   }, [categoryStats]);
 
@@ -63,7 +68,6 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
     );
   }, [filteredByCategory]);
 
-  // console.log("Данные для графика:", timelineData);
   return (
     <div style={{ marginTop: "20px" }}>
       {/* Переключатель графиков */}
@@ -80,12 +84,15 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
           onClick={() => setViewType("pie")}
           style={{
             padding: "6px 16px",
-            borderRadius: "20px",
-            border: "1px solid var(--border)",
-            background: viewType === "pie" ? "var(--accent-bg)" : "transparent",
+            borderRadius: "8px",
+            border: "1px solid var(--accent-border)",
+            background:
+              viewType === "pie" ? "transparent" : "var(--accent-bg) ",
             color: viewType === "pie" ? "var(--accent)" : "var(--text)",
             cursor: "pointer",
             fontWeight: 500,
+            height: 45,
+            boxShadow: viewType === "pie" ? "" : "0 2px 8px var(--shadow)",
           }}
         >
           🥧 Состав
@@ -95,13 +102,15 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
           onClick={() => setViewType("line")}
           style={{
             padding: "6px 16px",
-            borderRadius: "20px",
-            border: "1px solid var(--border)",
+            borderRadius: "8px",
+            border: "1px solid var(--accent-border)",
             background:
-              viewType === "line" ? "var(--accent-bg)" : "transparent",
+              viewType === "line" ? "transparent" : "var(--accent-bg)",
             color: viewType === "line" ? "var(--accent)" : "var(--text)",
             cursor: "pointer",
             fontWeight: 500,
+            height: 45,
+            boxShadow: viewType === "line" ? "" : "0 2px 8px var(--shadow)",
           }}
         >
           📈 Динамика
@@ -172,7 +181,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
                 name="Доход"
                 type="monotone"
                 dataKey="income"
-                stroke="#10b981"
+                stroke="var(--incomeColor)"
                 strokeWidth={3}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
@@ -181,7 +190,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
                 name="Расход"
                 type="monotone"
                 dataKey="expense"
-                stroke="#aa3bff"
+                stroke="var(--expenseColor)"
                 strokeWidth={3}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}

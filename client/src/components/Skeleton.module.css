@@ -7,7 +7,7 @@
     var(--skeleton-base, #ececec) 33%
   );
 
-  border-radius: 4px;
+  border-radius: 8px;
   background-size: 200% 100%;
   animation: shine 1.5s linear infinite;
 }

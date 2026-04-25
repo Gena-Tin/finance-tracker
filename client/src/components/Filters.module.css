@@ -1,5 +1,8 @@
 .filtersContainer {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: var(--accent-bg-alt);
+  padding: 20px;
 }
 
 /* Секция категорий */
@@ -12,32 +15,24 @@
 
 .categoryCard {
   padding: 10px;
-  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   transition: 0.2s;
-  border: 1px solid var(--border);
-  background: var(--bg);
-}
-
-.categoryCardActive {
-  border: 2px solid #007bff;
-  background: var(--bg);
 }
 
 /* Секция дат */
 .dateSection {
-  background: var(--bg);
   padding: 15px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
   margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
+  background: var(--accent-bg-alt);
 }
 
 .dateGroup {
@@ -48,8 +43,9 @@
 
 .inputField {
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid var(--border);
+  box-shadow: inset 0px 2px 2px var(--shadow);
 }
 
 /* Поиск */
@@ -63,9 +59,10 @@
 .searchInput {
   flex: 1;
   padding: 8px 12px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   font-size: 14px;
+  box-shadow: inset 0px 2px 2px var(--shadow);
 }
 
 /* Тип транзакции */
@@ -79,25 +76,10 @@
 
 .typeBtn {
   padding: 5px 15px;
-  border-radius: 5px;
-  border: 1px solid var(--border);
-  background: var(--bg);
   color: var(--text-h);
   cursor: pointer;
   transition: 0.2s;
   max-width: 95px;
-}
-
-.incomeBtnActive {
-  border: 2px solid green;
-  background: var(--bg);
-  font-weight: bold;
-}
-
-.expenseBtnActive {
-  border: 2px solid red;
-  background: var(--bg);
-  font-weight: bold;
 }
 
 .resetBtn {
@@ -109,9 +91,6 @@
 }
 
 .settingsButton {
-  background: var(--accent-bg, #2d2845);
-  border: 1px solid var(--accent-border);
-  border-radius: 8px;
   padding: 6px 10px;
   cursor: pointer;
   font-size: 1.2rem;
@@ -119,11 +98,27 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.settingsButton:hover {
-  border-color: #a78bfa; /* Светло-фиолетовый при наведении */
-  background: #362f55;
-  box-shadow: 0 0 10px rgba(167, 139, 250, 0.3); /* Легкое фиолетовое свечение */
+.typeBtn,
+.settingsButton,
+.categoryCard {
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.incomeBtnActive {
+  border: 2px solid var(--incomeColor);
+}
+.expenseBtnActive {
+  border: 2px solid var(--expenseColor);
+}
+
+.categoryCardActive,
+.incomeBtnActive,
+.expenseBtnActive {
+  background: var(--accent-bg-alt);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0);
 }

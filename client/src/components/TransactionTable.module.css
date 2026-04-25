@@ -17,7 +17,7 @@ td {
 }
 
 .tableContainer tr:nth-child(even) {
-  background-color: var(--social-bg);
+  background-color: var(--accent-bg-alt);
 }
 
 .tableHeader {
@@ -32,11 +32,11 @@ td {
 }
 
 .deleteBtn {
-  background: #913234;
+  background: var(--expenseColor);
   color: white;
   border: none;
   padding: 8px 15px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -48,13 +48,15 @@ td {
 .deleteBtn,
 .moveBtn,
 .projectSelect {
+  font-weight: bold;
   height: 45px;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .moveBtn {
-  background: #369bca;
+  background: var(--accent);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 8px 15px;
   cursor: pointer;
   color: white;
@@ -79,7 +81,7 @@ td {
   border-bottom: 2px solid var(--border);
   text-align: left;
   height: 45px;
-  background-color: var(--social-bg);
+  background-color: var(--accent-bg-alt);
 }
 
 .row {
@@ -100,11 +102,11 @@ td {
 }
 
 .expenseStyle {
-  color: red;
+  color: var(--expenseColor);
 }
 
 .incomeStyle {
-  color: green;
+  color: var(--incomeColor);
 }
 
 .editBtn {
@@ -134,17 +136,17 @@ td {
   left: 0px;
   z-index: 3;
   background: var(--bg);
-  box-shadow: 2px 0 5px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 5px -1px var(--shadow);
 }
 
 .tableContainer th:first-child,
 .tableContainer th:nth-child(2) {
   z-index: 4;
-  background-color: var(--social-bg);
+  background-color: var(--accent-bg-alt);
 }
 
 /* Чтобы "зебра" не пропадала на зафиксированных ячейках */
 .tableContainer tr:nth-child(even) td:first-child,
 .tableContainer tr:nth-child(even) td:nth-child(2) {
-  background-color: var(--social-bg);
+  background-color: var(--accent-bg-alt);
 }

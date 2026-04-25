@@ -1,7 +1,7 @@
 .formContainer {
-  background: var(--bg);
+  background: var(--accent-bg-alt);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-top: 10px;
   border: 1px solid var(--border);
 }
@@ -21,36 +21,41 @@
 /* Стили для всех полей ввода и селектов */
 .field {
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   font-size: 14px;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: inset 0px 2px 2px var(--shadow);
 }
 
 .submitBtn {
-  background-color: #007bff;
+  background-color: var(--accent);
   color: white;
-  border: none;
+  border: 1px solid var(--accent-border);
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.2s;
+  height: 45px;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .submitBtn:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-hover);
 }
 
 .cancelBtn {
   margin-left: 10px;
-  background-color: #f0f2f5;
-  border: 1px solid var(--border);
+  background-color: var(--accent-bg-alt);
+  border: 1px solid var(--accent-border);
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   color: var(--text-h);
+  height: 45px;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .cancelBtn:hover {

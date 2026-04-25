@@ -160,7 +160,7 @@ function App() {
   // функция удаления:
   const handleDelete = async () => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`Удалить выбранные записи (${selectedIds.length})?`)) return;
+    if (!confirm(`Удалить выбранные записи? (${selectedIds.length})?`)) return;
 
     try {
       const res = await fetch(
@@ -183,6 +183,10 @@ function App() {
   };
 
   const handleMove = async (ids, targetProjectId) => {
+    if (selectedIds.length === 0) return;
+    if (!confirm(`Переместить выбранные записи? (${selectedIds.length})?`))
+      return;
+
     try {
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/transactions.php`,
@@ -292,8 +296,8 @@ function App() {
 
   // 2. Группируем внутреннее кольцо (общие Доходы и Расходы)
   const totalStats = [
-    { name: "Доходы", value: totalIncome, fill: "#10b981" }, // Зеленый
-    { name: "Расходы", value: totalExpense, fill: "#ef4444" }, // Красный
+    { name: "Доходы", value: totalIncome, fill: "var(--incomeColor)" }, // Зеленый
+    { name: "Расходы", value: totalExpense, fill: "var(--expenseColor)" }, // Красный
   ].filter((item) => item.value > 0); // Показываем только если сумма > 0
 
   return (
@@ -406,7 +410,13 @@ function App() {
                   {isAnalyticsOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                      animate={{ height: "auto", opacity: 1 }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                        background: "var(--accent-bg-alt)",
+                        borderRadius: 8,
+                        marginTop: 10,
+                      }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
