@@ -1,4 +1,4 @@
-export const commonIcons = [
+export const COMMON_ICONS = [
   "💎",
   "💰",
   "🍕",

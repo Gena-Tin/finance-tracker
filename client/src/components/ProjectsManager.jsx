@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
+
+import IconPicker from "./IconPicker";
+
 import styles from "./CategoryManager.module.css";
 
 const ProjectsManager = ({ projects, onUpdate, onClose }) => {
@@ -19,49 +22,6 @@ const ProjectsManager = ({ projects, onUpdate, onClose }) => {
       document.documentElement.style.overflow = "auto";
     };
   }, []);
-
-  const commonIcons = [
-    "💎",
-    "💰",
-    "🍕",
-    "🚗",
-    "🏠",
-    "🎮",
-    "👕",
-    "🏥",
-    "📚",
-    "🔋",
-    "🛠️",
-    "🛒",
-    "🍿",
-    "✈️",
-    "🐾",
-    "🎁",
-    "💡",
-    "🐱",
-    "⭐️",
-    "🐶",
-    "🚌",
-    "⚽️",
-    "⛵️",
-    "🏖️",
-    "☎️",
-    "🔈",
-    "🍎",
-    "🍋",
-    "🍊",
-    "🍒",
-    "☕️",
-    "🎲",
-    "🎖️",
-    "🎱",
-    "💊",
-    "🪣",
-    "😁",
-    "🙁",
-    "😎",
-    "😍",
-  ];
 
   const selectIcon = (emoji) => {
     setIcon(emoji);
@@ -159,19 +119,7 @@ const ProjectsManager = ({ projects, onUpdate, onClose }) => {
                 {icon}
               </button>
 
-              {isPickerOpen && (
-                <div className={styles.iconGrid}>
-                  {commonIcons.map((emoji) => (
-                    <span
-                      key={emoji}
-                      className={styles.gridEmoji}
-                      onClick={() => selectIcon(emoji)}
-                    >
-                      {emoji}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {isPickerOpen && <IconPicker onSelect={selectIcon} />}
             </div>
 
             <input

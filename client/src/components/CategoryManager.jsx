@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
+
+import IconPicker from "./IconPicker";
+
 import styles from "./CategoryManager.module.css";
 
 const CategoryManager = ({ categories, onUpdate, onClose }) => {
@@ -21,50 +24,6 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
       document.documentElement.style.overflow = "auto";
     };
   }, []);
-
-  // Набор иконок для быстрого выбора
-  const commonIcons = [
-    "💰",
-    "💎",
-    "🍕",
-    "🚗",
-    "🏠",
-    "🎮",
-    "👕",
-    "🏥",
-    "📚",
-    "🔋",
-    "🛠️",
-    "🛒",
-    "🍿",
-    "✈️",
-    "🐾",
-    "🎁",
-    "💡",
-    "🐱",
-    "⭐️",
-    "🐶",
-    "🚌",
-    "⚽️",
-    "⛵️",
-    "🏖️",
-    "☎️",
-    "🔈",
-    "🍎",
-    "🍋",
-    "🍊",
-    "🍒",
-    "☕️",
-    "🎲",
-    "🎖️",
-    "🎱",
-    "💊",
-    "🪣",
-    "😁",
-    "🙁",
-    "😎",
-    "😍",
-  ];
 
   const selectIcon = (emoji) => {
     setIcon(emoji);
@@ -160,13 +119,6 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
         </ul>
 
         <form onSubmit={handleAdd} className={styles.addForm}>
-          {/* <input
-            type="text"
-            placeholder="Иконка (эмодзи)"
-            value={icon}
-            onChange={(e) => setIcon(e.target.value)}
-            className={styles.inputIcon}
-          /> */}
           <div className={styles.inputWrapper}>
             <div className={styles.iconPickerWrapper}>
               <button
@@ -177,19 +129,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
                 {icon}
               </button>
 
-              {isPickerOpen && (
-                <div className={styles.iconGrid}>
-                  {commonIcons.map((emoji) => (
-                    <span
-                      key={emoji}
-                      className={styles.gridEmoji}
-                      onClick={() => selectIcon(emoji)}
-                    >
-                      {emoji}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {isPickerOpen && <IconPicker onSelect={selectIcon} />}
             </div>
 
             <input

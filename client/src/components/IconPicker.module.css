@@ -1,0 +1,29 @@
+.iconGrid {
+  position: absolute;
+  bottom: 55px; /* Панель открывается вверх */
+  left: 0;
+  background: var(--bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  box-shadow: 0 5px 15px var(--shadow);
+  z-index: 10;
+}
+
+.gridEmoji {
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridEmoji:hover {
+  background: var(--accent-bg-hover);
+}

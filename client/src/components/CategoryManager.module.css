@@ -167,10 +167,10 @@
 .iconPreview:hover {
   border-color: var(--text-h);
 }
-
+/* 
 .iconGrid {
   position: absolute;
-  bottom: 55px; /* Панель открывается вверх */
+  bottom: 55px; 
   left: 0;
   background: var(--bg);
   border: 1px solid var(--accent-border);
@@ -196,4 +196,4 @@
 
 .gridEmoji:hover {
   background: var(--accent-bg-hover);
-}
+} */
