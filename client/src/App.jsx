@@ -5,15 +5,21 @@ import styles from "./App.module.css";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
+import {
+  PROJECTS_MANAGE,
+  CATEGORIES_MANAGE,
+  TRANSACTIONS,
+  INDEX,
+} from "./constants/links";
+
 import TransactionForm from "./components/TransactionForm";
 import BalanceBoard from "./components/BalanceBoard";
 import TransactionTable from "./components/TransactionTable";
 import Filters from "./components/Filters";
 import Analytics from "./components/Analytics";
-import CategoryManager from "./components/CategoryManager";
 import Spinner from "./components/Spinner";
 import Skeleton from "./components/Skeleton";
-import ProjectsManager from "./components/ProjectsManager";
+import EntityModal from "./components/EntityModal";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -77,7 +83,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/transactions.php`,
+        `${import.meta.env.VITE_API_URL}/${TRANSACTIONS}`,
 
         {
           method: method,
@@ -100,9 +106,9 @@ function App() {
   const fetchData = async () => {
     try {
       const [catRes, transRes, projRes] = await Promise.all([
-        fetch(`${import.meta.env.VITE_API_URL}/index.php`),
-        fetch(`${import.meta.env.VITE_API_URL}/transactions.php`),
-        fetch(`${import.meta.env.VITE_API_URL}/projects_manage.php`),
+        fetch(`${import.meta.env.VITE_API_URL}/${INDEX}`),
+        fetch(`${import.meta.env.VITE_API_URL}/${TRANSACTIONS}`),
+        fetch(`${import.meta.env.VITE_API_URL}/${PROJECTS_MANAGE}`),
       ]);
 
       const catData = await catRes.json();
@@ -130,7 +136,6 @@ function App() {
     // Автоматически открываем форму при редактировании!
     setIsFormOpen(true);
     setIsToolsOpen(true);
-    // setProjId(t.project_id);
   };
 
   const cancelEdit = () => {
@@ -164,7 +169,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/transactions.php`,
+        `${import.meta.env.VITE_API_URL}/${TRANSACTIONS}`,
 
         {
           method: "DELETE",
@@ -189,7 +194,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/transactions.php`,
+        `${import.meta.env.VITE_API_URL}/${TRANSACTIONS}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -531,7 +536,7 @@ function App() {
                   type="button"
                   onClick={() => setIsProjectManagerOpen(true)}
                   className={styles.projectsSettingsBtn}
-                  aria-label="Настройки проектов"
+                  aria-label="Настройка проектов"
                 >
                   ⚙️
                 </button>
@@ -558,18 +563,20 @@ function App() {
       {/* Модалки: */}
       <AnimatePresence>
         {isCategoryManagerOpen && (
-          <CategoryManager
-            categories={categories}
+          <EntityModal
+            items={categories}
             onUpdate={fetchData}
+            apiUrl={CATEGORIES_MANAGE}
             onClose={() => setIsCategoryManagerOpen(false)}
           />
         )}
       </AnimatePresence>
       <AnimatePresence>
         {isProjectManagerOpen && (
-          <ProjectsManager
-            projects={projects}
+          <EntityModal
+            items={projects}
             onUpdate={fetchData}
+            apiUrl={PROJECTS_MANAGE}
             onClose={() => setIsProjectManagerOpen(false)}
           />
         )}

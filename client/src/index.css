@@ -27,8 +27,8 @@
   color: var(--text);
   background: var(--bg);
 }
-
-:root.dark-theme {
+/* Violet */
+/* :root.dark-theme {
   --text: #9ca3af;
   --text-h: #5c738a;
   --bg: #191b23;
@@ -36,7 +36,6 @@
   --code-bg: #1f2028;
   --accent: #c084fc;
   --accent-hover: #ac60f8;
-
   --accent-bg: rgba(192, 132, 252, 0.15);
   --accent-bg-alt: rgba(47, 48, 58, 0.281);
   --accent-border: rgba(192, 132, 252, 0.5);
@@ -45,6 +44,48 @@
   --shadow: rgba(0, 0, 0, 0.2);
   --skeleton-base: #333333;
   --skeleton-highlight: #444444;
+} */
+
+/* Teal */
+/* :root.dark-theme {
+  --text: #a0a6b3;
+  --text-h: #e5e7eb;
+  --bg: #12141a; 
+  --border: #2a2e36;
+  --code-bg: #1a1c23;
+  --accent: #2dd4bf;
+  --accent-hover: #26b5a3;
+  --accent-bg: rgba(45, 212, 191, 0.12);
+  --accent-bg-alt: rgba(35, 38, 47, 0.5);
+  --accent-border: rgba(45, 212, 191, 0.4);
+  --accent-bg-hover: rgba(45, 212, 191, 0.2);
+  --social-bg: rgba(45, 48, 56, 0.3);
+  --shadow: rgba(0, 0, 0, 0.4);
+  --skeleton-base: #252830;
+  --skeleton-highlight: #353945;
+  --incomeColor: #10b981; 
+  --expenseColor: #f43f5e;
+} */
+
+/* Blue */
+:root.dark-theme {
+  --text: #a0a6b3;
+  --text-h: #f9fafb;
+  --bg: #0f172a;
+  --border: #1e293b;
+  --code-bg: #1e293b;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-bg: rgba(59, 130, 246, 0.15);
+  --accent-bg-alt: rgba(30, 41, 59, 0.6);
+  --accent-border: rgba(59, 130, 246, 0.4);
+  --accent-bg-hover: rgba(59, 130, 246, 0.25);
+  --social-bg: rgba(30, 41, 59, 0.5);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --skeleton-base: #1e293b;
+  --skeleton-highlight: #334155;
+  --incomeColor: #10b981;
+  --expenseColor: #f43f5e;
 }
 
 /* --- СБРОС И ОСНОВНАЯ СТРУКТУРА --- */

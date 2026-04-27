@@ -26,6 +26,7 @@ const Filters = ({
             type="button"
             className={styles.settingsButton}
             onClick={() => setIsCategoryManagerOpen(true)}
+            aria-label="Настройка категорий"
           >
             ⚙️
           </button>

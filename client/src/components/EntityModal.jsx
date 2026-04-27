@@ -5,19 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import IconPicker from "./IconPicker";
 
-import styles from "./CategoryManager.module.css";
+import styles from "./EntityModal.module.css";
 
-const CategoryManager = ({ categories, onUpdate, onClose }) => {
+const EntityModal = ({ items, onUpdate, apiUrl, onClose }) => {
   const [name, setName] = useState("");
-  const [icon, setIcon] = useState("🎁");
-  const [isPickerOpen, setIsPickerOpen] = useState(false); // Состояние для панели иконок
+  const [icon, setIcon] = useState("💎"); // Иконка по умолчанию для проектов
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
 
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
-
-    // Блокируем скролл для всего, что может скроллиться
     document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden"; // Для html
+    document.documentElement.style.overflow = "hidden";
 
     return () => {
       document.body.style.overflow = originalStyle;
@@ -34,24 +32,20 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
     e.preventDefault();
     if (!name.trim()) return;
 
-    await fetch(
-      // "http://localhost:8000/categories_manage.php",
-      `${import.meta.env.VITE_API_URL}/categories_manage.php`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, icon }),
-      }
-    );
+    await fetch(`${import.meta.env.VITE_API_URL}/${apiUrl}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, icon }),
+    });
 
     setName("");
-    onUpdate(); // Обновляем список категорий в App.jsx
+    onUpdate(); // Обновляем список проектов
   };
+
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
-        // "http://localhost:8000/categories_manage.php",
-        `${import.meta.env.VITE_API_URL}/categories_manage.php`,
+        `${import.meta.env.VITE_API_URL}/${apiUrl}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -59,18 +53,14 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
         }
       );
 
-      // Сначала пробуем получить текст ответа
       const result = await response.json();
 
       if (!response.ok) {
-        // Если сервер вернул 400 или 403, выводим текст ошибки из PHP
         alert(result.error || "Ошибка сервера");
       } else {
-        // Если всё успешно, обновляем данные
         onUpdate();
       }
     } catch (error) {
-      // Эта часть сработает, если сервер вообще выключен или нет интернета
       console.error("Ошибка запроса:", error);
       alert("Не удалось связаться с сервером");
     }
@@ -82,33 +72,33 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={onClose} // Закрытие при клике на фон
+      onClick={onClose}
     >
       <motion.div
         className={styles.modal}
         initial={{ y: 50, scale: 0.9 }}
         animate={{ y: 0, scale: 1 }}
         exit={{ y: 50, scale: 0.9 }}
-        onClick={(e) => e.stopPropagation()} // Чтобы клик внутри не закрывал модалку
+        onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.modalHeader}>
-          <h3>Настройка категорий</h3>
+          <h3>Добавить / удалить</h3>
           <button type="button" className={styles.closeX} onClick={onClose}>
             ✖
           </button>
         </div>
 
         <ul className={styles.list}>
-          {categories.map((cat) => (
-            <li key={cat.id} className={styles.item}>
+          {items.map((proj) => (
+            <li key={proj.id} className={styles.item}>
               <span>
-                {cat.icon} {cat.name}
+                {proj.icon} {proj.name}
               </span>
-              {!cat.is_system && (
+              {!proj.is_system && (
                 <button
                   type="button"
                   className={styles.btnDelete}
-                  onClick={() => handleDelete(cat.id)}
+                  onClick={() => handleDelete(proj.id)}
                   title="Удалить"
                 >
                   🗑️
@@ -133,9 +123,9 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
             </div>
 
             <input
-              name="category name"
+              name="enter name"
               type="text"
-              placeholder="Название категории..."
+              placeholder="Название ..."
               value={name}
               onChange={(e) => setName(e.target.value)}
               className={styles.inputName}
@@ -145,7 +135,7 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
             +
           </button>
         </form>
-        <button type="button" className={styles.btnClose} onClick={onClose}>
+        <button className={styles.btnClose} onClick={onClose}>
           Ok
         </button>
       </motion.div>
@@ -153,4 +143,4 @@ const CategoryManager = ({ categories, onUpdate, onClose }) => {
   );
 };
 
-export default CategoryManager;
+export default EntityModal;
