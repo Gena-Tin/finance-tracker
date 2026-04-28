@@ -51,19 +51,19 @@
   min-width: 100px;
 }
 
-.themeButton,
+.themeSelect,
 .toolsButton {
   padding: 8px 13px;
   border-radius: 8px;
   border: 1px solid var(--accent-border);
   background: var(--accent-bg);
-  color: var(--text-h);
-  font-weight: bold;
+  color: var(--text);
   min-height: 45px;
   min-width: 45px;
   box-shadow: 0 2px 8px var(--shadow);
 }
 .toolsButton {
+  font-weight: bold;
   margin-left: 5px;
 }
 

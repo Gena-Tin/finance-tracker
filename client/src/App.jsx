@@ -5,6 +5,8 @@ import styles from "./App.module.css";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
+import { THEMES } from "./constants/themes";
+
 import {
   PROJECTS_MANAGE,
   CATEGORIES_MANAGE,
@@ -54,9 +56,12 @@ function App() {
 
   const [isBalanceOpen, setIsBalanceOpen] = useState(false);
 
-  const [isDark, setIsDark] = useState(() => {
-    // Проверяем, сохранял ли пользователь тему ранее
-    return localStorage.getItem("theme") === "dark";
+  // const [isDark, setIsDark] = useState(() => {
+  //   return localStorage.getItem("theme") === "dark";
+  // });
+
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    return localStorage.getItem("app-theme") || "theme-light";
   });
 
   const [isToolsOpen, setIsToolsOpen] = useState(true);
@@ -215,15 +220,27 @@ function App() {
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   if (isDark) {
+  //     document.documentElement.classList.add("dark-theme");
+  //     localStorage.setItem("theme", "dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark-theme");
+  //     localStorage.setItem("theme", "light");
+  //   }
+  // }, [isDark]);
+
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark-theme");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark-theme");
-      localStorage.setItem("theme", "light");
-    }
-  }, [isDark]);
+    const theme = THEMES[currentTheme];
+    if (!theme) return;
+    const root = document.documentElement;
+
+    Object.entries(theme.variables).forEach(([key, value]) => {
+      root.style.setProperty(key, value);
+    });
+
+    localStorage.setItem("app-theme", currentTheme);
+  }, [currentTheme]);
 
   let filteredData = transactions;
 
@@ -316,14 +333,26 @@ function App() {
           <div className={styles.mainHeader}>
             <h1>Finance tracker</h1>
             <div className={styles.containerBtnHeader}>
-              <button
+              <select
+                name="themes"
+                value={currentTheme}
+                onChange={(e) => setCurrentTheme(e.target.value)}
+                className={styles.themeSelect}
+              >
+                {Object.entries(THEMES).map(([key, theme]) => (
+                  <option key={key} value={key}>
+                    {theme.label}
+                  </option>
+                ))}
+              </select>
+              {/* <button
                 type="button"
                 onClick={() => setIsDark(!isDark)}
                 className={styles.themeButton}
                 aria-label="Сменить тему оформления"
               >
                 {isDark ? " 🌙 " : " ☀️ "}
-              </button>
+              </button> */}
               <button
                 type="button"
                 onClick={() => setIsToolsOpen(!isToolsOpen)}
