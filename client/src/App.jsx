@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { useLanguage } from "./hooks/useLanguage";
+
 import styles from "./App.module.css";
 
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
@@ -22,8 +24,12 @@ import Analytics from "./components/Analytics";
 import Spinner from "./components/Spinner";
 import Skeleton from "./components/Skeleton";
 import EntityModal from "./components/EntityModal";
+// import { translations } from "./constants/locales";
+import LanguageMenu from "./components/LanguageMenu";
 
 function App() {
+  const { t } = useLanguage();
+
   const [categories, setCategories] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -55,10 +61,6 @@ function App() {
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
 
   const [isBalanceOpen, setIsBalanceOpen] = useState(false);
-
-  // const [isDark, setIsDark] = useState(() => {
-  //   return localStorage.getItem("theme") === "dark";
-  // });
 
   const [currentTheme, setCurrentTheme] = useState(() => {
     return localStorage.getItem("app-theme") || "theme-light";
@@ -220,16 +222,6 @@ function App() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   if (isDark) {
-  //     document.documentElement.classList.add("dark-theme");
-  //     localStorage.setItem("theme", "dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark-theme");
-  //     localStorage.setItem("theme", "light");
-  //   }
-  // }, [isDark]);
-
   useEffect(() => {
     const theme = THEMES[currentTheme];
     if (!theme) return;
@@ -331,8 +323,9 @@ function App() {
       >
         <section className={styles.toolsSection}>
           <div className={styles.mainHeader}>
-            <h1>Finance tracker</h1>
+            <h1>{t.title}</h1>
             <div className={styles.containerBtnHeader}>
+              <LanguageMenu />
               <select
                 name="themes"
                 value={currentTheme}
@@ -345,14 +338,6 @@ function App() {
                   </option>
                 ))}
               </select>
-              {/* <button
-                type="button"
-                onClick={() => setIsDark(!isDark)}
-                className={styles.themeButton}
-                aria-label="Сменить тему оформления"
-              >
-                {isDark ? " 🌙 " : " ☀️ "}
-              </button> */}
               <button
                 type="button"
                 onClick={() => setIsToolsOpen(!isToolsOpen)}

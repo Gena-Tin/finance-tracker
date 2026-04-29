@@ -1,0 +1,77 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background: transparent;
+}
+
+.langMenuContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
+.langMenuButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+.langMenuButton:hover {
+  color: var(--accent);
+}
+
+.langMenuList {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  padding: 8px 0;
+  list-style: none;
+  background-color: var(--accent-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--shadow);
+  z-index: 2000;
+  min-width: 140px;
+  display: block;
+}
+
+.langMenuItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.langMenuItem:hover {
+  background-color: var(--accent-bg-alt);
+}
+
+.langMenuItem.active {
+  background-color: var(--accent-bg);
+  font-weight: bold;
+  border-left: 4px solid var(--accent);
+  position: relative;
+}
+
+/* .langMenuItem.active::after {
+  content: "✓";
+  position: absolute;
+  right: 16px; 
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: bold;
+} */
