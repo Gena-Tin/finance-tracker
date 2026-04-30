@@ -26,9 +26,10 @@ import Skeleton from "./components/Skeleton";
 import EntityModal from "./components/EntityModal";
 // import { translations } from "./constants/locales";
 import LanguageMenu from "./components/LanguageMenu";
+import { IconMenu } from "./components/SvgLib";
 
 function App() {
-  const { t } = useLanguage();
+  const { trnslt } = useLanguage();
 
   const [categories, setCategories] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -172,7 +173,7 @@ function App() {
   // функция удаления:
   const handleDelete = async () => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`Удалить выбранные записи? (${selectedIds.length})?`)) return;
+    if (!confirm(`${trnslt.confDeletind} (${selectedIds.length})?`)) return;
 
     try {
       const res = await fetch(
@@ -190,14 +191,13 @@ function App() {
         fetchData(); // функция обновления данных
       }
     } catch (error) {
-      console.error("Ошибка при удалении:", error);
+      console.error(`${trnslt.errDeleting}`, error);
     }
   };
 
   const handleMove = async (ids, targetProjectId) => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`Переместить выбранные записи? (${selectedIds.length})?`))
-      return;
+    if (!confirm(`${trnslt.confMoving} (${selectedIds.length})?`)) return;
 
     try {
       const res = await fetch(
@@ -214,7 +214,7 @@ function App() {
         fetchData();
       }
     } catch (error) {
-      console.error("Ошибка переноса:", error);
+      console.error(`${trnslt.errMoving}`, error);
     }
   };
 
@@ -310,8 +310,16 @@ function App() {
 
   // 2. Группируем внутреннее кольцо (общие Доходы и Расходы)
   const totalStats = [
-    { name: "Доходы", value: totalIncome, fill: "var(--incomeColor)" }, // Зеленый
-    { name: "Расходы", value: totalExpense, fill: "var(--expenseColor)" }, // Красный
+    {
+      name: `${trnslt.income}`,
+      value: totalIncome,
+      fill: "var(--incomeColor)",
+    }, // Зеленый
+    {
+      name: `${trnslt.expense}`,
+      value: totalExpense,
+      fill: "var(--expenseColor)",
+    }, // Красный
   ].filter((item) => item.value > 0); // Показываем только если сумма > 0
 
   return (
@@ -323,7 +331,7 @@ function App() {
       >
         <section className={styles.toolsSection}>
           <div className={styles.mainHeader}>
-            <h1>{t.title}</h1>
+            <h1>{trnslt.title}</h1>
             <div className={styles.containerBtnHeader}>
               <LanguageMenu />
               <select
@@ -342,9 +350,9 @@ function App() {
                 type="button"
                 onClick={() => setIsToolsOpen(!isToolsOpen)}
                 className={styles.toolsButton}
-                aria-label="Открыть инструменты"
+                aria-label={trnslt.openMenu}
               >
-                {isToolsOpen ? "⋀" : " 🛠️ "}
+                {isToolsOpen ? "⋀" : <IconMenu className={styles.iconSvg} />}
               </button>
             </div>
           </div>
@@ -368,7 +376,9 @@ function App() {
                   onClick={() => setIsFormOpen(!isFormOpen)}
                 >
                   <h2>
-                    {editingId ? "✏️ Редактирование" : "➕ Добавить операцию"}
+                    {editingId
+                      ? `✏️ ${trnslt.editOperation} `
+                      : `➕ ${trnslt.addOperation}`}
                   </h2>
                   <span
                     className={`${styles.icon} ${
@@ -415,7 +425,7 @@ function App() {
                   className={styles.accordionHeader}
                   onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
                 >
-                  <h2>📊 Аналитика</h2>
+                  <h2>📊 {trnslt.analytics}</h2>
                   <span
                     className={`${styles.icon} ${
                       isAnalyticsOpen ? styles.iconOpen : ""
@@ -453,7 +463,7 @@ function App() {
                   className={styles.accordionHeader}
                   onClick={() => setIsFiltersOpen(!isFiltersOpen)}
                 >
-                  <h2>🔍 Фильтры</h2>
+                  <h2>🔍 {trnslt.filters}</h2>
                   <span
                     className={`${styles.icon} ${
                       isFiltersOpen ? styles.iconOpen : ""
@@ -496,7 +506,7 @@ function App() {
                   className={styles.accordionHeader}
                   onClick={() => setIsBalanceOpen(!isBalanceOpen)}
                 >
-                  <h2>💰 Баланс </h2>
+                  <h2>💰 {trnslt.balance} </h2>
                   <span
                     className={`${styles.icon} ${
                       isBalanceOpen ? styles.iconOpen : ""
@@ -550,7 +560,7 @@ function App() {
                   type="button"
                   onClick={() => setIsProjectManagerOpen(true)}
                   className={styles.projectsSettingsBtn}
-                  aria-label="Настройка проектов"
+                  aria-label={trnslt.settingProjects}
                 >
                   ⚙️
                 </button>
@@ -578,6 +588,7 @@ function App() {
       <AnimatePresence>
         {isCategoryManagerOpen && (
           <EntityModal
+            title={trnslt.category}
             items={categories}
             onUpdate={fetchData}
             apiUrl={CATEGORIES_MANAGE}
@@ -588,6 +599,7 @@ function App() {
       <AnimatePresence>
         {isProjectManagerOpen && (
           <EntityModal
+            title={trnslt.project}
             items={projects}
             onUpdate={fetchData}
             apiUrl={PROJECTS_MANAGE}

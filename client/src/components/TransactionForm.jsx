@@ -1,6 +1,7 @@
 import React from "react";
 
 import styles from "./TransactionForm.module.css";
+import { useLanguage } from "../hooks/useLanguage";
 
 const TransactionForm = ({
   editingId,
@@ -21,6 +22,8 @@ const TransactionForm = ({
   projId,
   setProjId,
 }) => {
+  const { trnslt } = useLanguage();
+
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
       {/* <h3 className={styles.title}>
@@ -37,7 +40,7 @@ const TransactionForm = ({
         <input
           className={styles.field}
           type="number"
-          placeholder="Сумма"
+          placeholder={trnslt.sum}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
@@ -45,7 +48,7 @@ const TransactionForm = ({
         <input
           className={styles.field}
           type="text"
-          placeholder="Описание"
+          placeholder={trnslt.description}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -66,8 +69,8 @@ const TransactionForm = ({
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="expense">Расход</option>
-          <option value="income">Доход</option>
+          <option value="expense">{trnslt.income}</option>
+          <option value="income">{trnslt.expense}</option>
         </select>
         <select
           className={styles.field}
@@ -82,7 +85,7 @@ const TransactionForm = ({
         </select>
         <div>
           <button type="submit" className={styles.submitBtn}>
-            {editingId ? "Сохранить" : "Добавить"}
+            {editingId ? `${trnslt.save}` : `${trnslt.add}`}
           </button>
           {editingId && (
             <button
@@ -90,7 +93,7 @@ const TransactionForm = ({
               onClick={cancelEdit}
               className={styles.cancelBtn}
             >
-              Отмена
+              {trnslt.cancel}
             </button>
           )}
         </div>

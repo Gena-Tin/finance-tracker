@@ -4,13 +4,14 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import IconPicker from "./IconPicker";
-
+import { useLanguage } from "../hooks/useLanguage";
 import styles from "./EntityModal.module.css";
 
-const EntityModal = ({ items, onUpdate, apiUrl, onClose }) => {
+const EntityModal = ({ items, onUpdate, apiUrl, onClose, title }) => {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("💎"); // Иконка по умолчанию для проектов
   const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const { trnslt } = useLanguage();
 
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -56,13 +57,13 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose }) => {
       const result = await response.json();
 
       if (!response.ok) {
-        alert(result.error || "Ошибка сервера");
+        alert(result.error || "Server error");
       } else {
         onUpdate();
       }
     } catch (error) {
-      console.error("Ошибка запроса:", error);
-      alert("Не удалось связаться с сервером");
+      console.error("Request error:", error);
+      alert("Failed to contact the server");
     }
   };
 
@@ -82,7 +83,9 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={styles.modalHeader}>
-          <h3>Добавить / удалить</h3>
+          <h3>
+            {title}: {trnslt.add} / {trnslt.delete}
+          </h3>
           <button type="button" className={styles.closeX} onClick={onClose}>
             ✖
           </button>
@@ -99,7 +102,7 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose }) => {
                   type="button"
                   className={styles.btnDelete}
                   onClick={() => handleDelete(proj.id)}
-                  title="Удалить"
+                  title={trnslt.delete}
                 >
                   🗑️
                 </button>
@@ -125,14 +128,14 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose }) => {
             <input
               name="enter name"
               type="text"
-              placeholder="Название ..."
+              placeholder={trnslt.plhName}
               value={name}
               onChange={(e) => setName(e.target.value)}
               className={styles.inputName}
             />
           </div>
           <button type="submit" className={styles.btnAdd}>
-            +
+            {trnslt.add}
           </button>
         </form>
         <button className={styles.btnClose} onClick={onClose}>

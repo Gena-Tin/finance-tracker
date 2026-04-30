@@ -25,10 +25,18 @@
   display: flex;
   color: var(--text);
   transition: color 0.3s ease;
+  &:hover {
+    color: var(--accent);
+  }
 }
 
-.langMenuButton:hover {
-  color: var(--accent);
+.iconSvg {
+  height: 24px;
+  width: 24px;
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--accent);
+  }
 }
 
 .langMenuList {
@@ -38,8 +46,8 @@
   margin-top: 8px;
   padding: 8px 0;
   list-style: none;
-  background-color: var(--accent-bg);
-  border: 1px solid var(--border);
+  background-color: var(--accent-bg-alt);
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px var(--shadow);
   z-index: 2000;
@@ -63,7 +71,7 @@
 .langMenuItem.active {
   background-color: var(--accent-bg);
   font-weight: bold;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--accent-border);
   position: relative;
 }
 

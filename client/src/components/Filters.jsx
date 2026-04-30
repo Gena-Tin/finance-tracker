@@ -1,6 +1,7 @@
 import React from "react";
 
 import styles from "./Filters.module.css";
+import { useLanguage } from "../hooks/useLanguage";
 
 const Filters = ({
   categories,
@@ -17,6 +18,7 @@ const Filters = ({
   setFilterType,
   setIsCategoryManagerOpen,
 }) => {
+  const { trnslt } = useLanguage();
   return (
     <div className={styles.filtersContainer}>
       {/* 1. Категории */}
@@ -26,7 +28,7 @@ const Filters = ({
             type="button"
             className={styles.settingsButton}
             onClick={() => setIsCategoryManagerOpen(true)}
-            aria-label="Настройка категорий"
+            aria-label={trnslt.settingCategories}
           >
             ⚙️
           </button>
@@ -58,7 +60,7 @@ const Filters = ({
               onClick={() => setFilterCatIds([])}
               className={styles.resetBtn}
             >
-              Сбросить
+              ✖ {trnslt.reset}
             </button>
           )}
         </div>
@@ -67,7 +69,7 @@ const Filters = ({
       {/* 2. Даты */}
       <section className={styles.dateSection}>
         <div className={styles.dateGroup}>
-          <span>Период с:</span>
+          <span>{trnslt.periodFrom}</span>
           <input
             type="date"
             value={startDate}
@@ -76,7 +78,7 @@ const Filters = ({
           />
         </div>
         <div className={styles.dateGroup}>
-          <span>по:</span>
+          <span>{trnslt.periodTo}</span>
           <input
             type="date"
             value={endDate}
@@ -93,7 +95,7 @@ const Filters = ({
             }}
             className={styles.resetBtn}
           >
-            ✖ Сбросить
+            ✖ {trnslt.reset}
           </button>
         )}
       </section>
@@ -103,7 +105,7 @@ const Filters = ({
         <span style={{ fontSize: "20px" }}>🔍</span>
         <input
           type="text"
-          placeholder="Поиск по описанию..."
+          placeholder={trnslt.plhSearchByDescription}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={styles.searchInput}
@@ -114,14 +116,14 @@ const Filters = ({
             onClick={() => setSearchQuery("")}
             className={styles.resetBtn}
           >
-            ✖ Очистить
+            ✖ {trnslt.reset}
           </button>
         )}
       </section>
 
       {/* 4. Тип (Доход/Расход) */}
       <section className={styles.typeSection}>
-        <span>Тип:</span>
+        {/* <span>Тип:</span> */}
         <button
           type="button"
           onClick={() => setFilterType("income")}
@@ -129,7 +131,7 @@ const Filters = ({
             filterType === "income" ? styles.incomeBtnActive : ""
           }`}
         >
-          ✅ Доходы
+          ✅ {trnslt.income}
         </button>
         <button
           onClick={() => setFilterType("expense")}
@@ -137,7 +139,7 @@ const Filters = ({
             filterType === "expense" ? styles.expenseBtnActive : ""
           }`}
         >
-          ❌ Расходы
+          ❌ {trnslt.expense}
         </button>
         {filterType && (
           <button
@@ -145,7 +147,7 @@ const Filters = ({
             onClick={() => setFilterType("")}
             className={styles.resetBtn}
           >
-            Сбросить
+            ✖ {trnslt.reset}
           </button>
         )}
       </section>

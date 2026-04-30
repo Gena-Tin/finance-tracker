@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useLanguage } from "../hooks/useLanguage";
 
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,29 +20,30 @@ const TransactionTable = ({
   onMove,
 }) => {
   const [targetProjectId, setTargetProjectId] = useState(1);
+  const { trnslt } = useLanguage();
 
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableHeader}>
         {selectedIds.length <= 0 ? (
-          <h2>Последние операции</h2>
+          <h2>{trnslt.lastOperations}</h2>
         ) : (
           <>
             <button
               type="button"
               onClick={onDelete}
               className={styles.deleteBtn}
-              title="Удалить выбранные"
+              title={trnslt.deleteSelected}
             >
-              ({selectedIds.length}) Delete 🗑
+              ({selectedIds.length}) {trnslt.delete} 🗑
             </button>
             <button
               type="button"
               onClick={() => onMove(selectedIds, targetProjectId)}
               className={styles.moveBtn}
-              title="Перенести выбранные"
+              title={trnslt.moveSelected}
             >
-              ({selectedIds.length}) move to 👉
+              ({selectedIds.length}) {trnslt.moveTo} 👉
             </button>
 
             <select
@@ -73,12 +75,12 @@ const TransactionTable = ({
                 }
               />
             </th>
-            <th>Сумма</th>
-            <th>Описание</th>
-            <th>Дата</th>
+            <th>{trnslt.sum}</th>
+            <th>{trnslt.description}</th>
+            <th>{trnslt.date}</th>
             <th className={styles.checkboxCell}></th>
-            <th>Категория</th>
-            <th>Проект</th>
+            <th>{trnslt.category}</th>
+            <th>{trnslt.project}</th>
           </tr>
         </thead>
         <tbody>

@@ -75,7 +75,7 @@ h1 {
   font-size: 24px;
   font-weight: 500;
   color: var(--text-h);
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 h2 {
   font-size: 18px;
@@ -121,7 +121,7 @@ p {
     max-width: 1280px;
   }
   h1 {
-    font-size: 40px;
+    font-size: 26px;
   }
 }
 

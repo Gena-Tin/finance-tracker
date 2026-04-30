@@ -25,16 +25,25 @@
   border: 1px solid var(--accent-border);
   transition: background 0.2s;
   box-shadow: 0 2px 8px var(--shadow);
-}
-
-.accordionHeader:hover {
-  background: var(--accent-bg-hover);
+  &:hover {
+    background: var(--accent-bg-hover);
+  }
 }
 
 .accordionHeader h2 {
   margin: 0;
   font-size: 1.2rem;
   color: var(--text);
+}
+
+.iconSvg {
+  height: 16px;
+  width: 16px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--accent);
+  }
 }
 
 .icon {

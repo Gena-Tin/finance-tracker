@@ -11,6 +11,7 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
+import { useLanguage } from "../hooks/useLanguage";
 
 const COLORS = [
   "#580063",
@@ -25,6 +26,7 @@ const COLORS = [
 
 const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
   const [viewType, setViewType] = useState("pie"); // 'pie' или 'line'
+  const { trnslt } = useLanguage();
 
   // 1. Подготовка данных для круговой диаграммы
   const coloredCategoryStats = useMemo(() => {
@@ -95,7 +97,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
             boxShadow: viewType === "pie" ? "" : "0 2px 8px var(--shadow)",
           }}
         >
-          🥧 Состав
+          🥧 {trnslt.contents}
         </button>
         <button
           type="button"
@@ -113,7 +115,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
             boxShadow: viewType === "line" ? "" : "0 2px 8px var(--shadow)",
           }}
         >
-          📈 Динамика
+          📈 {trnslt.dynamics}
         </button>
       </div>
 
@@ -178,7 +180,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
               />
               <Legend verticalAlign="top" align="center" />
               <Line
-                name="Доход"
+                name={trnslt.income}
                 type="monotone"
                 dataKey="income"
                 stroke="var(--incomeColor)"
@@ -187,7 +189,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
                 activeDot={{ r: 6 }}
               />
               <Line
-                name="Расход"
+                name={trnslt.expense}
                 type="monotone"
                 dataKey="expense"
                 stroke="var(--expenseColor)"
