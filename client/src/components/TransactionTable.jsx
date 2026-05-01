@@ -6,6 +6,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./TransactionTable.module.css";
+import Checkbox from "./Checkbox";
 
 const TransactionTable = ({
   transactions,
@@ -66,7 +67,7 @@ const TransactionTable = ({
         <thead>
           <tr className={styles.headRow}>
             <th className={styles.checkboxCell}>
-              <input
+              <Checkbox
                 type="checkbox"
                 onChange={(e) => onToggleAll(e.target.checked)}
                 checked={
@@ -74,6 +75,14 @@ const TransactionTable = ({
                   transactions.length > 0
                 }
               />
+              {/* <input
+                type="checkbox"
+                onChange={(e) => onToggleAll(e.target.checked)}
+                checked={
+                  selectedIds.length === transactions.length &&
+                  transactions.length > 0
+                }
+              /> */}
             </th>
             <th>{trnslt.sum}</th>
             <th>{trnslt.description}</th>
@@ -101,11 +110,16 @@ const TransactionTable = ({
                   }`}
                 >
                   <td>
-                    <input
+                    <Checkbox
                       type="checkbox"
                       checked={isSelected}
                       onChange={() => onToggleSelect(t.id)}
                     />
+                    {/* <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => onToggleSelect(t.id)}
+                    /> */}
                   </td>
 
                   <td

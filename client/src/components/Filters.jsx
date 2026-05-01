@@ -1,6 +1,7 @@
 import React from "react";
 
 import styles from "./Filters.module.css";
+import Checkbox from "./Checkbox";
 import { useLanguage } from "../hooks/useLanguage";
 
 const Filters = ({
@@ -44,10 +45,12 @@ const Filters = ({
                   isSelected ? styles.categoryCardActive : ""
                 }`}
               >
-                <input
+                <Checkbox
                   type="checkbox"
                   checked={isSelected}
+                  onClick={() => toggleFilterCategory(cat.id)}
                   readOnly
+                  // tabIndex="-1"
                   style={{ cursor: "pointer" }}
                 />
                 {cat.icon} {cat.name}
