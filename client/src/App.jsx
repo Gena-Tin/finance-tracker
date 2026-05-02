@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "./hooks/useLanguage";
 
 import styles from "./App.module.css";
-
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -26,7 +25,17 @@ import Skeleton from "./components/Skeleton";
 import EntityModal from "./components/EntityModal";
 // import { translations } from "./constants/locales";
 import LanguageMenu from "./components/LanguageMenu";
-import { IconMenu } from "./components/SvgLib";
+import {
+  IconEdit,
+  IconMenu,
+  IconOptions,
+  IconAdd,
+  IconAnalytics,
+  IconFilters,
+  IconBalance,
+  IconChevronDown,
+  IconChevronUp,
+} from "./components/SvgLib";
 
 function App() {
   const { trnslt } = useLanguage();
@@ -352,7 +361,11 @@ function App() {
                 className={styles.toolsButton}
                 aria-label={trnslt.openMenu}
               >
-                {isToolsOpen ? "⋀" : <IconMenu className={styles.iconSvg} />}
+                {isToolsOpen ? (
+                  <IconChevronUp className={styles.iconSvg} />
+                ) : (
+                  <IconMenu className={styles.iconSvg} />
+                )}
               </button>
             </div>
           </div>
@@ -376,16 +389,24 @@ function App() {
                   onClick={() => setIsFormOpen(!isFormOpen)}
                 >
                   <h2>
-                    {editingId
-                      ? `✏️ ${trnslt.editOperation} `
-                      : `➕ ${trnslt.addOperation}`}
+                    {editingId ? (
+                      <>
+                        <IconEdit className={styles.iconSvg} />
+                        {trnslt.editOperation}
+                      </>
+                    ) : (
+                      <>
+                        <IconAdd className={styles.iconSvg} />
+                        {trnslt.addOperation}
+                      </>
+                    )}
                   </h2>
                   <span
                     className={`${styles.icon} ${
                       isFormOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ⋁
+                    <IconChevronDown className={styles.iconSvg} />
                   </span>
                 </div>
 
@@ -425,13 +446,17 @@ function App() {
                   className={styles.accordionHeader}
                   onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
                 >
-                  <h2>📊 {trnslt.analytics}</h2>
+                  <h2>
+                    {" "}
+                    <IconAnalytics className={styles.iconSvg} />{" "}
+                    {trnslt.analytics}
+                  </h2>
                   <span
                     className={`${styles.icon} ${
                       isAnalyticsOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ⋁
+                    <IconChevronDown className={styles.iconSvg} />
                   </span>
                 </div>
 
@@ -463,13 +488,15 @@ function App() {
                   className={styles.accordionHeader}
                   onClick={() => setIsFiltersOpen(!isFiltersOpen)}
                 >
-                  <h2>🔍 {trnslt.filters}</h2>
+                  <h2>
+                    <IconFilters className={styles.iconSvg} /> {trnslt.filters}
+                  </h2>
                   <span
                     className={`${styles.icon} ${
                       isFiltersOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ⋁
+                    <IconChevronDown className={styles.iconSvg} />
                   </span>
                 </div>
 
@@ -506,13 +533,15 @@ function App() {
                   className={styles.accordionHeader}
                   onClick={() => setIsBalanceOpen(!isBalanceOpen)}
                 >
-                  <h2>💰 {trnslt.balance} </h2>
+                  <h2>
+                    <IconBalance className={styles.iconSvg} /> {trnslt.balance}{" "}
+                  </h2>
                   <span
                     className={`${styles.icon} ${
                       isBalanceOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    ⋁
+                    <IconChevronDown className={styles.iconSvg} />
                   </span>
                 </div>
                 <AnimatePresence>
@@ -562,7 +591,7 @@ function App() {
                   className={styles.projectsSettingsBtn}
                   aria-label={trnslt.settingProjects}
                 >
-                  ⚙️
+                  <IconOptions className={styles.iconSvg} />
                 </button>
               </div>
               <TransactionTable

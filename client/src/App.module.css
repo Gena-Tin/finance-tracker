@@ -37,10 +37,10 @@
 }
 
 .iconSvg {
-  height: 16px;
-  width: 16px;
+  height: 24px;
+  width: 24px;
+  color: var(--text);
   transition: color 0.3s ease;
-
   &:hover {
     color: var(--accent);
   }

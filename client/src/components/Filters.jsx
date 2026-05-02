@@ -3,6 +3,13 @@ import React from "react";
 import styles from "./Filters.module.css";
 import Checkbox from "./Checkbox";
 import { useLanguage } from "../hooks/useLanguage";
+import {
+  IconClose,
+  IconMinus,
+  IconOptions,
+  IconPlus,
+  IconSearch,
+} from "./SvgLib";
 
 const Filters = ({
   categories,
@@ -31,7 +38,7 @@ const Filters = ({
             onClick={() => setIsCategoryManagerOpen(true)}
             aria-label={trnslt.settingCategories}
           >
-            ⚙️
+            <IconOptions className={styles.iconSvg} />
           </button>
 
           {categories.map((cat) => {
@@ -63,7 +70,8 @@ const Filters = ({
               onClick={() => setFilterCatIds([])}
               className={styles.resetBtn}
             >
-              ✖ {trnslt.reset}
+              <IconClose className={styles.iconSvg} />
+              {trnslt.reset}
             </button>
           )}
         </div>
@@ -98,14 +106,16 @@ const Filters = ({
             }}
             className={styles.resetBtn}
           >
-            ✖ {trnslt.reset}
+            <IconClose className={styles.iconSvg} /> {trnslt.reset}
           </button>
         )}
       </section>
 
       {/* 3. Поиск */}
       <section className={styles.searchWrapper}>
-        <span style={{ fontSize: "20px" }}>🔍</span>
+        <span style={{ fontSize: "20px" }}>
+          <IconSearch className={styles.iconSvg} />
+        </span>
         <input
           type="text"
           placeholder={trnslt.plhSearchByDescription}
@@ -119,7 +129,7 @@ const Filters = ({
             onClick={() => setSearchQuery("")}
             className={styles.resetBtn}
           >
-            ✖ {trnslt.reset}
+            <IconClose className={styles.iconSvg} /> {trnslt.reset}
           </button>
         )}
       </section>
@@ -134,7 +144,7 @@ const Filters = ({
             filterType === "income" ? styles.incomeBtnActive : ""
           }`}
         >
-          ✅ {trnslt.income}
+          <IconPlus className={styles.iconSvg} /> {trnslt.income}
         </button>
         <button
           onClick={() => setFilterType("expense")}
@@ -142,7 +152,7 @@ const Filters = ({
             filterType === "expense" ? styles.expenseBtnActive : ""
           }`}
         >
-          ❌ {trnslt.expense}
+          <IconMinus className={styles.iconSvg} /> {trnslt.expense}
         </button>
         {filterType && (
           <button
@@ -150,7 +160,7 @@ const Filters = ({
             onClick={() => setFilterType("")}
             className={styles.resetBtn}
           >
-            ✖ {trnslt.reset}
+            <IconClose className={styles.iconSvg} /> {trnslt.reset}
           </button>
         )}
       </section>

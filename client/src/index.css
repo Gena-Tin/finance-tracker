@@ -82,6 +82,9 @@ h2 {
   font-weight: 500;
   color: var(--text-h);
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 p {
   margin-bottom: 1rem;

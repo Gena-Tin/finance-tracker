@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from "react";
+
+import styles from "./Analytics.module.css";
+
 import {
   PieChart,
   Pie,
@@ -12,6 +15,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { useLanguage } from "../hooks/useLanguage";
+import { IconGraphLines, IconGraphPie } from "./SvgLib";
 
 const COLORS = [
   "#580063",
@@ -71,55 +75,31 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
   }, [filteredByCategory]);
 
   return (
-    <div style={{ marginTop: "20px" }}>
-      {/* Переключатель графиков */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "15px",
-          justifyContent: "center",
-        }}
-      >
+    <div className={styles.container}>
+      <div className={styles.btnWrapper}>
         <button
           type="button"
           onClick={() => setViewType("pie")}
-          style={{
-            padding: "6px 16px",
-            borderRadius: "8px",
-            border: "1px solid var(--accent-border)",
-            background:
-              viewType === "pie" ? "transparent" : "var(--accent-bg) ",
-            color: viewType === "pie" ? "var(--accent)" : "var(--text)",
-            cursor: "pointer",
-            fontWeight: 500,
-            height: 45,
-            boxShadow: viewType === "pie" ? "" : "0 2px 8px var(--shadow)",
-          }}
+          className={`${styles.graphBtn} ${
+            viewType !== "pie" ? styles.graphBtnActive : ""
+          }`}
         >
-          🥧 {trnslt.contents}
+          <IconGraphPie className={styles.iconSvg} />
+          &nbsp;{trnslt.contents}
         </button>
         <button
           type="button"
           onClick={() => setViewType("line")}
-          style={{
-            padding: "6px 16px",
-            borderRadius: "8px",
-            border: "1px solid var(--accent-border)",
-            background:
-              viewType === "line" ? "transparent" : "var(--accent-bg)",
-            color: viewType === "line" ? "var(--accent)" : "var(--text)",
-            cursor: "pointer",
-            fontWeight: 500,
-            height: 45,
-            boxShadow: viewType === "line" ? "" : "0 2px 8px var(--shadow)",
-          }}
+          className={`${styles.graphBtn} ${
+            viewType !== "line" ? styles.graphBtnActive : ""
+          }`}
         >
-          📈 {trnslt.dynamics}
+          <IconGraphLines className={styles.iconSvg} />
+          &nbsp;{trnslt.dynamics}
         </button>
       </div>
 
-      <div style={{ width: "100%", height: 380, minWidth: 0 }}>
+      <div className={styles.graphWrapper}>
         <ResponsiveContainer width="100%" height="380">
           {viewType === "pie" ? (
             <PieChart>

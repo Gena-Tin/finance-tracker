@@ -14,10 +14,10 @@
 }
 
 .categoryCard {
-  padding: 10px;
+  /* padding: 10px; */
   cursor: pointer;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   gap: 8px;
   transition: 0.2s;
 }
@@ -75,50 +75,70 @@
 }
 
 .typeBtn {
-  padding: 5px 15px;
+  /* padding: 10px 10px; */
   color: var(--text-h);
-  cursor: pointer;
+  /* cursor: pointer; */
   transition: 0.2s;
-  max-width: 95px;
+  min-width: 120px;
 }
 
 .resetBtn {
-  border: none;
-  background: none;
+  /* border: none; */
+  /* background: none; */
   color: #007bff;
-  cursor: pointer;
-  font-size: 13px;
+  /* cursor: pointer; */
+  font-size: 0.9rem;
 }
 
 .settingsButton {
-  padding: 6px 10px;
-  cursor: pointer;
+  /* padding: 6px 10px; */
+  /* cursor: pointer; */
   font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* transition: all 0.2s ease; */
 }
 
+.iconSvg {
+  height: 24px;
+  width: 24px;
+  color: var(--text);
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--accent);
+  }
+}
+.resetBtn,
 .typeBtn,
 .settingsButton,
 .categoryCard {
+  height: 45px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
   border-radius: 8px;
   border: 1px solid var(--accent-border);
   background: var(--accent-bg);
   box-shadow: 0 2px 8px var(--shadow);
+  color: var(--text-h);
+
+  transition: all 0.2s ease;
 }
 
 .incomeBtnActive {
-  border: 2px solid var(--incomeColor);
+  border: 2px solid var(--accent-border);
 }
 .expenseBtnActive {
-  border: 2px solid var(--expenseColor);
+  border: 2px solid var(--accent-border);
 }
 
 .categoryCardActive,
 .incomeBtnActive,
 .expenseBtnActive {
-  background: var(--accent-bg-alt);
+  background: transparent;
   box-shadow: 0 2px 8px var(--shadow);
 }

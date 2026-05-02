@@ -1,0 +1,49 @@
+.container {
+  margin-top: 20px;
+}
+
+.iconSvg {
+  height: 20px;
+  width: 20px;
+  color: var(--text);
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  justify-content: center;
+}
+
+.graphWrapper {
+  width: 100%;
+  height: 380px;
+  min-width: 0;
+}
+
+.graphBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 500;
+  height: 45px;
+  min-width: 150px;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.graphBtnActive {
+  background: var(--accent-bg);
+  color: var(--text);
+  box-shadow: 0 2px 8px var(--shadow);
+}
