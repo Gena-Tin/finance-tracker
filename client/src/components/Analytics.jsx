@@ -84,7 +84,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
             viewType !== "pie" ? styles.graphBtnActive : ""
           }`}
         >
-          <IconGraphPie className={styles.iconSvg} />
+          <IconGraphPie className="icon-svg" />
           &nbsp;{trnslt.contents}
         </button>
         <button
@@ -94,7 +94,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
             viewType !== "line" ? styles.graphBtnActive : ""
           }`}
         >
-          <IconGraphLines className={styles.iconSvg} />
+          <IconGraphLines className="icon-svg" />
           &nbsp;{trnslt.dynamics}
         </button>
       </div>

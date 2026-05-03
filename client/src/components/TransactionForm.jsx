@@ -60,7 +60,7 @@ const TransactionForm = ({
         >
           {categories.map((c) => (
             <option key={c.id} value={c.id}>
-              {c.name}
+              {c.icon}&nbsp;{c.name}
             </option>
           ))}
         </select>

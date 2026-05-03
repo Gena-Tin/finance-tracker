@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 
 import { useLanguage } from "./hooks/useLanguage";
+import { THEMES } from "./constants/themes";
 
 import styles from "./App.module.css";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
-
-import { THEMES } from "./constants/themes";
-
-import {
-  PROJECTS_MANAGE,
-  CATEGORIES_MANAGE,
-  TRANSACTIONS,
-  INDEX,
-} from "./constants/links";
 
 import TransactionForm from "./components/TransactionForm";
 import BalanceBoard from "./components/BalanceBoard";
@@ -23,8 +15,15 @@ import Analytics from "./components/Analytics";
 import Spinner from "./components/Spinner";
 import Skeleton from "./components/Skeleton";
 import EntityModal from "./components/EntityModal";
-// import { translations } from "./constants/locales";
 import LanguageMenu from "./components/LanguageMenu";
+
+import {
+  PROJECTS_MANAGE,
+  CATEGORIES_MANAGE,
+  TRANSACTIONS,
+  INDEX,
+} from "./constants/links";
+
 import {
   IconEdit,
   IconMenu,
@@ -362,9 +361,9 @@ function App() {
                 aria-label={trnslt.openMenu}
               >
                 {isToolsOpen ? (
-                  <IconChevronUp className={styles.iconSvg} />
+                  <IconChevronUp className="icon-svg" />
                 ) : (
-                  <IconMenu className={styles.iconSvg} />
+                  <IconMenu className="icon-svg" />
                 )}
               </button>
             </div>
@@ -377,7 +376,7 @@ function App() {
                   height: 0,
                   opacity: 0,
                   overflow: "hidden",
-                  paddingBottom: 10,
+                  marginBottom: 10,
                 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -391,12 +390,12 @@ function App() {
                   <h2>
                     {editingId ? (
                       <>
-                        <IconEdit className={styles.iconSvg} />
+                        <IconEdit className="icon-svg" />
                         {trnslt.editOperation}
                       </>
                     ) : (
                       <>
-                        <IconAdd className={styles.iconSvg} />
+                        <IconAdd className="icon-svg" />
                         {trnslt.addOperation}
                       </>
                     )}
@@ -406,7 +405,7 @@ function App() {
                       isFormOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    <IconChevronDown className={styles.iconSvg} />
+                    <IconChevronDown className="icon-svg" />
                   </span>
                 </div>
 
@@ -447,8 +446,7 @@ function App() {
                   onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
                 >
                   <h2>
-                    {" "}
-                    <IconAnalytics className={styles.iconSvg} />{" "}
+                    <IconAnalytics className="icon-svg" />
                     {trnslt.analytics}
                   </h2>
                   <span
@@ -456,7 +454,7 @@ function App() {
                       isAnalyticsOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    <IconChevronDown className={styles.iconSvg} />
+                    <IconChevronDown className="icon-svg" />
                   </span>
                 </div>
 
@@ -469,7 +467,6 @@ function App() {
                         opacity: 1,
                         background: "var(--accent-bg-alt)",
                         borderRadius: 8,
-                        marginTop: 10,
                       }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
@@ -489,14 +486,14 @@ function App() {
                   onClick={() => setIsFiltersOpen(!isFiltersOpen)}
                 >
                   <h2>
-                    <IconFilters className={styles.iconSvg} /> {trnslt.filters}
+                    <IconFilters className="icon-svg" /> {trnslt.filters}
                   </h2>
                   <span
                     className={`${styles.icon} ${
                       isFiltersOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    <IconChevronDown className={styles.iconSvg} />
+                    <IconChevronDown className="icon-svg" />
                   </span>
                 </div>
 
@@ -534,14 +531,14 @@ function App() {
                   onClick={() => setIsBalanceOpen(!isBalanceOpen)}
                 >
                   <h2>
-                    <IconBalance className={styles.iconSvg} /> {trnslt.balance}{" "}
+                    <IconBalance className="icon-svg" /> {trnslt.balance}{" "}
                   </h2>
                   <span
                     className={`${styles.icon} ${
                       isBalanceOpen ? styles.iconOpen : ""
                     }`}
                   >
-                    <IconChevronDown className={styles.iconSvg} />
+                    <IconChevronDown className="icon-svg" />
                   </span>
                 </div>
                 <AnimatePresence>
@@ -591,7 +588,7 @@ function App() {
                   className={styles.projectsSettingsBtn}
                   aria-label={trnslt.settingProjects}
                 >
-                  <IconOptions className={styles.iconSvg} />
+                  <IconOptions className="icon-svg" />
                 </button>
               </div>
               <TransactionTable

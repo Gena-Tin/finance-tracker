@@ -90,6 +90,21 @@ p {
   margin-bottom: 1rem;
 }
 
+.icon-svg {
+  height: 24px;
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-svg:hover {
+  color: var(--accent);
+}
+
 /* --- АДАПТАЦИЯ --- */
 @media (min-width: 768px) {
   :root {
