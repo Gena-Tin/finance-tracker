@@ -80,7 +80,7 @@ const Filters = ({
       {/* 2. Даты */}
       <section className={styles.dateSection}>
         <div className={styles.dateGroup}>
-          <span>{trnslt.periodFrom}</span>
+          <span>{trnslt.periodFrom} </span>
           <input
             type="date"
             value={startDate}
@@ -89,7 +89,7 @@ const Filters = ({
           />
         </div>
         <div className={styles.dateGroup}>
-          <span>{trnslt.periodTo}</span>
+          <span>{trnslt.periodTo} </span>
           <input
             type="date"
             value={endDate}

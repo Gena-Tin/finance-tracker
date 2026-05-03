@@ -2,6 +2,7 @@ import React from "react";
 
 import styles from "./TransactionForm.module.css";
 import { useLanguage } from "../hooks/useLanguage";
+import { IconMinus } from "./SvgLib";
 
 const TransactionForm = ({
   editingId,
@@ -40,7 +41,7 @@ const TransactionForm = ({
         <input
           className={styles.field}
           type="number"
-          placeholder={trnslt.sum}
+          placeholder={` ∑  ${trnslt.sum}`}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
@@ -48,7 +49,7 @@ const TransactionForm = ({
         <input
           className={styles.field}
           type="text"
-          placeholder={trnslt.description}
+          placeholder={` ✏️ ${trnslt.description}`}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -69,13 +70,13 @@ const TransactionForm = ({
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="expense">{trnslt.income}</option>
-          <option value="income">{trnslt.expense}</option>
+          <option value="expense">❌ {trnslt.expense}</option>
+          <option value="income">✅ {trnslt.income}</option>
         </select>
         <select
           className={styles.field}
           value={projId}
-          onChange={(e) => setProjId(e.target.value)}
+          onChange={(e) => setProjId(Number(e.target.value))}
         >
           {projects.map((p) => (
             <option key={p.id} value={p.id}>
