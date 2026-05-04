@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { useLanguage } from "../hooks/useLanguage";
+import { useLanguage } from "../../hooks/useLanguage";
 
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./TransactionTable.module.css";
-import Checkbox from "./Checkbox";
+import Checkbox from "../ui/Checkbox";
 
 const TransactionTable = ({
   transactions,

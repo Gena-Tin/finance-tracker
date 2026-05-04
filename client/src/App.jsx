@@ -7,14 +7,14 @@ import styles from "./App.module.css";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
-import HeaderSection from "./components/HeaderSection";
-import ToolsSection from "./components/ToolsSection";
-import ProjectsSection from "./components/ProjectsSection";
-import TransactionTable from "./components/TransactionTable";
+import HeaderSection from "./components/layout/HeaderSection";
+import ToolsSection from "./components/layout/ToolsSection";
+import ProjectsSection from "./components/layout/ProjectsSection";
+import TransactionTable from "./components/features/TransactionTable";
 
-import ModalsManager from "./components/ModalsManager";
-import Spinner from "./components/Spinner";
-import Skeleton from "./components/Skeleton";
+import ModalsManager from "./components/modals/ModalsManager";
+import Spinner from "./components/ui/Spinner";
+import Skeleton from "./components/ui/Skeleton";
 
 import {
   PROJECTS_MANAGE,

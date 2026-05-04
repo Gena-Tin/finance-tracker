@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "../App.module.css";
+import styles from "../../App.module.css";
 import {
   IconEdit,
   IconAdd,
@@ -9,12 +9,12 @@ import {
   IconAnalytics,
   IconFilters,
   IconBalance,
-} from "./SvgLib";
+} from "../ui/SvgLib";
 
-import TransactionForm from "./TransactionForm";
-import Analytics from "./Analytics";
-import Filters from "./Filters";
-import BalanceBoard from "./BalanceBoard";
+import TransactionForm from "../features/TransactionForm";
+import Analytics from "../features/Analytics";
+import Filters from "../features/Filters";
+import BalanceBoard from "../features/BalanceBoard";
 
 const ToolsSection = ({
   translator,

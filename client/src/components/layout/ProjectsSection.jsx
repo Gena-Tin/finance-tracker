@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "../App.module.css";
-import { IconOptions } from "./SvgLib";
+import styles from "../../App.module.css";
+import { IconOptions } from "../ui/SvgLib";
 
 const ProjectsSection = ({
   translator,

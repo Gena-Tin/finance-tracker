@@ -1,15 +1,15 @@
 import React from "react";
 
 import styles from "./Filters.module.css";
-import Checkbox from "./Checkbox";
-import { useLanguage } from "../hooks/useLanguage";
+import Checkbox from "../ui/Checkbox";
+import { useLanguage } from "../../hooks/useLanguage";
 import {
   IconClose,
   IconMinus,
   IconOptions,
   IconPlus,
   IconSearch,
-} from "./SvgLib";
+} from "../ui/SvgLib";
 
 const Filters = ({
   categories,

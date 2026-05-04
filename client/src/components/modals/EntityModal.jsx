@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
-import IconPicker from "./IconPicker";
-import { useLanguage } from "../hooks/useLanguage";
+import IconPicker from "../ui/IconPicker";
+import { useLanguage } from "../../hooks/useLanguage";
 import styles from "./EntityModal.module.css";
 
 const EntityModal = ({ items, onUpdate, apiUrl, onClose, title }) => {

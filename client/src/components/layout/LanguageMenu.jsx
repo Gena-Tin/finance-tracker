@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useLanguage } from "../hooks/useLanguage";
-import { translations } from "../constants/locales";
+import { useLanguage } from "../../hooks/useLanguage";
+import { translations } from "../../constants/locales";
 import styles from "./LanguageMenu.module.css";
-import { IconGlobe } from "./SvgLib";
+import { IconGlobe } from "../ui/SvgLib";
 
 const LanguageMenu = () => {
   const { lang, switchLanguage } = useLanguage();

@@ -1,8 +1,8 @@
 import React from "react";
 
 import styles from "./TransactionForm.module.css";
-import { useLanguage } from "../hooks/useLanguage";
-import { IconMinus } from "./SvgLib";
+import { useLanguage } from "../../hooks/useLanguage";
+import { IconMinus } from "../ui/SvgLib";
 
 const TransactionForm = ({
   editingId,

@@ -14,8 +14,8 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import { useLanguage } from "../hooks/useLanguage";
-import { IconGraphLines, IconGraphPie } from "./SvgLib";
+import { useLanguage } from "../../hooks/useLanguage";
+import { IconGraphLines, IconGraphPie } from "../ui/SvgLib";
 
 const COLORS = [
   "#580063",

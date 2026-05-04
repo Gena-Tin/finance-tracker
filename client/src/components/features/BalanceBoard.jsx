@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./BalanceBoard.module.css";
-import { useLanguage } from "../hooks/useLanguage";
+import { useLanguage } from "../../hooks/useLanguage";
 
 const BalanceBoard = ({ totalIncome, totalExpense, balance }) => {
   const { translator } = useLanguage();
