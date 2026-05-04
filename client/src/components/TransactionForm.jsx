@@ -23,7 +23,7 @@ const TransactionForm = ({
   projId,
   setProjId,
 }) => {
-  const { trnslt } = useLanguage();
+  const { translator } = useLanguage();
 
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
@@ -41,7 +41,7 @@ const TransactionForm = ({
         <input
           className={styles.field}
           type="number"
-          placeholder={` ∑  ${trnslt.sum}`}
+          placeholder={` ∑  ${translator.sum}`}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           required
@@ -49,7 +49,7 @@ const TransactionForm = ({
         <input
           className={styles.field}
           type="text"
-          placeholder={` ✏️ ${trnslt.description}`}
+          placeholder={` ✏️ ${translator.description}`}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -70,8 +70,8 @@ const TransactionForm = ({
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="expense">❌ {trnslt.expense}</option>
-          <option value="income">✅ {trnslt.income}</option>
+          <option value="expense">❌ {translator.expense}</option>
+          <option value="income">✅ {translator.income}</option>
         </select>
         <select
           className={styles.field}
@@ -86,7 +86,7 @@ const TransactionForm = ({
         </select>
         <div>
           <button type="submit" className={styles.submitBtn}>
-            {editingId ? `${trnslt.save}` : `${trnslt.add}`}
+            {editingId ? `${translator.save}` : `${translator.add}`}
           </button>
           {editingId && (
             <button
@@ -94,7 +94,7 @@ const TransactionForm = ({
               onClick={cancelEdit}
               className={styles.cancelBtn}
             >
-              {trnslt.cancel}
+              {translator.cancel}
             </button>
           )}
         </div>

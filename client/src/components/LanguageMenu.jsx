@@ -6,7 +6,7 @@ import { IconGlobe } from "./SvgLib";
 
 const LanguageMenu = () => {
   const { lang, switchLanguage } = useLanguage();
-  const { trnslt } = useLanguage();
+  const { translator } = useLanguage();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +24,7 @@ const LanguageMenu = () => {
       <button
         className={styles.langMenuButton}
         onClick={toggleMenu}
-        title={trnslt.chooseLanguage}
+        title={translator.chooseLanguage}
       >
         <IconGlobe className={styles.iconSvg} />
       </button>

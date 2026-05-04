@@ -30,7 +30,7 @@ const COLORS = [
 
 const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
   const [viewType, setViewType] = useState("pie"); // 'pie' или 'line'
-  const { trnslt } = useLanguage();
+  const { translator } = useLanguage();
 
   // 1. Подготовка данных для круговой диаграммы
   const coloredCategoryStats = useMemo(() => {
@@ -85,7 +85,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
           }`}
         >
           <IconGraphPie className="icon-svg" />
-          &nbsp;{trnslt.contents}
+          &nbsp;{translator.contents}
         </button>
         <button
           type="button"
@@ -95,7 +95,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
           }`}
         >
           <IconGraphLines className="icon-svg" />
-          &nbsp;{trnslt.dynamics}
+          &nbsp;{translator.dynamics}
         </button>
       </div>
 
@@ -160,7 +160,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
               />
               <Legend verticalAlign="top" align="center" />
               <Line
-                name={trnslt.income}
+                name={translator.income}
                 type="monotone"
                 dataKey="income"
                 stroke="var(--incomeColor)"
@@ -169,7 +169,7 @@ const Analytics = ({ categoryStats, totalStats, filteredByCategory }) => {
                 activeDot={{ r: 6 }}
               />
               <Line
-                name={trnslt.expense}
+                name={translator.expense}
                 type="monotone"
                 dataKey="expense"
                 stroke="var(--expenseColor)"

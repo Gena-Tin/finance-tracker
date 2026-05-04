@@ -21,30 +21,30 @@ const TransactionTable = ({
   onMove,
 }) => {
   const [targetProjectId, setTargetProjectId] = useState(1);
-  const { trnslt } = useLanguage();
+  const { translator } = useLanguage();
 
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableHeader}>
         {selectedIds.length <= 0 ? (
-          <h2>{trnslt.lastOperations}</h2>
+          <h2>{translator.lastOperations}</h2>
         ) : (
           <>
             <button
               type="button"
               onClick={onDelete}
               className={styles.deleteBtn}
-              title={trnslt.deleteSelected}
+              title={translator.deleteSelected}
             >
-              ({selectedIds.length}) {trnslt.delete} 🗑
+              ({selectedIds.length}) {translator.delete} 🗑
             </button>
             <button
               type="button"
               onClick={() => onMove(selectedIds, targetProjectId)}
               className={styles.moveBtn}
-              title={trnslt.moveSelected}
+              title={translator.moveSelected}
             >
-              ({selectedIds.length}) {trnslt.moveTo} 👉
+              ({selectedIds.length}) {translator.moveTo} 👉
             </button>
 
             <select
@@ -84,12 +84,12 @@ const TransactionTable = ({
                 }
               /> */}
             </th>
-            <th>{trnslt.sum}</th>
-            <th>{trnslt.description}</th>
-            <th>{trnslt.date}</th>
+            <th>{translator.sum}</th>
+            <th>{translator.description}</th>
+            <th>{translator.date}</th>
             <th className={styles.checkboxCell}></th>
-            <th>{trnslt.category}</th>
-            <th>{trnslt.project}</th>
+            <th>{translator.category}</th>
+            <th>{translator.project}</th>
           </tr>
         </thead>
         <tbody>

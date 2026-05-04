@@ -7,37 +7,24 @@ import styles from "./App.module.css";
 /* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
-import TransactionForm from "./components/TransactionForm";
-import BalanceBoard from "./components/BalanceBoard";
+import HeaderSection from "./components/HeaderSection";
+import ToolsSection from "./components/ToolsSection";
+import ProjectsSection from "./components/ProjectsSection";
 import TransactionTable from "./components/TransactionTable";
-import Filters from "./components/Filters";
-import Analytics from "./components/Analytics";
+
+import ModalsManager from "./components/ModalsManager";
 import Spinner from "./components/Spinner";
 import Skeleton from "./components/Skeleton";
-import EntityModal from "./components/EntityModal";
-import LanguageMenu from "./components/LanguageMenu";
 
 import {
   PROJECTS_MANAGE,
-  CATEGORIES_MANAGE,
+  // CATEGORIES_MANAGE,
   TRANSACTIONS,
   INDEX,
 } from "./constants/links";
 
-import {
-  IconEdit,
-  IconMenu,
-  IconOptions,
-  IconAdd,
-  IconAnalytics,
-  IconFilters,
-  IconBalance,
-  IconChevronDown,
-  IconChevronUp,
-} from "./components/SvgLib";
-
 function App() {
-  const { trnslt } = useLanguage();
+  const { translator } = useLanguage();
 
   const [categories, setCategories] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -63,13 +50,6 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [filterType, setFilterType] = useState(""); // "" | "income" | "expense"
-
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
-  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
-
-  const [isBalanceOpen, setIsBalanceOpen] = useState(false);
 
   const [currentTheme, setCurrentTheme] = useState(() => {
     return localStorage.getItem("app-theme") || "theme-light";
@@ -150,7 +130,7 @@ function App() {
     // Подставляем дату из транзакции (обрезаем время, если оно есть)
     setDate(t.created_at.split(" ")[0]);
     // Автоматически открываем форму при редактировании!
-    setIsFormOpen(true);
+    // setIsFormOpen(true);
     setIsToolsOpen(true);
   };
 
@@ -159,7 +139,7 @@ function App() {
     setAmount("");
     setDescription("");
     setDate(new Date().toISOString().split("T")[0]); // Сброс на текущую
-    setIsFormOpen(false);
+    // setIsFormOpen(false);
   };
 
   // переключение чекбокса:
@@ -181,7 +161,7 @@ function App() {
   // функция удаления:
   const handleDelete = async () => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`${trnslt.confDeletind} (${selectedIds.length})?`)) return;
+    if (!confirm(`${translator.confDeletind} (${selectedIds.length})?`)) return;
 
     try {
       const res = await fetch(
@@ -199,13 +179,13 @@ function App() {
         fetchData(); // функция обновления данных
       }
     } catch (error) {
-      console.error(`${trnslt.errDeleting}`, error);
+      console.error(`${translator.errDeleting}`, error);
     }
   };
 
   const handleMove = async (ids, targetProjectId) => {
     if (selectedIds.length === 0) return;
-    if (!confirm(`${trnslt.confMoving} (${selectedIds.length})?`)) return;
+    if (!confirm(`${translator.confMoving} (${selectedIds.length})?`)) return;
 
     try {
       const res = await fetch(
@@ -222,7 +202,7 @@ function App() {
         fetchData();
       }
     } catch (error) {
-      console.error(`${trnslt.errMoving}`, error);
+      console.error(`${translator.errMoving}`, error);
     }
   };
 
@@ -319,12 +299,12 @@ function App() {
   // 2. Группируем внутреннее кольцо (общие Доходы и Расходы)
   const totalStats = [
     {
-      name: `${trnslt.income}`,
+      name: `${translator.income}`,
       value: totalIncome,
       fill: "var(--incomeColor)",
     }, // Зеленый
     {
-      name: `${trnslt.expense}`,
+      name: `${translator.expense}`,
       value: totalExpense,
       fill: "var(--expenseColor)",
     }, // Красный
@@ -338,36 +318,13 @@ function App() {
         className={styles.container}
       >
         <section className={styles.toolsSection}>
-          <div className={styles.mainHeader}>
-            <h1>{trnslt.title}</h1>
-            <div className={styles.containerBtnHeader}>
-              <LanguageMenu />
-              <select
-                name="themes"
-                value={currentTheme}
-                onChange={(e) => setCurrentTheme(e.target.value)}
-                className={styles.themeSelect}
-              >
-                {Object.entries(THEMES).map(([key, theme]) => (
-                  <option key={key} value={key}>
-                    {theme.label}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                onClick={() => setIsToolsOpen(!isToolsOpen)}
-                className={styles.toolsButton}
-                aria-label={trnslt.openMenu}
-              >
-                {isToolsOpen ? (
-                  <IconChevronUp className="icon-svg" />
-                ) : (
-                  <IconMenu className="icon-svg" />
-                )}
-              </button>
-            </div>
-          </div>
+          <HeaderSection
+            translator={translator}
+            currentTheme={currentTheme}
+            setCurrentTheme={setCurrentTheme}
+            isToolsOpen={isToolsOpen}
+            setIsToolsOpen={setIsToolsOpen}
+          />
 
           <AnimatePresence>
             {isToolsOpen && (
@@ -382,181 +339,50 @@ function App() {
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Добавление/редактирование транзакции */}
-                <div
-                  className={styles.accordionHeader}
-                  onClick={() => setIsFormOpen(!isFormOpen)}
-                >
-                  <h2>
-                    {editingId ? (
-                      <>
-                        <IconEdit className="icon-svg" />
-                        {trnslt.editOperation}
-                      </>
-                    ) : (
-                      <>
-                        <IconAdd className="icon-svg" />
-                        {trnslt.addOperation}
-                      </>
-                    )}
-                  </h2>
-                  <span
-                    className={`${styles.icon} ${
-                      isFormOpen ? styles.iconOpen : ""
-                    }`}
-                  >
-                    <IconChevronDown className="icon-svg" />
-                  </span>
-                </div>
-
-                <AnimatePresence>
-                  {isFormOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <TransactionForm
-                        editingId={editingId}
-                        date={date}
-                        setDate={setDate}
-                        amount={amount}
-                        setAmount={setAmount}
-                        description={description}
-                        setDescription={setDescription}
-                        catId={catId}
-                        setCatId={setCatId}
-                        type={type}
-                        setType={setType}
-                        categories={categories}
-                        handleSubmit={handleSubmit}
-                        cancelEdit={cancelEdit}
-                        projects={projects}
-                        projId={projId}
-                        setProjId={setProjId}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/*  Аналитика */}
-                <div
-                  className={styles.accordionHeader}
-                  onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
-                >
-                  <h2>
-                    <IconAnalytics className="icon-svg" />
-                    {trnslt.analytics}
-                  </h2>
-                  <span
-                    className={`${styles.icon} ${
-                      isAnalyticsOpen ? styles.iconOpen : ""
-                    }`}
-                  >
-                    <IconChevronDown className="icon-svg" />
-                  </span>
-                </div>
-
-                <AnimatePresence>
-                  {isAnalyticsOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                      animate={{
-                        height: "auto",
-                        opacity: 1,
-                        background: "var(--accent-bg-alt)",
-                        borderRadius: 8,
-                      }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Analytics
-                        categoryStats={categoryStats}
-                        totalStats={totalStats}
-                        filteredByCategory={filteredByCategory}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Фильтры */}
-                <div
-                  className={styles.accordionHeader}
-                  onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                >
-                  <h2>
-                    <IconFilters className="icon-svg" /> {trnslt.filters}
-                  </h2>
-                  <span
-                    className={`${styles.icon} ${
-                      isFiltersOpen ? styles.iconOpen : ""
-                    }`}
-                  >
-                    <IconChevronDown className="icon-svg" />
-                  </span>
-                </div>
-
-                <AnimatePresence>
-                  {isFiltersOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Filters
-                        categories={categories}
-                        filterCatIds={filterCatIds}
-                        toggleFilterCategory={toggleFilterCategory}
-                        setFilterCatIds={setFilterCatIds}
-                        startDate={startDate}
-                        setStartDate={setStartDate}
-                        endDate={endDate}
-                        setEndDate={setEndDate}
-                        searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}
-                        filterType={filterType}
-                        setFilterType={setFilterType}
-                        isCategoryManagerOpen={isCategoryManagerOpen}
-                        setIsCategoryManagerOpen={setIsCategoryManagerOpen}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Баланс */}
-                <div
-                  className={styles.accordionHeader}
-                  onClick={() => setIsBalanceOpen(!isBalanceOpen)}
-                >
-                  <h2>
-                    <IconBalance className="icon-svg" /> {trnslt.balance}{" "}
-                  </h2>
-                  <span
-                    className={`${styles.icon} ${
-                      isBalanceOpen ? styles.iconOpen : ""
-                    }`}
-                  >
-                    <IconChevronDown className="icon-svg" />
-                  </span>
-                </div>
-                <AnimatePresence>
-                  {isBalanceOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <BalanceBoard
-                        totalIncome={totalIncome}
-                        totalExpense={totalExpense}
-                        balance={balance}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <ToolsSection
+                  translator={translator}
+                  formProps={{
+                    editingId,
+                    date,
+                    setDate,
+                    amount,
+                    setAmount,
+                    description,
+                    setDescription,
+                    catId,
+                    setCatId,
+                    type,
+                    setType,
+                    categories,
+                    handleSubmit,
+                    cancelEdit,
+                    projects,
+                    projId,
+                    setProjId,
+                  }}
+                  analyticsProps={{
+                    categoryStats,
+                    totalStats,
+                    filteredByCategory,
+                  }}
+                  filtersProps={{
+                    categories,
+                    filterCatIds,
+                    toggleFilterCategory,
+                    setFilterCatIds,
+                    startDate,
+                    setStartDate,
+                    endDate,
+                    setEndDate,
+                    searchQuery,
+                    setSearchQuery,
+                    filterType,
+                    setFilterType,
+                    isCategoryManagerOpen,
+                    setIsCategoryManagerOpen,
+                  }}
+                  balanceProps={{ totalIncome, totalExpense, balance }}
+                />
               </motion.div>
             )}
           </AnimatePresence>
@@ -569,28 +395,16 @@ function App() {
             </>
           ) : (
             <>
-              <div className={styles.projectHeader}>
-                <select
-                  name="project-select"
-                  value={projId}
-                  onChange={(e) => setProjId(Number(e.target.value))}
-                  className={styles.projectSelect}
-                >
-                  {projects.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.icon} {p.name}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  onClick={() => setIsProjectManagerOpen(true)}
-                  className={styles.projectsSettingsBtn}
-                  aria-label={trnslt.settingProjects}
-                >
-                  <IconOptions className="icon-svg" />
-                </button>
-              </div>
+              {/* Менеджер проектов: */}
+              <ProjectsSection
+                translator={translator}
+                projId={projId}
+                setProjId={setProjId}
+                setIsProjectManagerOpen={setIsProjectManagerOpen}
+                projects={projects}
+              />
+
+              {/* Таблица транзакций: */}
               <TransactionTable
                 transactions={transactions}
                 filteredByCategory={filteredByCategory}
@@ -610,29 +424,18 @@ function App() {
           )}
         </section>
       </motion.div>
+
       {/* Модалки: */}
-      <AnimatePresence>
-        {isCategoryManagerOpen && (
-          <EntityModal
-            title={trnslt.category}
-            items={categories}
-            onUpdate={fetchData}
-            apiUrl={CATEGORIES_MANAGE}
-            onClose={() => setIsCategoryManagerOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {isProjectManagerOpen && (
-          <EntityModal
-            title={trnslt.project}
-            items={projects}
-            onUpdate={fetchData}
-            apiUrl={PROJECTS_MANAGE}
-            onClose={() => setIsProjectManagerOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+      <ModalsManager
+        translator={translator}
+        isCategoryManagerOpen={isCategoryManagerOpen}
+        setIsCategoryManagerOpen={setIsCategoryManagerOpen}
+        isProjectManagerOpen={isProjectManagerOpen}
+        setIsProjectManagerOpen={setIsProjectManagerOpen}
+        categories={categories}
+        projects={projects}
+        fetchData={fetchData}
+      />
     </>
   );
 }

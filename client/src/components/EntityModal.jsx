@@ -11,7 +11,7 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose, title }) => {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("💎"); // Иконка по умолчанию для проектов
   const [isPickerOpen, setIsPickerOpen] = useState(false);
-  const { trnslt } = useLanguage();
+  const { translator } = useLanguage();
 
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
@@ -84,7 +84,7 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose, title }) => {
       >
         <div className={styles.modalHeader}>
           <h3>
-            {title}: {trnslt.add} / {trnslt.delete}
+            {title}: {translator.add} / {translator.delete}
           </h3>
           <button type="button" className={styles.closeX} onClick={onClose}>
             ✖
@@ -102,7 +102,7 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose, title }) => {
                   type="button"
                   className={styles.btnDelete}
                   onClick={() => handleDelete(proj.id)}
-                  title={trnslt.delete}
+                  title={translator.delete}
                 >
                   🗑️
                 </button>
@@ -128,14 +128,14 @@ const EntityModal = ({ items, onUpdate, apiUrl, onClose, title }) => {
             <input
               name="enter name"
               type="text"
-              placeholder={trnslt.plhName}
+              placeholder={translator.plhName}
               value={name}
               onChange={(e) => setName(e.target.value)}
               className={styles.inputName}
             />
           </div>
           <button type="submit" className={styles.btnAdd}>
-            {trnslt.add}
+            {translator.add}
           </button>
         </form>
         <button className={styles.btnClose} onClick={onClose}>

@@ -1,5 +1,5 @@
 .tableContainer {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   width: 100%;
   overflow-x: auto; /* скролл только таблици внутри экрана */
   -webkit-overflow-scrolling: touch; /* Плавный скролл на iPhone */
@@ -21,6 +21,7 @@ td {
 }
 
 .tableHeader {
+  margin: 10px 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
