@@ -27,7 +27,7 @@ const TransactionTable = ({
     <div className={styles.tableContainer}>
       <div className={styles.tableHeader}>
         {selectedIds.length <= 0 ? (
-          <h2>{translator.lastOperations}</h2>
+          <h2>{translator.lastOperations}:</h2>
         ) : (
           <>
             <button
@@ -75,14 +75,6 @@ const TransactionTable = ({
                   transactions.length > 0
                 }
               />
-              {/* <input
-                type="checkbox"
-                onChange={(e) => onToggleAll(e.target.checked)}
-                checked={
-                  selectedIds.length === transactions.length &&
-                  transactions.length > 0
-                }
-              /> */}
             </th>
             <th>{translator.sum}</th>
             <th>{translator.description}</th>
@@ -115,11 +107,6 @@ const TransactionTable = ({
                       checked={isSelected}
                       onChange={() => onToggleSelect(t.id)}
                     />
-                    {/* <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() => onToggleSelect(t.id)}
-                    /> */}
                   </td>
 
                   <td

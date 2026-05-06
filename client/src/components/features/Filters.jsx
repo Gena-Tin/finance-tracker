@@ -13,6 +13,7 @@ import {
 
 const Filters = ({
   categories,
+  clearDates,
   filterCatIds,
   toggleFilterCategory,
   setFilterCatIds,
@@ -100,10 +101,11 @@ const Filters = ({
         {(startDate || endDate) && (
           <button
             type="button"
-            onClick={() => {
-              setStartDate("");
-              setEndDate("");
-            }}
+            onClick={clearDates}
+            // onClick={() => {
+            //   setStartDate("");
+            //   setEndDate("");
+            // }}
             className={styles.resetBtn}
           >
             <IconClose className="icon-svg" /> {translator.reset}
@@ -136,7 +138,6 @@ const Filters = ({
 
       {/* 4. Тип (Доход/Расход) */}
       <section className={styles.typeSection}>
-        {/* <span>Тип:</span> */}
         <button
           type="button"
           onClick={() => setFilterType("income")}

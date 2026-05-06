@@ -12,6 +12,7 @@ const ProjectsSection = ({
   return (
     <>
       <div className={styles.projectHeader}>
+        <h2>{translator.project}:</h2>
         <select
           name="project-select"
           value={projId}

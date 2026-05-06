@@ -2,7 +2,6 @@ import React from "react";
 
 import styles from "./TransactionForm.module.css";
 import { useLanguage } from "../../hooks/useLanguage";
-import { IconMinus } from "../ui/SvgLib";
 
 const TransactionForm = ({
   editingId,
@@ -27,9 +26,6 @@ const TransactionForm = ({
 
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
-      {/* <h3 className={styles.title}>
-        {editingId ? "Редактировать операцию" : "Добавить операцию"}
-      </h3> */}
       <div className={styles.inputGroup}>
         <input
           className={styles.field}

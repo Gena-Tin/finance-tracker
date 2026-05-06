@@ -81,7 +81,7 @@ h2 {
   font-size: 18px;
   font-weight: 500;
   color: var(--text-h);
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
   display: flex;
   align-items: center;
   gap: 6px;

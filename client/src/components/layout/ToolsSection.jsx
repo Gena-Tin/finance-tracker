@@ -22,8 +22,9 @@ const ToolsSection = ({
   analyticsProps,
   filtersProps,
   balanceProps,
+  isFormOpen,
+  setIsFormOpen,
 }) => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isBalanceOpen, setIsBalanceOpen] = useState(false);
