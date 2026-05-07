@@ -1,4 +1,9 @@
-export const getProcessedData = (transactions, filters, selectedIds) => {
+export const getProcessedData = (
+  transactions,
+  filters,
+  selectedIds,
+  translator
+) => {
   let filtered = transactions;
 
   // Фильтрация (проект, категории, даты, поиск, тип)
@@ -45,11 +50,25 @@ export const getProcessedData = (transactions, filters, selectedIds) => {
     return acc;
   }, []);
 
+  const totalStats = [
+    {
+      name: translator?.income || "Income",
+      value: totalIncome,
+      fill: "var(--incomeColor)",
+    },
+    {
+      name: translator?.expense || "Expense",
+      value: totalExpense,
+      fill: "var(--expenseColor)",
+    },
+  ].filter((item) => item.value > 0);
+
   return {
     filteredData: filtered,
     totalIncome,
     totalExpense,
     balance: totalIncome - totalExpense,
     categoryStats,
+    totalStats,
   };
 };

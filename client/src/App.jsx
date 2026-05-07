@@ -178,13 +178,6 @@ function App() {
                     projects,
                     handleSubmit,
                     cancelEdit: resetForm,
-                    // cancelEdit: () => {
-                    //   setEditingId(null);
-                    //   setAmount("");
-                    //   setDescription("");
-                    //   setDate(new Date().toISOString().split("T")[0]); // Сброс на текущую
-                    //   setIsFormOpen(false);
-                    // },
                     projId: filterState.projId,
                     setProjId: (id) =>
                       setFilterState({ ...filterState, projId: id }),
