@@ -100,9 +100,6 @@ function App() {
     };
     if (await saveTransaction(data, editingId)) {
       resetForm();
-      // setEditingId(null);
-      // setAmount("");
-      // setDescription("");
     }
   };
 
