@@ -24,35 +24,42 @@ A robust and scalable personal finance management tool with a modular architectu
 
 ## 📂 Project Structure
 
-````text
+```text
 src/
 ├── components/     # Atomic UI components & Feature sections
 ├── hooks/          # Custom hooks (useTransactions, useLanguage)
 ├── utils/          # Pure logic & math (financeUtils)
 ├── constants/      # App constants & Theme definitions
 └── locales/        # Translation dictionaries
+```
 
 ## 🛠 Installation & Setup
 
 ### 1. Database Setup
+
 - Create a PostgreSQL database.
 - Execute the SQL queries from `api/database.sql` to create the necessary tables.
 
 ### 2. Backend Configuration
+
 - Go to the `api/` folder.
 - Rename `db.php.example` to `db.php`.
 - Update the credentials with your local PostgreSQL settings (host, dbname, user, password).
 - Run the backend server (accessible from your local network):
+
 ```bash
 php -S 0.0.0.0:8000
+```
 
 ### 3. Frontend Setup
+
 - Navigate to the `client/` directory.
 - Create a `.env` file and set `VITE_API_URL=http://<YOUR_IP_ADDRESS>:8000/api`.
 - Install and run (accessible from your local network):
   ```bash
   npm install
   npm run dev -- --host
+  ```
 
 ## 📈 Roadmap
 
@@ -62,4 +69,3 @@ php -S 0.0.0.0:8000
 [ ] Migrate to TypeScript (Type safety & better DX)
 [ ] User Authentication & JWT
 [ ] Export to PDF/CSV
-````
