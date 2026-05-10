@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
-import { translations } from "../../constants/locales";
+import { translations } from "../../locales/locales";
 import styles from "./LanguageMenu.module.css";
 import { IconGlobe } from "../ui/SvgLib";
 

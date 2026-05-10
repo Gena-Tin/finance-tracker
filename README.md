@@ -27,9 +27,14 @@ A robust and scalable personal finance management tool with a modular architectu
 ```text
 src/
 ├── components/     # Atomic UI components & Feature sections
-├── hooks/          # Custom hooks (useTransactions, useLanguage)
-├── utils/          # Pure logic & math (financeUtils)
-├── constants/      # App constants & Theme definitions
+│   ├── features/   # Business logic components
+│   ├── layout/     # Structural components
+│   ├── modals/     # Application-wide overlays
+│   └── ui/         # Reusable base elements
+├── constants/      # App constants, themes & configuration
+├── context/        # React Context providers
+├── hooks/          # Custom business logic hooks
+├── utils/          # Pure helper functions & calculations
 └── locales/        # Translation dictionaries
 ```
 
@@ -63,9 +68,11 @@ php -S 0.0.0.0:8000
 
 ## 📈 Roadmap
 
+```text
 [x] Global Refactoring & Modularization
 [x] Multi-language support
 [x] Project management
 [ ] Migrate to TypeScript (Type safety & better DX)
 [ ] User Authentication & JWT
 [ ] Export to PDF/CSV
+```
