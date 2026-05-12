@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // Хуки и утилиты
 import { useLanguage } from "./hooks/useLanguage";
 import { useTransactions } from "./hooks/useTransactions";
-import { getProcessedData } from "./utils/financeUtils";
+import { getProcessedData } from "./utils/financeUtils.ts";
 import { THEMES } from "./constants/themes";
 
 // Стили
