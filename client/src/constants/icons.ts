@@ -1,4 +1,4 @@
-export const COMMON_ICONS = [
+export const COMMON_ICONS: readonly string[] = [
   "💎",
   "💰",
   "🍕",
@@ -39,4 +39,4 @@ export const COMMON_ICONS = [
   "🙁",
   "😎",
   "😍",
-];
+] as const;

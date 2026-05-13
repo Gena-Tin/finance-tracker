@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { TRANSACTIONS, PROJECTS_MANAGE, INDEX } from "../constants/links";
+import { TRANSACTIONS, PROJECTS_MANAGE, INDEX } from "../constants/links.ts";
 
 export const useTransactions = (apiUrl) => {
   const [categories, setCategories] = useState([]);
