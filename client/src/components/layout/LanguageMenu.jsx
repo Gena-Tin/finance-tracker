@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 import { translations } from "../../locales/locales";
 import styles from "./LanguageMenu.module.css";

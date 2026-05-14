@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LanguageContext } from "./LanguageContext";
 import { translations } from "../locales/locales";
 

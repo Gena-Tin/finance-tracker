@@ -16,3 +16,19 @@ export interface Category {
   name: string;
   icon?: string;
 }
+
+export interface Project {
+  id: number;
+  name: string;
+  icon?: string;
+}
+export interface LanguageContextType {
+  language: string;
+  setLanguage: (lang: string) => void;
+  translator: {
+    income: string;
+    expense: string;
+
+    [key: string]: string | undefined;
+  };
+}

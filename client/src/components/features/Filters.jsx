@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./Filters.module.css";
 import Checkbox from "../ui/Checkbox";
 import { useLanguage } from "../../hooks/useLanguage";

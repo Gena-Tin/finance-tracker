@@ -1,7 +1,6 @@
-import React from "react";
 import { AnimatePresence } from "framer-motion";
 import EntityModal from "./EntityModal";
-import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../constants/links.ts";
+import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../constants/links";
 
 const ModalsManager = ({
   translator,

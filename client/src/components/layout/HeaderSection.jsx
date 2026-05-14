@@ -1,8 +1,7 @@
-import React from "react";
 import styles from "../../App.module.css";
 import LanguageMenu from "./LanguageMenu";
 import { IconChevronUp, IconMenu } from "../ui/SvgLib";
-import { THEMES } from "../../constants/themes.ts";
+import { THEMES } from "../../constants/themes";
 
 const HeaderSection = ({
   translator,

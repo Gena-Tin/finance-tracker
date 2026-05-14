@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./TransactionForm.module.css";
 import { useLanguage } from "../../hooks/useLanguage";
 

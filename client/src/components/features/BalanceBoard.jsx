@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./BalanceBoard.module.css";
 import { useLanguage } from "../../hooks/useLanguage";
 
