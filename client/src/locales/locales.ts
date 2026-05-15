@@ -1,4 +1,51 @@
-export const translations = {
+interface TranslationData {
+  title: string;
+  openMenu: string;
+  addOperation: string;
+  editOperation: string;
+  analytics: string;
+  contents: string;
+  dynamics: string;
+  filters: string;
+  balance: string;
+  expense: string;
+  income: string;
+  total: string;
+  lastOperations: string;
+  chooseLanguage: string;
+  sum: string;
+  settingProjects: string;
+  description: string;
+  date: string;
+  category: string;
+  settingCategories: string;
+  periodFrom: string;
+  periodTo: string;
+  plhSearchByDescription: string;
+  edit: string;
+  project: string;
+  delete: string;
+  add: string;
+  save: string;
+  cancel: string;
+  deleteSelected: string;
+  moveTo: string;
+  moveSelected: string;
+  confMoving: string;
+  errMoving: string;
+  confDeletind: string;
+  errDeleting: string;
+  plhName: string;
+  reset: string;
+  resetAll: string;
+}
+
+interface LanguagePackage {
+  info: { flag: string; name: string };
+  data: TranslationData;
+}
+
+export const translations: Record<string, LanguagePackage> = {
   ua: {
     info: { flag: "🇺🇦", name: "Українська" },
     data: {
