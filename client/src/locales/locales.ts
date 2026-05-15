@@ -45,7 +45,9 @@ interface LanguagePackage {
   data: TranslationData;
 }
 
-export const translations: Record<string, LanguagePackage> = {
+type LangCode = "ua" | "en" | "pl" | "de" | "es" | "fr" | "it" | "ru";
+
+export const translations: Record<LangCode, LanguagePackage> = {
   ua: {
     info: { flag: "🇺🇦", name: "Українська" },
     data: {
