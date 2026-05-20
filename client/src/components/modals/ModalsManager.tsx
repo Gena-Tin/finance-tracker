@@ -1,4 +1,3 @@
-import React from "react";
 import { AnimatePresence } from "framer-motion";
 import EntityModal from "./EntityModal";
 import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../constants/links";
@@ -7,8 +6,8 @@ import { Category, Project, TranslationData } from "../../types";
 interface ModalsManagerProps {
   translator: TranslationData;
   isCategoryManagerOpen: boolean;
-  setIsCategoryManagerOpen: (open: boolean) => void;
   isProjectManagerOpen: boolean;
+  setIsCategoryManagerOpen: (open: boolean) => void;
   setIsProjectManagerOpen: (open: boolean) => void;
   categories: Category[];
   projects: Project[];
@@ -18,8 +17,8 @@ interface ModalsManagerProps {
 const ModalsManager: React.FC<ModalsManagerProps> = ({
   translator,
   isCategoryManagerOpen,
-  setIsCategoryManagerOpen,
   isProjectManagerOpen,
+  setIsCategoryManagerOpen,
   setIsProjectManagerOpen,
   categories,
   projects,
@@ -30,7 +29,7 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
       <AnimatePresence>
         {isCategoryManagerOpen && (
           <EntityModal
-            title={translator.category} // Используем правильный путь .data.
+            title={translator.category}
             items={categories}
             onUpdate={fetchData}
             apiUrl={CATEGORIES_MANAGE}
@@ -42,7 +41,7 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
       <AnimatePresence>
         {isProjectManagerOpen && (
           <EntityModal
-            title={translator.project} // Используем правильный путь .data.
+            title={translator.project}
             items={projects}
             onUpdate={fetchData}
             apiUrl={PROJECTS_MANAGE}

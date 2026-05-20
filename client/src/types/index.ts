@@ -65,7 +65,7 @@ export interface TranslationData {
   resetAll: string;
 }
 export interface LanguageContextType {
-  language: string;
-  setLanguage: (lang: string) => void;
+  lang: string;
+  switchLanguage: (lang: string) => void;
   translator: TranslationData;
 }

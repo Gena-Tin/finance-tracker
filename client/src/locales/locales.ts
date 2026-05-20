@@ -45,7 +45,7 @@ interface LanguagePackage {
   data: TranslationData;
 }
 
-type LangCode = "ua" | "en" | "pl" | "de" | "es" | "fr" | "it" | "ru";
+export type LangCode = "ua" | "en" | "pl" | "de" | "es" | "fr" | "it" | "ru";
 
 export const translations: Record<LangCode, LanguagePackage> = {
   ua: {
