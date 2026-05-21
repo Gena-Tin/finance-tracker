@@ -1,13 +1,28 @@
 import styles from "../../App.module.css";
 import { IconOptions } from "../ui/SvgLib";
+import { Project, TranslationData } from "../../types";
 
-const ProjectsSection = ({
+interface ProjectsSectionProps {
+  translator: TranslationData;
+  projId: number;
+  setProjId: (id: number) => void;
+  setIsProjectManagerOpen: (open: boolean) => void;
+  projects: Project[];
+}
+
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   translator,
   projId,
   setProjId,
   setIsProjectManagerOpen,
   projects,
 }) => {
+  const handleProjectChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setProjId(Number(e.target.value));
+  };
+
   return (
     <>
       <div className={styles.projectHeader}>
@@ -15,7 +30,7 @@ const ProjectsSection = ({
         <select
           name="project-select"
           value={projId}
-          onChange={(e) => setProjId(Number(e.target.value))}
+          onChange={handleProjectChange}
           className={styles.projectSelect}
         >
           {projects.map((p) => (
