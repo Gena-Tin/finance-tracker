@@ -23,6 +23,18 @@ export interface Project {
   icon?: string;
 }
 
+export type LangCode = "ua" | "en" | "pl" | "de" | "es" | "fr" | "it" | "ru";
+
+export interface LanguagePackage {
+  info: { flag: string; name: string };
+  data: TranslationData;
+}
+export interface LanguageContextType {
+  lang: LangCode;
+  switchLanguage: (lang: LangCode) => void;
+  translator: TranslationData;
+}
+
 export interface TranslationData {
   title: string;
   openMenu: string;
@@ -63,9 +75,4 @@ export interface TranslationData {
   plhName: string;
   reset: string;
   resetAll: string;
-}
-export interface LanguageContextType {
-  lang: string;
-  switchLanguage: (lang: string) => void;
-  translator: TranslationData;
 }
