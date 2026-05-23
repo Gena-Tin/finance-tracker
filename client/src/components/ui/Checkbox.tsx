@@ -1,7 +1,21 @@
 import styles from "./Checkbox.module.css";
 
-const Checkbox = ({ label, checked, onChange, disabled = false, ...props }) => {
-  const handleClick = (e) => {
+interface CheckboxProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+  label?: string;
+  checked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+}
+
+const Checkbox: React.FC<CheckboxProps> = ({
+  label,
+  checked,
+  onChange,
+  disabled = false,
+  ...props
+}) => {
+  const handleClick = (e: React.MouseEvent<HTMLLabelElement>): void => {
     e.stopPropagation();
   };
 
