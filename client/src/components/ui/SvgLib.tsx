@@ -1,4 +1,6 @@
-export const IconMenu = (props) => (
+type IconProps = React.SVGProps<SVGSVGElement>;
+
+export const IconMenu: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -13,7 +15,7 @@ export const IconMenu = (props) => (
   </svg>
 );
 
-export const IconGlobe = (props) => (
+export const IconGlobe: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -28,7 +30,7 @@ export const IconGlobe = (props) => (
   </svg>
 );
 
-export const IconOptions = (props) => (
+export const IconOptions: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -48,7 +50,7 @@ export const IconOptions = (props) => (
   </svg>
 );
 
-export const IconGraphPie = (props) => (
+export const IconGraphPie: React.FC<IconProps> = (props) => (
   <svg
     height="24"
     width="24"
@@ -96,7 +98,7 @@ export const IconGraphPie = (props) => (
   </svg>
 );
 
-export const IconGraphLines = (props) => (
+export const IconGraphLines: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -157,7 +159,7 @@ export const IconGraphLines = (props) => (
   </svg>
 );
 
-export const IconAdd = (props) => (
+export const IconAdd: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -172,7 +174,7 @@ export const IconAdd = (props) => (
   </svg>
 );
 
-export const IconEdit = (props) => (
+export const IconEdit: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -189,7 +191,7 @@ export const IconEdit = (props) => (
   </svg>
 );
 
-export const IconAnalytics = (props) => (
+export const IconAnalytics: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -205,7 +207,7 @@ export const IconAnalytics = (props) => (
   </svg>
 );
 
-export const IconFilters = (props) => (
+export const IconFilters: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -220,7 +222,7 @@ export const IconFilters = (props) => (
   </svg>
 );
 
-export const IconBalance = (props) => (
+export const IconBalance: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -235,7 +237,7 @@ export const IconBalance = (props) => (
   </svg>
 );
 
-export const IconChevronUp = (props) => (
+export const IconChevronUp: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -250,7 +252,7 @@ export const IconChevronUp = (props) => (
   </svg>
 );
 
-export const IconChevronDown = (props) => (
+export const IconChevronDown: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -265,7 +267,7 @@ export const IconChevronDown = (props) => (
   </svg>
 );
 
-export const IconSearch = (props) => (
+export const IconSearch: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -280,7 +282,7 @@ export const IconSearch = (props) => (
   </svg>
 );
 
-export const IconPlus = (props) => (
+export const IconPlus: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -295,7 +297,7 @@ export const IconPlus = (props) => (
   </svg>
 );
 
-export const IconMinus = (props) => (
+export const IconMinus: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
@@ -310,7 +312,7 @@ export const IconMinus = (props) => (
   </svg>
 );
 
-export const IconClose = (props) => (
+export const IconClose: React.FC<IconProps> = (props) => (
   <svg
     height="200"
     width="200"
