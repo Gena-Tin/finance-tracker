@@ -1,7 +1,17 @@
 import styles from "./BalanceBoard.module.css";
 import { useLanguage } from "../../hooks/useLanguage";
 
-const BalanceBoard = ({ totalIncome, totalExpense, balance }) => {
+interface BalanceBoardProps {
+  totalIncome: number;
+  totalExpense: number;
+  balance: number;
+}
+
+const BalanceBoard: React.FC<BalanceBoardProps> = ({
+  totalIncome,
+  totalExpense,
+  balance,
+}) => {
   const { translator } = useLanguage();
 
   return (
