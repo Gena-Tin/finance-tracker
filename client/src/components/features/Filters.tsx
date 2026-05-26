@@ -9,7 +9,34 @@ import {
   IconSearch,
 } from "../ui/SvgLib";
 
-const Filters = ({
+interface CategoryItem {
+  id: number;
+  name: string;
+  icon?: string;
+  [key: string]: any; // На случай дополнительных полей БД
+}
+
+interface FiltersProps {
+  categories: CategoryItem[];
+  filterCatIds: number[];
+  toggleFilterCategory: (ids: number) => void;
+  setFilterCatIds: (id: number[]) => void;
+
+  startDate: string;
+  endDate: string;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
+  clearDates: () => void;
+
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+
+  filterType: "income" | "expense" | "";
+  setFilterType: (type: "income" | "expense" | "") => void;
+  setIsCategoryManagerOpen: (open: boolean) => void;
+}
+
+const Filters: React.FC<FiltersProps> = ({
   categories,
   clearDates,
   filterCatIds,
@@ -54,7 +81,7 @@ const Filters = ({
                 <Checkbox
                   type="checkbox"
                   checked={isSelected}
-                  onClick={() => toggleFilterCategory(cat.id)}
+                  onChange={() => toggleFilterCategory(cat.id)}
                   readOnly
                   // tabIndex="-1"
                   style={{ cursor: "pointer" }}
