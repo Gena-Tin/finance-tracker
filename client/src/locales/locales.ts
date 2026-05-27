@@ -45,6 +45,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Скинути все",
       backendWakingUp:
         "Зачекайте трохи, зараз бекенд прокинеться і все буде літати! ☕ 🚀",
+      placeholderDate: "дд.мм.рррр",
     },
   },
   en: {
@@ -91,6 +92,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Reset all",
       backendWakingUp:
         "Please wait a moment, the backend is waking up and everything will fly! ☕🚀",
+      placeholderDate: "dd/mm/yyyy",
     },
   },
   ro: {
@@ -137,6 +139,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Resetează tot",
       backendWakingUp:
         "Așteptați un moment, backend-ul se trezește acum și totul va zbura! ☕ 🚀",
+      placeholderDate: "zz.ll.aaaa",
     },
   },
   pl: {
@@ -183,6 +186,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Resetuj wszystko",
       backendWakingUp:
         "Poczekaj chwilę, zaraz backend się obudzi i wszystko będzie śmigać! ☕ 🚀",
+      placeholderDate: "rr.mm.dd",
     },
   },
   de: {
@@ -229,6 +233,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Alles zurücksetzen",
       backendWakingUp:
         "Bitte warten Sie einen Moment, das Backend wacht сразу auf und dann läuft alles superschnell! ☕ 🚀",
+      placeholderDate: "tt.mm.jjjj",
     },
   },
   es: {
@@ -275,6 +280,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Restablecer todo",
       backendWakingUp:
         "¡Espera un momento, el backend se está despertando y luego todo volará! ☕ 🚀",
+      placeholderDate: "dd/mm/aaaa",
     },
   },
   fr: {
@@ -321,6 +327,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Tout réinitialiser",
       backendWakingUp:
         "Attendez un instant, le backend se réveille et tout va s'envoler ! ☕ 🚀",
+      placeholderDate: "jj/mm/aaaa",
     },
   },
   it: {
@@ -367,6 +374,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Ripristina tutto",
       backendWakingUp:
         "Aspetta un attimo, il backend si sta svegliando e poi tutto volerà! ☕ 🚀",
+      placeholderDate: "gg/mm/aaaa",
     },
   },
   ru: {
@@ -413,6 +421,7 @@ export const translations: Record<LangCode, LanguagePackage> = {
       resetAll: "Сбросить все",
       backendWakingUp:
         "Подождите немного, сейчас бэкенд проснется и будет все летать! ☕ 🚀",
+      placeholderDate: "дд.мм.гггг",
     },
   },
 };

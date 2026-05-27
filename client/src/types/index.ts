@@ -85,4 +85,5 @@ export interface TranslationData {
   reset: string;
   resetAll: string;
   backendWakingUp: string;
+  placeholderDate: string;
 }

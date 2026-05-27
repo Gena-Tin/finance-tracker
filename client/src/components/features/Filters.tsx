@@ -10,12 +10,6 @@ import {
 } from "../ui/SvgLib";
 import { Category } from "@/types";
 
-// interface CategoryItem {
-//   id: number;
-//   name: string;
-//   icon?: string;
-// }
-
 interface FiltersProps {
   categories: Category[];
   filterCatIds: number[];
@@ -108,18 +102,28 @@ const Filters: React.FC<FiltersProps> = ({
         <div className={styles.dateGroup}>
           <span>{translator.periodFrom} </span>
           <input
-            type="date"
+            type={startDate ? "date" : "text"}
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
+            onFocus={(e) => (e.target.type = "date")} //переключение типа date/text для перевода плейсхолдера
+            onBlur={(e) => {
+              if (!e.target.value) e.target.type = "text";
+            }}
+            placeholder={translator.placeholderDate}
             className={styles.inputField}
           />
         </div>
         <div className={styles.dateGroup}>
           <span>{translator.periodTo} </span>
           <input
-            type="date"
+            type={startDate ? "date" : "text"}
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
+            onFocus={(e) => (e.target.type = "date")} //переключение типа date/text для перевода плейсхолдера
+            onBlur={(e) => {
+              if (!e.target.value) e.target.type = "text";
+            }}
+            placeholder={translator.placeholderDate}
             className={styles.inputField}
           />
         </div>
@@ -127,10 +131,6 @@ const Filters: React.FC<FiltersProps> = ({
           <button
             type="button"
             onClick={clearDates}
-            // onClick={() => {
-            //   setStartDate("");
-            //   setEndDate("");
-            // }}
             className={styles.resetBtn}
           >
             <IconClose className="icon-svg" /> {translator.reset}
