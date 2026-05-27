@@ -8,16 +8,16 @@ import {
   IconPlus,
   IconSearch,
 } from "../ui/SvgLib";
+import { Category } from "@/types";
 
-interface CategoryItem {
-  id: number;
-  name: string;
-  icon?: string;
-  [key: string]: any; // На случай дополнительных полей БД
-}
+// interface CategoryItem {
+//   id: number;
+//   name: string;
+//   icon?: string;
+// }
 
 interface FiltersProps {
-  categories: CategoryItem[];
+  categories: Category[];
   filterCatIds: number[];
   toggleFilterCategory: (ids: number) => void;
   setFilterCatIds: (id: number[]) => void;

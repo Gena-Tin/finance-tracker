@@ -1,7 +1,29 @@
 import styles from "./TransactionForm.module.css";
 import { useLanguage } from "../../hooks/useLanguage";
 
-const TransactionForm = ({
+import { Category, Project, TransactionType } from "@/types";
+
+interface TransactionFormProps {
+  editingId?: string; //id может отсутствовать, когда мы просто добавляем запись
+  date: string;
+  setDate: (date: string) => void;
+  amount: string;
+  setAmount: (amount: string) => void;
+  description: string;
+  setDescription: (description: string) => void;
+  catId: string;
+  setCatId: (cat: string) => void;
+  categories: Category[];
+  type: TransactionType;
+  setType: (type: TransactionType) => void;
+  projId: number;
+  setProjId: (proj: number) => void;
+  projects: Project[];
+  handleSubmit: (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => void;
+  cancelEdit: () => void;
+}
+
+const TransactionForm: React.FC<TransactionFormProps> = ({
   editingId,
   date,
   setDate,
@@ -62,7 +84,7 @@ const TransactionForm = ({
         <select
           className={styles.field}
           value={type}
-          onChange={(e) => setType(e.target.value)}
+          onChange={(e) => setType(e.target.value as TransactionType)}
         >
           <option value="expense">❌ {translator.expense}</option>
           <option value="income">✅ {translator.income}</option>

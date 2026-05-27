@@ -87,6 +87,8 @@ function App() {
   } = getProcessedData(transactions, filterState, selectedIds, translator);
 
   // --- 6. Обработчики событий ---
+  // const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
+  // e.preventDefault();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
