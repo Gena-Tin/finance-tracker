@@ -23,7 +23,16 @@ export interface Project {
   icon?: string;
 }
 
-export type LangCode = "ua" | "en" | "pl" | "de" | "es" | "fr" | "it" | "ru";
+export type LangCode =
+  | "ua"
+  | "en"
+  | "ro"
+  | "pl"
+  | "de"
+  | "es"
+  | "fr"
+  | "it"
+  | "ru";
 
 export interface LanguagePackage {
   info: { flag: string; name: string };
@@ -75,4 +84,5 @@ export interface TranslationData {
   plhName: string;
   reset: string;
   resetAll: string;
+  backendWakingUp: string;
 }

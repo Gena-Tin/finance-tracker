@@ -1,6 +1,6 @@
-import { TranslationData, LangCode, LanguagePackage } from "../types";
+import { LangCode, LanguagePackage } from "../types";
 
-export const translations = {
+export const translations: Record<LangCode, LanguagePackage> = {
   ua: {
     info: { flag: "🇺🇦", name: "Українська" },
     data: {
@@ -43,6 +43,8 @@ export const translations = {
       plhName: "Назва ...",
       reset: "Скинути",
       resetAll: "Скинути все",
+      backendWakingUp:
+        "Зачекайте трохи, зараз бекенд прокинеться і все буде літати! ☕ 🚀",
     },
   },
   en: {
@@ -87,6 +89,54 @@ export const translations = {
       plhName: "Name ...",
       reset: "Reset",
       resetAll: "Reset all",
+      backendWakingUp:
+        "Please wait a moment, the backend is waking up and everything will fly! ☕🚀",
+    },
+  },
+  ro: {
+    info: { flag: "🇷🇴", name: "Română" },
+    data: {
+      title: "Tracker Finanțe",
+      openMenu: "Deschide meniul",
+      addOperation: "Adaugă tranzacție",
+      editOperation: "Editare",
+      analytics: "Analiză",
+      contents: "Structură",
+      dynamics: "Dinamică",
+      filters: "Filtre",
+      balance: "Balanță",
+      expense: "Cheltuieli",
+      income: "Venituri",
+      total: "Total",
+      lastOperations: "Ultimele tranzacții",
+      chooseLanguage: "Alege limba",
+      sum: "Sumă",
+      settingProjects: "Configurare proiecte",
+      description: "Descriere",
+      date: "Dată",
+      category: "Categorie",
+      settingCategories: "Configurare categorii",
+      periodFrom: "Perioada de la:",
+      periodTo: "până la:",
+      plhSearchByDescription: "Caută după descriere...",
+      edit: "Editează",
+      project: "Proiect",
+      delete: "Șterge",
+      add: "Adaugă",
+      save: "Salvează",
+      cancel: "Anulează",
+      deleteSelected: "Șterge selectate",
+      moveTo: "Mută în",
+      moveSelected: "Mută selectate",
+      confMoving: "Mută înregistrările selectate?",
+      errMoving: "Eroare la mutare:",
+      confDeletind: "Ștergi înregistrările selectate?",
+      errDeleting: "Eroare la ștergere:",
+      plhName: "Nume ...",
+      reset: "Resetează",
+      resetAll: "Resetează tot",
+      backendWakingUp:
+        "Așteptați un moment, backend-ul se trezește acum și totul va zbura! ☕ 🚀",
     },
   },
   pl: {
@@ -131,6 +181,8 @@ export const translations = {
       plhName: "Nazwa ...",
       reset: "Resetuj",
       resetAll: "Resetuj wszystko",
+      backendWakingUp:
+        "Poczekaj chwilę, zaraz backend się obudzi i wszystko będzie śmigać! ☕ 🚀",
     },
   },
   de: {
@@ -175,6 +227,8 @@ export const translations = {
       plhName: "Name ...",
       reset: "Zurücksetzen",
       resetAll: "Alles zurücksetzen",
+      backendWakingUp:
+        "Bitte warten Sie einen Moment, das Backend wacht сразу auf und dann läuft alles superschnell! ☕ 🚀",
     },
   },
   es: {
@@ -219,6 +273,8 @@ export const translations = {
       plhName: "Nombre ...",
       reset: "Restablecer",
       resetAll: "Restablecer todo",
+      backendWakingUp:
+        "¡Espera un momento, el backend se está despertando y luego todo volará! ☕ 🚀",
     },
   },
   fr: {
@@ -263,6 +319,8 @@ export const translations = {
       plhName: "Nom ...",
       reset: "Réinitialiser",
       resetAll: "Tout réinitialiser",
+      backendWakingUp:
+        "Attendez un instant, le backend se réveille et tout va s'envoler ! ☕ 🚀",
     },
   },
   it: {
@@ -307,6 +365,8 @@ export const translations = {
       plhName: "Nome ...",
       reset: "Ripristina",
       resetAll: "Ripristina tutto",
+      backendWakingUp:
+        "Aspetta un attimo, il backend si sta svegliando e poi tutto volerà! ☕ 🚀",
     },
   },
   ru: {
@@ -351,6 +411,8 @@ export const translations = {
       plhName: "Название ...",
       reset: "Сбросить",
       resetAll: "Сбросить все",
+      backendWakingUp:
+        "Подождите немного, сейчас бэкенд проснется и будет все летать! ☕ 🚀",
     },
   },
 };

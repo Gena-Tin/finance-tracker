@@ -54,7 +54,7 @@ const TransactionTable = ({
             >
               {projects.map((p) => (
                 <option key={p.id} value={p.id}>
-                  {p.name}
+                  {p.icon} {p.name}
                 </option>
               ))}
             </select>

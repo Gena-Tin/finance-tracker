@@ -1,5 +1,6 @@
 .loaderContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 2rem;
@@ -19,5 +20,22 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.hintText {
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+  max-width: 300px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
