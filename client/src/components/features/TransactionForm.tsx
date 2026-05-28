@@ -20,6 +20,7 @@ interface TransactionFormProps {
   setProjId: (proj: number) => void;
   projects: Project[];
   handleSubmit: (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => void;
+  isSubmitting?: boolean;
   cancelEdit: () => void;
 }
 
@@ -37,6 +38,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
   setType,
   categories,
   handleSubmit,
+  isSubmitting = false,
   cancelEdit,
   projects,
   projId,
@@ -101,7 +103,11 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
           ))}
         </select>
         <div>
-          <button type="submit" className={styles.submitBtn}>
+          <button
+            type="submit"
+            className={styles.submitBtn}
+            disabled={isSubmitting}
+          >
             {editingId ? `${translator.save}` : `${translator.add}`}
           </button>
           {editingId && (
