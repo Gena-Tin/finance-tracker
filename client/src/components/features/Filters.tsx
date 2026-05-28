@@ -13,7 +13,7 @@ import { Category } from "@/types";
 interface FiltersProps {
   categories: Category[];
   filterCatIds: number[];
-  toggleFilterCategory: (ids: number) => void;
+  toggleFilterCategory: (id: number) => void;
   setFilterCatIds: (id: number[]) => void;
 
   startDate: string;
@@ -55,7 +55,9 @@ const Filters: React.FC<FiltersProps> = ({
           <button
             type="button"
             className={styles.settingsButton}
-            onClick={() => setIsCategoryManagerOpen(true)}
+            onClick={() => {
+              setIsCategoryManagerOpen(true);
+            }}
             aria-label={translator.settingCategories}
           >
             <IconOptions className="icon-svg" />
@@ -77,7 +79,6 @@ const Filters: React.FC<FiltersProps> = ({
                   checked={isSelected}
                   onChange={() => toggleFilterCategory(cat.id)}
                   readOnly
-                  // tabIndex="-1"
                   style={{ cursor: "pointer" }}
                 />
                 {cat.icon} {cat.name}

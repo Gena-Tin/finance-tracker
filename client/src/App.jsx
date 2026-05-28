@@ -88,29 +88,6 @@ function App() {
   } = getProcessedData(transactions, filterState, selectedIds, translator);
 
   // --- 6. Обработчики событий ---
-  // const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
-  // e.preventDefault();
-
-  // const handleSubmit = async (e) => {
-  //   setIsSubmitting(true);
-  //   e.preventDefault();
-
-  //   const data = {
-  //     category_id: catId,
-  //     id: editingId,
-  //     amount: parseFloat(amount),
-  //     description,
-  //     type,
-  //     created_at: date,
-  //     project_id: filterState.projId,
-  //   };
-
-  //   if (await saveTransaction(data, editingId)) {
-  //     resetForm();
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true); // Блокируем кнопку сразу при старте
@@ -210,6 +187,7 @@ function App() {
                     projects,
                     handleSubmit,
                     isSubmitting,
+
                     cancelEdit: resetForm,
                     projId: filterState.projId,
                     setProjId: (id) =>

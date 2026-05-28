@@ -46,13 +46,14 @@
   margin-top: 8px;
   padding: 8px 0;
   list-style: none;
-  background-color: var(--accent-bg-alt);
+  background-color: var(--accent-bg);
   border: 1px solid var(--accent-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px var(--shadow);
   z-index: 2000;
   min-width: 140px;
   display: block;
+  backdrop-filter: blur(4px);
 }
 
 .langMenuItem {

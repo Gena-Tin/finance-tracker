@@ -2,6 +2,7 @@
 interface ThemeVariables {
   "--text": string;
   "--text-h": string;
+  "--text-l": string;
   "--bg": string;
   "--border": string;
   "--code-bg": string;
@@ -33,12 +34,13 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(107, 99, 117)",
       "--text-h": "rgb(8, 6, 13)",
+      "--text-l": "rgb(107, 99, 117)",
       "--bg": "rgb(255, 255, 255)",
       "--border": "rgb(229, 228, 231)",
       "--code-bg": "rgb(244, 243, 236)",
       "--accent": "rgb(109, 109, 109)",
       "--accent-hover": "rgba(109, 109, 109, 0.776)",
-      "--accent-bg": "rgba(213, 211, 211, 0.815)",
+      "--accent-bg": "rgba(213, 211, 211)",
       "--accent-bg-alt": "rgba(241, 241, 241, 0.815)",
       "--accent-border": "rgb(161, 161, 161)",
       "--accent-bg-hover": "rgba(189, 189, 189, 0.558)",
@@ -56,6 +58,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(51, 51, 51)",
       "--text-h": "rgb(0, 0, 0)",
+      "--text-l": "rgb(229, 228, 231)",
       "--bg": "rgb(252, 250, 245)",
       "--border": "rgb(220, 220, 220)",
       "--code-bg": "rgb(236, 235, 230)",
@@ -78,6 +81,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(93, 78, 70)",
       "--text-h": "rgb(61, 50, 44)",
+      "--text-l": "rgb(229, 228, 231)",
       "--bg": "rgb(247, 242, 234)",
       "--border": "rgb(227, 220, 209)",
       "--code-bg": "rgb(237, 232, 223)",
@@ -101,6 +105,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(156, 163, 175)",
       "--text-h": "rgb(92, 115, 138)",
+      "--text-l": "rgb(156, 163, 175)",
       "--bg": "rgb(25, 27, 35)",
       "--border": "rgb(46, 48, 58)",
       "--code-bg": "rgb(31, 32, 40)",
@@ -123,6 +128,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(160, 166, 179)",
       "--text-h": "rgb(229, 231, 235)",
+      "--text-l": "rgb(160, 166, 179)",
       "--bg": "rgb(18, 20, 26)",
       "--border": "rgb(42, 46, 54)",
       "--code-bg": "rgb(26, 28, 35)",
@@ -145,6 +151,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(160, 166, 179)",
       "--text-h": "rgb(249, 250, 251)",
+      "--text-l": "rgb(160, 166, 179)",
       "--bg": "rgb(15, 23, 42)",
       "--border": "rgb(30, 41, 59)",
       "--code-bg": "rgb(30, 41, 59)",
@@ -167,6 +174,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(0, 255, 65)",
       "--text-h": "rgb(0, 143, 17)",
+      "--text-l": "rgb(0, 255, 65)",
       "--bg": "rgb(0, 13, 0)",
       "--border": "rgb(0, 59, 0)",
       "--code-bg": "rgb(0, 26, 0)",
