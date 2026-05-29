@@ -1,13 +1,27 @@
 import { useState } from "react";
 import { useLanguage } from "../../hooks/useLanguage";
 
-/* eslint-disable-next-line no-unused-vars */ //fix magic error of eslint
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./TransactionTable.module.css";
 import Checkbox from "../ui/Checkbox";
 
-const TransactionTable = ({
+import { Project, Transaction } from "@/types";
+
+interface TransactionTableProps {
+  transactions: Transaction[];
+  filteredByCategory: Transaction[];
+  projects: Project[];
+  selectedIds: number[];
+  editingId?: number;
+  onToggleSelect: (id: number) => void;
+  onToggleAll: (checked: boolean) => void;
+  onDelete: () => void;
+  onEdit: (transaction: Transaction) => void;
+  onMove: (ids: number[], projId: number) => void;
+}
+
+const TransactionTable: React.FC<TransactionTableProps> = ({
   transactions,
   filteredByCategory,
   selectedIds,
@@ -19,7 +33,7 @@ const TransactionTable = ({
   projects,
   onMove,
 }) => {
-  const [targetProjectId, setTargetProjectId] = useState(1);
+  const [targetProjectId, setTargetProjectId] = useState<number>(1);
   const { translator } = useLanguage();
 
   return (

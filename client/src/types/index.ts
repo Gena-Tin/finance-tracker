@@ -5,10 +5,13 @@ export interface Transaction {
   amount: number;
   description: string;
   type: TransactionType;
-  category_id: number;
-  category_name?: string;
-  project_id: number;
   created_at: string;
+  category_id: number;
+  project_id: number;
+  category_name: string;
+  project_name: string;
+  category_icon?: string;
+  project_icon?: string;
 }
 
 export interface Category {
