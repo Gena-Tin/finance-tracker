@@ -1,0 +1,29 @@
+.projectHeader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.projectSelect {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--text);
+  box-shadow: 0 2px 8px var(--shadow);
+  height: 45px;
+}
+
+.projectsSettingsBtn {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px var(--shadow);
+  height: 45px;
+}

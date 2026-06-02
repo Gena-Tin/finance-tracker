@@ -1,4 +1,4 @@
-import styles from "../../App.module.css";
+import styles from "./ProjectsSection.module.css";
 import { IconOptions } from "../ui/SvgLib";
 import { Project, TranslationData } from "../../types";
 

@@ -1,0 +1,66 @@
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: var(--accent-bg);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: 1px solid var(--accent-border);
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px var(--shadow);
+  &:hover {
+    background: var(--accent-bg-hover);
+  }
+}
+
+.accordionHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.filterBadge {
+  background-color: var(--accent-bg-alt); /* твой акцентный цвет */
+  border: 1px solid var(--accent-border);
+
+  color: var(--text);
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Иконка крестика полного сброса в шапке */
+.resetAllTopBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.resetAllTopBtn:hover {
+  background-color: var(--accent-bg-hover);
+}
+
+.resetAllTopBtn :global(.icon-svg) {
+  width: 16px;
+  height: 16px;
+}

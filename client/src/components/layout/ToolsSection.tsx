@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
-import styles from "../../App.module.css";
+import styles from "./ToolsSection.module.css";
 import {
   IconEdit,
   IconAdd,
