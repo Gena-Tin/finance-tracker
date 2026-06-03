@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { Category, Project, TransactionType } from "@/types";
 
 interface TransactionFormProps {
-  editingId?: string; //id может отсутствовать, когда мы просто добавляем запись
+  editingId?: number | null; //id может отсутствовать, когда мы просто добавляем запись
   date: string;
   setDate: (date: string) => void;
   amount: string;

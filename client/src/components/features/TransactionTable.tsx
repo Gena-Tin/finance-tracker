@@ -13,7 +13,7 @@ interface TransactionTableProps {
   filteredByCategory: Transaction[];
   projects: Project[];
   selectedIds: number[];
-  editingId?: number;
+  editingId?: number | null;
   onToggleSelect: (id: number) => void;
   onToggleAll: (checked: boolean) => void;
   onDelete: () => void;

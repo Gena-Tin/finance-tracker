@@ -14,12 +14,13 @@ import {
 } from "recharts";
 import { useLanguage } from "../../hooks/useLanguage";
 import { IconGraphLines, IconGraphPie } from "../ui/SvgLib";
+import { TransactionType } from "@/types";
 
 // 1. Определяем интерфейсы для данных
 interface StatEntry {
   name: string;
   value: number;
-  type: "income" | "expense";
+  type: TransactionType;
   [key: string]: any; // Для гибкости дополнительных полей Recharts
 }
 
@@ -30,7 +31,7 @@ interface ColoredStatEntry extends StatEntry {
 interface TransactionItem {
   id: number | string;
   amount: number | string;
-  type: "income" | "expense";
+  type: TransactionType;
   created_at?: string;
   category?: string;
   [key: string]: any;
