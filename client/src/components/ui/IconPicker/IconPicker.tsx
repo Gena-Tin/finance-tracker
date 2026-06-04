@@ -1,5 +1,5 @@
 import styles from "./IconPicker.module.css";
-import { COMMON_ICONS } from "../../constants/icons";
+import { COMMON_ICONS } from "../../../constants/icons";
 
 interface IconPickerProps {
   onSelect: (emoji: string) => void;

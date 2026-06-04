@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./Spinner.module.css";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useLanguage } from "../../../hooks/useLanguage";
 
 const Spinner = () => {
   const [showHint, setShowHint] = useState<boolean>(false);

@@ -1,5 +1,5 @@
 import styles from "./BalanceBoard.module.css";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useLanguage } from "../../../hooks/useLanguage";
 
 interface BalanceBoardProps {
   totalIncome: number;

@@ -11,13 +11,13 @@ import { THEMES } from "./constants/themes";
 import styles from "./App.module.css";
 
 // Компоненты
-import HeaderSection from "./components/layout/HeaderSection";
-import ToolsSection from "./components/layout/ToolsSection";
-import ProjectsSection from "./components/layout/ProjectsSection";
-import TransactionTable from "./components/features/TransactionTable";
+import HeaderSection from "./components/layout/HeaderSection/HeaderSection";
+import ToolsSection from "./components/layout/ToolsSection/ToolsSection";
+import ProjectsSection from "./components/layout/ProjectsSection/ProjectsSection";
+import TransactionTable from "./components/features/TransactionTable/TransactionTable";
 import ModalsManager from "./components/modals/ModalsManager";
-import Spinner from "./components/ui/Spinner";
-import Skeleton from "./components/ui/Skeleton";
+import Spinner from "./components/ui/Spinner/Spinner";
+import Skeleton from "./components/ui/Skeleton/Skeleton";
 
 // Импортируем наши типы
 import { Transaction, TransactionType } from "@/types";

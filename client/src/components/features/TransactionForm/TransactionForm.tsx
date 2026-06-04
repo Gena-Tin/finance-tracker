@@ -1,5 +1,5 @@
 import styles from "./TransactionForm.module.css";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useLanguage } from "../../../hooks/useLanguage";
 
 import { Category, Project, TransactionType } from "@/types";
 

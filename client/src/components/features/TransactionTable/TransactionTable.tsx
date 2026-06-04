@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useLanguage } from "../../hooks/useLanguage";
+import { useLanguage } from "../../../hooks/useLanguage";
 
 import { motion, AnimatePresence } from "framer-motion";
 
 import styles from "./TransactionTable.module.css";
-import Checkbox from "../ui/Checkbox";
+import Checkbox from "../../ui/Checkbox/Checkbox";
 
 import { Project, Transaction } from "@/types";
 

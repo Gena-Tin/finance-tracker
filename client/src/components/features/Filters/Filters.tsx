@@ -1,13 +1,13 @@
 import styles from "./Filters.module.css";
-import Checkbox from "../ui/Checkbox";
-import { useLanguage } from "../../hooks/useLanguage";
+import Checkbox from "../../ui/Checkbox/Checkbox";
+import { useLanguage } from "../../../hooks/useLanguage";
 import {
   IconClose,
   IconMinus,
   IconOptions,
   IconPlus,
   IconSearch,
-} from "../ui/SvgLib";
+} from "../../ui/SvgLib";
 import { Category } from "@/types";
 
 interface FiltersProps {

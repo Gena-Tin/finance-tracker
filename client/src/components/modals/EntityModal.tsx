@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-import IconPicker from "../ui/IconPicker";
+import IconPicker from "../ui/IconPicker/IconPicker";
 import { useLanguage } from "../../hooks/useLanguage";
 import styles from "./EntityModal.module.css";
 

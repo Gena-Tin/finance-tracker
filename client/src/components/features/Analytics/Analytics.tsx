@@ -12,8 +12,8 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import { useLanguage } from "../../hooks/useLanguage";
-import { IconGraphLines, IconGraphPie } from "../ui/SvgLib";
+import { useLanguage } from "../../../hooks/useLanguage";
+import { IconGraphLines, IconGraphPie } from "../../ui/SvgLib";
 import { TransactionType } from "@/types";
 
 // 1. Определяем интерфейсы для данных

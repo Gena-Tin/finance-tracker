@@ -1,9 +1,9 @@
 import styles from "./HeaderSection.module.css";
 
-import LanguageMenu from "./LanguageMenu.tsx";
-import { IconChevronUp, IconMenu } from "../ui/SvgLib";
-import { THEMES } from "../../constants/themes";
-import { TranslationData } from "../../types";
+import LanguageMenu from "../LanguageMenu/LanguageMenu.tsx";
+import { IconChevronUp, IconMenu } from "../../ui/SvgLib.tsx";
+import { THEMES } from "../../../constants/themes.ts";
+import { TranslationData } from "../../../types/index.ts";
 
 interface HeaderSectionProps {
   translator: TranslationData;

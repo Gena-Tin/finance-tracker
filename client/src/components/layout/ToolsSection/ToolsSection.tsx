@@ -9,15 +9,15 @@ import {
   IconFilters,
   IconBalance,
   IconClose,
-} from "../ui/SvgLib";
+} from "../../ui/SvgLib";
 
-import { TranslationData } from "../../types";
+import { TranslationData } from "../../../types";
 
 // Компоненты:
-import TransactionForm from "../features/TransactionForm";
-import Analytics from "../features/Analytics";
-import Filters from "../features/Filters";
-import BalanceBoard from "../features/BalanceBoard";
+import TransactionForm from "../../features/TransactionForm/TransactionForm";
+import Analytics from "../../features/Analytics/Analytics";
+import Filters from "../../features/Filters/Filters";
+import BalanceBoard from "../../features/BalanceBoard/BalanceBoard";
 
 // 1. Описываем интерфейс пропсов для ToolsSection
 interface ToolsSectionProps {

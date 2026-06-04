@@ -1,6 +1,6 @@
 import styles from "./ProjectsSection.module.css";
-import { IconOptions } from "../ui/SvgLib";
-import { Project, TranslationData } from "../../types";
+import { IconOptions } from "../../ui/SvgLib";
+import { Project, TranslationData } from "../../../types";
 
 interface ProjectsSectionProps {
   translator: TranslationData;
