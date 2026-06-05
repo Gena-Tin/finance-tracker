@@ -158,7 +158,7 @@ function App() {
     setFilterState((prev) => ({ ...prev, startDate: "", endDate: "" }));
 
   const handleDelete = async () => {
-    if (await deleteTransactions(selectedIds)) {
+    if (await deleteTransactions(selectedIds, translator)) {
       setSelectedIds([]);
     }
   };

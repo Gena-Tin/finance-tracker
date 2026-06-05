@@ -72,7 +72,7 @@ php -S 0.0.0.0:8000
 [x] Global Refactoring & Modularization
 [x] Multi-language support
 [x] Project management
-[ ] Migrate to TypeScript (Type safety & better DX)
+[x] Migrate to TypeScript (Type safety & better DX)
 [ ] User Authentication & JWT
 [ ] Export to PDF/CSV
 ```

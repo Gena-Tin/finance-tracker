@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./TransactionTable.module.css";
 import Checkbox from "../../ui/Checkbox/Checkbox";
 
-import { Project, Transaction } from "@/types";
+import { Project, Transaction, TranslationData } from "@/types";
 
 interface TransactionTableProps {
   transactions: Transaction[];
@@ -18,7 +18,7 @@ interface TransactionTableProps {
   onToggleAll: (checked: boolean) => void;
   onDelete: () => void;
   onEdit: (transaction: Transaction) => void;
-  onMove: (ids: number[], projId: number) => void;
+  onMove: (ids: number[], projId: number, translator: TranslationData) => void;
 }
 
 const TransactionTable: React.FC<TransactionTableProps> = ({
@@ -53,7 +53,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => onMove(selectedIds, targetProjectId)}
+              onClick={() => onMove(selectedIds, targetProjectId, translator)}
               className={styles.moveBtn}
               title={translator.moveSelected}
             >
