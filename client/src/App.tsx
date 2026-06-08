@@ -83,7 +83,7 @@ function App() {
     projId: 1,
   });
 
-  // --- 4. Темизация ---
+  // --- 4. Темы ---
   useEffect(() => {
     const theme = THEMES[currentTheme];
     if (theme) {
@@ -133,6 +133,18 @@ function App() {
     }
   };
 
+  const handleDelete = async () => {
+    if (await deleteTransactions(selectedIds, translator)) {
+      setSelectedIds([]);
+    }
+  };
+
+  const handleMove = async (targetProjectId: number) => {
+    if (await moveTransactions(selectedIds, targetProjectId, translator)) {
+      setSelectedIds([]);
+    }
+  };
+
   // Типизируем входящую транзакцию
   const startEdit = (t: Transaction) => {
     setEditingId(t.id);
@@ -156,12 +168,6 @@ function App() {
 
   const clearDates = () =>
     setFilterState((prev) => ({ ...prev, startDate: "", endDate: "" }));
-
-  const handleDelete = async () => {
-    if (await deleteTransactions(selectedIds, translator)) {
-      setSelectedIds([]);
-    }
-  };
 
   return (
     <>
@@ -299,7 +305,7 @@ function App() {
                 onEdit={startEdit}
                 editingId={editingId}
                 projects={projects}
-                onMove={moveTransactions}
+                onMove={handleMove}
               />
             </>
           )}

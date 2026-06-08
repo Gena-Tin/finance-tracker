@@ -18,7 +18,7 @@ interface TransactionTableProps {
   onToggleAll: (checked: boolean) => void;
   onDelete: () => void;
   onEdit: (transaction: Transaction) => void;
-  onMove: (ids: number[], projId: number, translator: TranslationData) => void;
+  onMove: (targetProjectId: number) => void | Promise<void>;
 }
 
 const TransactionTable: React.FC<TransactionTableProps> = ({
@@ -53,7 +53,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => onMove(selectedIds, targetProjectId, translator)}
+              onClick={() => onMove(targetProjectId)}
               className={styles.moveBtn}
               title={translator.moveSelected}
             >
