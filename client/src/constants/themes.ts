@@ -6,6 +6,7 @@ interface ThemeVariables {
   "--bg": string;
   "--border": string;
   "--code-bg": string;
+  "--alert": string;
   "--accent": string;
   "--accent-hover": string;
   "--accent-bg": string;
@@ -38,6 +39,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(255, 255, 255)",
       "--border": "rgb(229, 228, 231)",
       "--code-bg": "rgb(244, 243, 236)",
+      "--alert": "rgb(190, 18, 60)",
       "--accent": "rgb(109, 109, 109)",
       "--accent-hover": "rgba(109, 109, 109, 0.776)",
       "--accent-bg": "rgba(213, 211, 211)",
@@ -62,6 +64,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(252, 250, 245)",
       "--border": "rgb(220, 220, 220)",
       "--code-bg": "rgb(236, 235, 230)",
+      "--alert": "rgb(190, 18, 60)",
       "--accent": "rgb(74, 74, 74)",
       "--accent-hover": "rgb(34, 34, 34)",
       "--accent-bg": "rgba(237, 232, 232, 0.55)",
@@ -85,6 +88,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(247, 242, 234)",
       "--border": "rgb(227, 220, 209)",
       "--code-bg": "rgb(237, 232, 223)",
+      "--alert": "rgb(235, 42, 90)",
       "--accent": "rgb(193, 154, 107)",
       "--accent-hover": "rgb(166, 130, 87)",
       "--accent-bg": "rgba(193, 154, 107, 0.4)",
@@ -109,6 +113,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(25, 27, 35)",
       "--border": "rgb(46, 48, 58)",
       "--code-bg": "rgb(31, 32, 40)",
+      "--alert": "rgb(190, 18, 60)",
       "--accent": "rgb(192, 132, 252)",
       "--accent-hover": "rgb(172, 96, 248)",
       "--accent-bg": "rgba(192, 132, 252, 0.15)",
@@ -132,6 +137,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(18, 20, 26)",
       "--border": "rgb(42, 46, 54)",
       "--code-bg": "rgb(26, 28, 35)",
+      "--alert": "rgb(190, 18, 60)",
       "--accent": "rgb(45, 212, 191)",
       "--accent-hover": "rgb(38, 181, 163)",
       "--accent-bg": "rgba(45, 212, 191, 0.12)",
@@ -155,6 +161,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(15, 23, 42)",
       "--border": "rgb(30, 41, 59)",
       "--code-bg": "rgb(30, 41, 59)",
+      "--alert": "rgb(190, 18, 60)",
       "--accent": "rgb(59, 130, 246)",
       "--accent-hover": "rgb(37, 99, 235)",
       "--accent-bg": "rgba(59, 130, 246, 0.15)",
@@ -178,6 +185,7 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--bg": "rgb(0, 13, 0)",
       "--border": "rgb(0, 59, 0)",
       "--code-bg": "rgb(0, 26, 0)",
+      "--alert": "rgb(190, 18, 60)",
       "--accent": "rgba(0, 255, 64, 0.34)",
       "--accent-hover": "rgb(0, 143, 17)",
       "--accent-bg": "rgba(0, 255, 65, 0.1)",

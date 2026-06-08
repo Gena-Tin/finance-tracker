@@ -15,10 +15,10 @@ import HeaderSection from "./components/layout/HeaderSection/HeaderSection";
 import ToolsSection from "./components/layout/ToolsSection/ToolsSection";
 import ProjectsSection from "./components/layout/ProjectsSection/ProjectsSection";
 import TransactionTable from "./components/features/TransactionTable/TransactionTable";
-import ModalsManager from "./components/modals/ModalsManager";
+import ModalsManager from "./components/modals/EntityModal/ModalsManager";
 import Spinner from "./components/ui/Spinner/Spinner";
 import Skeleton from "./components/ui/Skeleton/Skeleton";
-
+import ConfirmModal from "./components/modals/ConfirmModal/ConfirmModal";
 // Импортируем наши типы
 import { Transaction, TransactionType } from "@/types";
 
@@ -30,6 +30,13 @@ interface FilterState {
   searchQuery: string;
   filterType: TransactionType | "";
   projId: number;
+}
+
+// Тип для состояния модалки
+interface ConfirmState {
+  isOpen: boolean;
+  title: string;
+  onConfirm: () => void;
 }
 
 function App() {
@@ -58,6 +65,13 @@ function App() {
     useState<boolean>(false);
   const [isProjectManagerOpen, setIsProjectManagerOpen] =
     useState<boolean>(false);
+
+  // Стейт модалки подтверждения
+  const [confirmDialog, setConfirmDialog] = useState<ConfirmState>({
+    isOpen: false,
+    title: "",
+    onConfirm: () => {},
+  });
 
   // --- 3. Состояния формы и фильтров (Строгая типизация) ---
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -133,14 +147,41 @@ function App() {
     }
   };
 
+  // Модалка подтверждения
+  const openConfirm = (title: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      setConfirmDialog({
+        isOpen: true,
+        title,
+        onConfirm: () => {
+          setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+          resolve(true); // Пользователь нажал "ОК"
+        },
+      });
+    });
+  };
+
+  const closeConfirm = () => {
+    setConfirmDialog((prev) => ({ ...prev, isOpen: false }));
+  };
+
   const handleDelete = async () => {
-    if (await deleteTransactions(selectedIds, translator)) {
+    // Вызываем наше красивое окно вместо старого confirm!
+    const confirmed = await openConfirm(
+      translator?.deleteSelected || "Delete?"
+    );
+    if (!confirmed) return;
+
+    if (await deleteTransactions(selectedIds)) {
       setSelectedIds([]);
     }
   };
 
   const handleMove = async (targetProjectId: number) => {
-    if (await moveTransactions(selectedIds, targetProjectId, translator)) {
+    const confirmed = await openConfirm(translator?.confMoving || "Move?");
+    if (!confirmed) return;
+
+    if (await moveTransactions(selectedIds, targetProjectId)) {
       setSelectedIds([]);
     }
   };
@@ -321,6 +362,15 @@ function App() {
         categories={categories}
         projects={projects}
         fetchData={fetchData}
+      />
+
+      <ConfirmModal
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        onClose={closeConfirm}
+        onConfirm={confirmDialog.onConfirm}
+        cancelText={translator?.cancel || "Cancel"}
+        confirmText={"OK"}
       />
     </>
   );

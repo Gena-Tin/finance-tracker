@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-import IconPicker from "../ui/IconPicker/IconPicker";
-import { useLanguage } from "../../hooks/useLanguage";
+import IconPicker from "../../ui/IconPicker/IconPicker";
+import { useLanguage } from "../../../hooks/useLanguage";
 import styles from "./EntityModal.module.css";
 
 // 1. Описываем структуру элемента (проект или категория)

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { TRANSACTIONS, PROJECTS_MANAGE, INDEX } from "../constants/links";
 
-import { Transaction, Category, Project, TranslationData } from "../types";
+import { Transaction, Category, Project } from "../types";
 
 export const useTransactions = (apiUrl: string) => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -59,14 +59,7 @@ export const useTransactions = (apiUrl: string) => {
   };
 
   // Удаление
-  const deleteTransactions = async (
-    ids: number[],
-    translator: TranslationData
-  ): Promise<boolean> => {
-    const confirmed = window.confirm(translator?.deleteSelected);
-
-    if (!confirmed) return false;
-
+  const deleteTransactions = async (ids: number[]): Promise<boolean> => {
     const res = await fetch(`${apiUrl}/${TRANSACTIONS}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -79,13 +72,8 @@ export const useTransactions = (apiUrl: string) => {
   // Перемещение
   const moveTransactions = async (
     ids: number[],
-    targetProjectId: number,
-    translator: TranslationData
+    targetProjectId: number
   ): Promise<boolean> => {
-    const confirmed = window.confirm(translator?.confMoving);
-
-    if (!confirmed) return false;
-
     const res = await fetch(`${apiUrl}/${TRANSACTIONS}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },

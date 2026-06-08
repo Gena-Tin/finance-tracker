@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import EntityModal from "./EntityModal";
-import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../constants/links";
-import { Category, Project, TranslationData } from "../../types";
+import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../../constants/links";
+import { Category, Project, TranslationData } from "../../../types";
 interface ModalsManagerProps {
   translator: TranslationData;
   isCategoryManagerOpen: boolean;
