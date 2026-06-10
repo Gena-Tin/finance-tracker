@@ -91,7 +91,12 @@ const Filters: React.FC<FiltersProps> = ({
               onClick={() => setFilterCatIds([])}
               className={styles.resetBtn}
             >
-              <IconClose className="icon-svg" />
+              <IconClose
+                className="icon-svg"
+                style={{
+                  color: "var(--text-l)",
+                }}
+              />
               {translator.reset}
             </button>
           )}
@@ -134,7 +139,13 @@ const Filters: React.FC<FiltersProps> = ({
             onClick={clearDates}
             className={styles.resetBtn}
           >
-            <IconClose className="icon-svg" /> {translator.reset}
+            <IconClose
+              className="icon-svg"
+              style={{
+                color: "var(--text-l)",
+              }}
+            />
+            {translator.reset}
           </button>
         )}
       </section>
@@ -157,7 +168,13 @@ const Filters: React.FC<FiltersProps> = ({
             onClick={() => setSearchQuery("")}
             className={styles.resetBtn}
           >
-            <IconClose className="icon-svg" /> {translator.reset}
+            <IconClose
+              className="icon-svg"
+              style={{
+                color: "var(--text-l)",
+              }}
+            />
+            {translator.reset}
           </button>
         )}
       </section>
@@ -187,7 +204,13 @@ const Filters: React.FC<FiltersProps> = ({
             onClick={() => setFilterType("")}
             className={styles.resetBtn}
           >
-            <IconClose className="icon-svg" /> {translator.reset}
+            <IconClose
+              className="icon-svg"
+              style={{
+                color: "var(--text-l)",
+              }}
+            />
+            {translator.reset}
           </button>
         )}
       </section>

@@ -34,6 +34,11 @@
   min-width: 45px;
 }
 
+.resetBtn {
+  background: var(--alert);
+  color: var(--text-l);
+}
+
 .categoryCard:hover,
 .typeBtn:hover,
 .resetBtn:hover {
