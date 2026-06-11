@@ -1,13 +1,8 @@
 import styles from "./Filters.module.css";
 import Checkbox from "../../ui/Checkbox/Checkbox";
+import ResetButton from "./ResetButton";
 import { useLanguage } from "../../../hooks/useLanguage";
-import {
-  IconClose,
-  IconMinus,
-  IconOptions,
-  IconPlus,
-  IconSearch,
-} from "../../ui/SvgLib";
+import { IconMinus, IconOptions, IconPlus, IconSearch } from "../../ui/SvgLib";
 import { Category } from "@/types";
 
 interface FiltersProps {
@@ -86,19 +81,10 @@ const Filters: React.FC<FiltersProps> = ({
             );
           })}
           {filterCatIds.length > 0 && (
-            <button
-              type="button"
+            <ResetButton
               onClick={() => setFilterCatIds([])}
-              className={styles.resetBtn}
-            >
-              <IconClose
-                className="icon-svg"
-                style={{
-                  color: "var(--text-l)",
-                }}
-              />
-              {translator.reset}
-            </button>
+              label={translator.reset}
+            />
           )}
         </div>
       </section>
@@ -134,19 +120,7 @@ const Filters: React.FC<FiltersProps> = ({
           />
         </div>
         {(startDate || endDate) && (
-          <button
-            type="button"
-            onClick={clearDates}
-            className={styles.resetBtn}
-          >
-            <IconClose
-              className="icon-svg"
-              style={{
-                color: "var(--text-l)",
-              }}
-            />
-            {translator.reset}
-          </button>
+          <ResetButton onClick={clearDates} label={translator.reset} />
         )}
       </section>
 
@@ -163,19 +137,10 @@ const Filters: React.FC<FiltersProps> = ({
           className={styles.searchInput}
         />
         {searchQuery && (
-          <button
-            type="button"
+          <ResetButton
             onClick={() => setSearchQuery("")}
-            className={styles.resetBtn}
-          >
-            <IconClose
-              className="icon-svg"
-              style={{
-                color: "var(--text-l)",
-              }}
-            />
-            {translator.reset}
-          </button>
+            label={translator.reset}
+          />
         )}
       </section>
 
@@ -199,19 +164,10 @@ const Filters: React.FC<FiltersProps> = ({
           <IconMinus className="icon-svg" /> {translator.expense}
         </button>
         {filterType && (
-          <button
-            type="button"
+          <ResetButton
             onClick={() => setFilterType("")}
-            className={styles.resetBtn}
-          >
-            <IconClose
-              className="icon-svg"
-              style={{
-                color: "var(--text-l)",
-              }}
-            />
-            {translator.reset}
-          </button>
+            label={translator.reset}
+          />
         )}
       </section>
     </div>
