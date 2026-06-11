@@ -2,6 +2,7 @@ import styles from "./Filters.module.css";
 import Checkbox from "../../ui/Checkbox/Checkbox";
 import ResetButton from "./ResetButton";
 import DateInput from "./DateInput";
+import SearchInput from "./SearchInput";
 
 import { useLanguage } from "../../../hooks/useLanguage";
 import { IconMinus, IconOptions, IconPlus, IconSearch } from "../../ui/SvgLib";
@@ -114,16 +115,12 @@ const Filters: React.FC<FiltersProps> = ({
 
       {/* 3. Поиск */}
       <section className={styles.searchSection}>
-        <span style={{ fontSize: "20px" }}>
-          <IconSearch className="icon-svg" />
-        </span>
-        <input
-          type="text"
-          placeholder={translator.plhSearchByDescription}
+        <SearchInput
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className={styles.searchInput}
+          onChange={setSearchQuery}
+          placeholder={translator.plhSearchByDescription}
         />
+
         {searchQuery && (
           <ResetButton
             onClick={() => setSearchQuery("")}
