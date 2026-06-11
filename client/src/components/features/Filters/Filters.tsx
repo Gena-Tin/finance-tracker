@@ -1,6 +1,8 @@
 import styles from "./Filters.module.css";
 import Checkbox from "../../ui/Checkbox/Checkbox";
 import ResetButton from "./ResetButton";
+import DateInput from "./DateInput";
+
 import { useLanguage } from "../../../hooks/useLanguage";
 import { IconMinus, IconOptions, IconPlus, IconSearch } from "../../ui/SvgLib";
 import { Category } from "@/types";
@@ -91,34 +93,20 @@ const Filters: React.FC<FiltersProps> = ({
 
       {/* 2. Даты */}
       <section className={styles.dateSection}>
-        <div className={styles.dateGroup}>
-          <span>{translator.periodFrom} </span>
-          <input
-            type={startDate ? "date" : "text"}
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            onFocus={(e) => (e.target.type = "date")} //переключение типа date/text для перевода плейсхолдера
-            onBlur={(e) => {
-              if (!e.target.value) e.target.type = "text";
-            }}
-            placeholder={translator.placeholderDate}
-            className={styles.inputField}
-          />
-        </div>
-        <div className={styles.dateGroup}>
-          <span>{translator.periodTo} </span>
-          <input
-            type={startDate ? "date" : "text"}
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            onFocus={(e) => (e.target.type = "date")} //переключение типа date/text для перевода плейсхолдера
-            onBlur={(e) => {
-              if (!e.target.value) e.target.type = "text";
-            }}
-            placeholder={translator.placeholderDate}
-            className={styles.inputField}
-          />
-        </div>
+        <DateInput
+          label={translator.periodFrom}
+          value={startDate}
+          onChange={setStartDate}
+          placeholder={translator.placeholderDate}
+          hasValueReference={startDate}
+        />
+        <DateInput
+          label={translator.periodTo}
+          value={endDate}
+          onChange={setEndDate}
+          placeholder={translator.placeholderDate}
+          hasValueReference={endDate}
+        />
         {(startDate || endDate) && (
           <ResetButton onClick={clearDates} label={translator.reset} />
         )}
