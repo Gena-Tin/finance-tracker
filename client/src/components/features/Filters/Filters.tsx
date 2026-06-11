@@ -3,9 +3,10 @@ import Checkbox from "../../ui/Checkbox/Checkbox";
 import ResetButton from "./ResetButton";
 import DateInput from "./DateInput";
 import SearchInput from "./SearchInput";
+import TypeFilter from "./TypeFilter";
 
 import { useLanguage } from "../../../hooks/useLanguage";
-import { IconMinus, IconOptions, IconPlus, IconSearch } from "../../ui/SvgLib";
+import { IconOptions } from "../../ui/SvgLib";
 import { Category } from "@/types";
 
 interface FiltersProps {
@@ -131,23 +132,13 @@ const Filters: React.FC<FiltersProps> = ({
 
       {/* 4. Тип (Доход/Расход) */}
       <section className={styles.typeSection}>
-        <button
-          type="button"
-          onClick={() => setFilterType("income")}
-          className={`${styles.typeBtn} ${
-            filterType === "income" ? styles.incomeBtnActive : ""
-          }`}
-        >
-          <IconPlus className="icon-svg" /> {translator.income}
-        </button>
-        <button
-          onClick={() => setFilterType("expense")}
-          className={`${styles.typeBtn} ${
-            filterType === "expense" ? styles.expenseBtnActive : ""
-          }`}
-        >
-          <IconMinus className="icon-svg" /> {translator.expense}
-        </button>
+        <TypeFilter
+          value={filterType}
+          onChange={setFilterType}
+          incomeLabel={translator.income}
+          expenseLabel={translator.expense}
+          resetLabel={translator.reset}
+        />
         {filterType && (
           <ResetButton
             onClick={() => setFilterType("")}
