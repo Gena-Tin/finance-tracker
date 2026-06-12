@@ -1,12 +1,11 @@
 import styles from "./Filters.module.css";
-import Checkbox from "../../ui/Checkbox/Checkbox";
-import ResetButton from "./ResetButton";
+import CategoryFilter from "./CategoryFilter";
 import DateInput from "./DateInput";
 import SearchInput from "./SearchInput";
 import TypeFilter from "./TypeFilter";
+import ResetButton from "./ResetButton";
 
 import { useLanguage } from "../../../hooks/useLanguage";
-import { IconOptions } from "../../ui/SvgLib";
 import { Category } from "@/types";
 
 interface FiltersProps {
@@ -50,47 +49,19 @@ const Filters: React.FC<FiltersProps> = ({
     <div className={styles.filtersContainer}>
       {/* 1. Категории */}
       <section className={styles.categorySection}>
-        <div className={styles.categoryList}>
-          <button
-            type="button"
-            className={styles.settingsButton}
-            onClick={() => {
-              setIsCategoryManagerOpen(true);
-            }}
-            aria-label={translator.settingCategories}
-          >
-            <IconOptions className="icon-svg" />
-          </button>
-
-          {categories.map((cat) => {
-            const isSelected = filterCatIds.includes(cat.id);
-
-            return (
-              <div
-                key={cat.id}
-                onClick={() => toggleFilterCategory(cat.id)}
-                className={`${styles.categoryCard} ${
-                  isSelected ? styles.categoryCardActive : ""
-                }`}
-              >
-                <Checkbox
-                  type="checkbox"
-                  checked={isSelected}
-                  onChange={() => toggleFilterCategory(cat.id)}
-                  readOnly
-                  style={{ cursor: "pointer" }}
-                />
-                {cat.icon} {cat.name}
-              </div>
-            );
-          })}
-          {filterCatIds.length > 0 && (
-            <ResetButton
-              onClick={() => setFilterCatIds([])}
-              label={translator.reset}
-            />
-          )}
-        </div>
+        <CategoryFilter
+          categories={categories}
+          filterCatIds={filterCatIds}
+          toggleFilterCategory={toggleFilterCategory}
+          setIsCategoryManagerOpen={setIsCategoryManagerOpen}
+          settingCategoriesLabel={translator.settingCategories}
+        />
+        {filterCatIds.length > 0 && (
+          <ResetButton
+            onClick={() => setFilterCatIds([])}
+            label={translator.reset}
+          />
+        )}
       </section>
 
       {/* 2. Даты */}
