@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "./ConfirmModal.module.css";
+import styles from "./Modals.module.css";
 
 interface ConfirmModalProps {
   isOpen: boolean;

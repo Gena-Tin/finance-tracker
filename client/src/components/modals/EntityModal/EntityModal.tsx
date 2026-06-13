@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
-import IconPicker from "../../ui/IconPicker/IconPicker";
 import { useLanguage } from "../../../hooks/useLanguage";
+
+import AlertModal from "../AlertModal";
+import IconPicker from "../../ui/IconPicker/IconPicker";
 import styles from "./EntityModal.module.css";
 
-// 1. Описываем структуру элемента (проект или категория)
 interface EntityItem {
   id: number;
   name: string;
@@ -13,7 +13,6 @@ interface EntityItem {
   is_system?: boolean | number; // в зависимости от того, что возвращает PHP (0/1 или true/false)
 }
 
-// 2. Описываем пропсы самого компонента
 interface EntityModalProps {
   items: EntityItem[];
   onUpdate: () => void;
@@ -32,6 +31,8 @@ const EntityModal: React.FC<EntityModalProps> = ({
   const [name, setName] = useState<string>("");
   const [icon, setIcon] = useState<string>("💎");
   const [isPickerOpen, setIsPickerOpen] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+
   const { translator } = useLanguage();
 
   useEffect(() => {
@@ -50,9 +51,7 @@ const EntityModal: React.FC<EntityModalProps> = ({
     setIsPickerOpen(false);
   };
 
-  const handleAdd = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const handleAdd = async (e: React.SubmitEvent): Promise<void> => {
     e.preventDefault();
     if (!name.trim()) return;
 
@@ -67,6 +66,8 @@ const EntityModal: React.FC<EntityModalProps> = ({
   };
 
   const handleDelete = async (id: number): Promise<void> => {
+    setAlertMessage(null);
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/${apiUrl}`,
@@ -80,13 +81,13 @@ const EntityModal: React.FC<EntityModalProps> = ({
       const result = await response.json();
 
       if (!response.ok) {
-        alert(result.error || "Server error");
+        setAlertMessage(result.error || "Server error");
       } else {
         onUpdate();
       }
     } catch (error) {
       console.error("Request error:", error);
-      alert("Failed to contact the server");
+      setAlertMessage("Failed to contact the server");
     }
   };
 
@@ -166,6 +167,12 @@ const EntityModal: React.FC<EntityModalProps> = ({
         <button className={styles.btnClose} onClick={onClose}>
           Ok
         </button>
+        <AlertModal
+          isOpen={alertMessage !== null}
+          message={alertMessage || ""}
+          onClose={() => setAlertMessage(null)}
+          buttonText="Ok"
+        />
       </motion.div>
     </motion.div>
   );

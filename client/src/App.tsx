@@ -18,7 +18,7 @@ import TransactionTable from "./components/features/TransactionTable/Transaction
 import ModalsManager from "./components/modals/EntityModal/ModalsManager";
 import Spinner from "./components/ui/Spinner/Spinner";
 import Skeleton from "./components/ui/Skeleton/Skeleton";
-import ConfirmModal from "./components/modals/ConfirmModal/ConfirmModal";
+import ConfirmModal from "./components/modals/ConfirmModal";
 // Импортируем наши типы
 import { Transaction, TransactionType } from "@/types";
 
