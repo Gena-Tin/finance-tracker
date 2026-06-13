@@ -89,7 +89,7 @@
 
 .btnAdd,
 .btnClose {
-  background: var(--accent);
+  background: var(--alert);
   color: white;
   padding: 8px 16px;
   border-radius: 8px;
@@ -99,11 +99,18 @@
   margin-top: 15px;
   min-height: 46px;
   box-shadow: 0 2px 8px var(--shadow);
-  border: 1px solid var(--accent-border);
+  border: 1px solid var(--alert);
+}
+.btnClose:hover {
+  background: transparent;
 }
 
-.btnAdd,
-.btnClose:hover {
+.btnAdd {
+  border: 1px solid var(--accent-border);
+
+  background: var(--accent);
+}
+.btnAdd:hover {
   background: var(--accent-hover);
 }
 

@@ -1,4 +1,3 @@
-// Описываем структуру CSS-переменных, чтобы не было опечаток
 interface ThemeVariables {
   "--text": string;
   "--text-h": string;
@@ -21,14 +20,11 @@ interface ThemeVariables {
   "--expenseColor": string;
 }
 
-// Описываем саму структуру объекта темы
 interface ThemeConfig {
   label: string;
   variables: ThemeVariables;
 }
 
-// Типизируем основной объект THEMES
-// Ключ — это название темы (напр. "theme-light")
 export const THEMES: Record<string, ThemeConfig> = {
   "theme-light": {
     label: "☀️ light",
@@ -54,7 +50,6 @@ export const THEMES: Record<string, ThemeConfig> = {
       "--expenseColor": "rgb(201, 0, 0)",
     },
   },
-  // ... остальные темы добавляются аналогично, TS проверит каждую переменную
   "theme-paper": {
     label: "☀️ paper",
     variables: {
