@@ -23,7 +23,7 @@ try {
         $data = json_decode(file_get_contents('php://input'), true);
         
         if (empty($data['name'])) {
-            throw new Exception("Название категории не может быть пустым");
+            throw new Exception("Category name cannot be empty");
         }
 
         // Явно указываем false для is_system, чтобы избежать проблем с дефолтами
@@ -57,7 +57,10 @@ try {
         $checkSystem->execute([$id]);
         if ($checkSystem->fetchColumn()) {
             http_response_code(403);
-            echo json_encode(['error' => 'Системную категорию нельзя удалить']);
+           echo json_encode([
+                'code' => 'ERROR_CANNOT_DELETE_SYSTEM',
+                'error' => 'The system category cannot be deleted.'
+            ], JSON_UNESCAPED_UNICODE);
             exit;
         }
 
@@ -66,7 +69,10 @@ try {
         $checkUsage->execute([$id]);
         if ($checkUsage->fetchColumn() > 0) {
             http_response_code(400);
-            echo json_encode(['error' => 'Нельзя удалить: в категории есть записи. Сначала перенесите их.']);
+           echo json_encode([
+                'code' => 'ERROR_CATEGORY_NOT_EMPTY',
+                'error' => 'Cannot delete: the category contains entries. Please move them first'
+            ], JSON_UNESCAPED_UNICODE);
             exit;
         }
 
@@ -77,5 +83,8 @@ try {
 
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
+    echo json_encode([
+        'code' => 'ERROR_INTERNAL_SERVER',
+        'error' => $e->getMessage()
+    ], JSON_UNESCAPED_UNICODE);
 }

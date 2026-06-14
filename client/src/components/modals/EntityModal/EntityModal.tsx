@@ -54,15 +54,44 @@ const EntityModal: React.FC<EntityModalProps> = ({
   const handleAdd = async (e: React.SubmitEvent): Promise<void> => {
     e.preventDefault();
     if (!name.trim()) return;
+    setAlertMessage(null);
 
-    await fetch(`${import.meta.env.VITE_API_URL}/${apiUrl}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, icon }),
-    });
+    // await fetch(`${import.meta.env.VITE_API_URL}/${apiUrl}`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ name, icon }),
+    // });
 
-    setName("");
-    onUpdate();
+    // setName("");
+    // onUpdate();
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/${apiUrl}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, icon }),
+        }
+      );
+
+      if (!response.ok) {
+        const result = await response.json();
+        const errorCode = result.code;
+
+        const translatedMessage =
+          translator[errorCode as keyof typeof translator] ||
+          result.error ||
+          "Failed to add item";
+
+        setAlertMessage(translatedMessage);
+      } else {
+        setName("");
+        onUpdate();
+      }
+    } catch (err) {
+      console.error("Request error:", err);
+      setAlertMessage("Failed to contact the server");
+    }
   };
 
   const handleDelete = async (id: number): Promise<void> => {
@@ -81,7 +110,16 @@ const EntityModal: React.FC<EntityModalProps> = ({
       const result = await response.json();
 
       if (!response.ok) {
-        setAlertMessage(result.error || "Server error");
+        // setAlertMessage(result.error || "Server error");
+        const errorCode = result.code;
+
+        // Динамически ищем перевод по коду ответа бэкенда
+        const translatedMessage =
+          translator[errorCode as keyof typeof translator] ||
+          result.error ||
+          "Server error";
+
+        setAlertMessage(translatedMessage);
       } else {
         onUpdate();
       }

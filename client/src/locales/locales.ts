@@ -46,6 +46,12 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Зачекайте трохи, зараз бекенд прокинеться і все буде літати! ☕ 🚀",
       placeholderDate: "дд.мм.рррр",
+      ERROR_CANNOT_DELETE_SYSTEM: "Системні елементи не можна видалити",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Не можна видалити: у категорії є записи. Спочатку перенесіть їх",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Не можна видалити: у проекті є записи. Спочатку перенесіть їх",
+      ERROR_INTERNAL_SERVER: "Сталася непередбачувана помилка",
     },
   },
   en: {
@@ -93,6 +99,12 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Please wait a moment, the backend is waking up and everything will fly! ☕🚀",
       placeholderDate: "dd/mm/yyyy",
+      ERROR_CANNOT_DELETE_SYSTEM: "System items cannot be deleted",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Cannot delete: this category contains transactions. Move them first",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Cannot delete: this project contains transactions. Move them first",
+      ERROR_INTERNAL_SERVER: "Internal server error",
     },
   },
   ro: {
@@ -140,6 +152,12 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Așteptați un moment, backend-ul se trezește acum și totul va zbura! ☕ 🚀",
       placeholderDate: "zz.ll.aaaa",
+      ERROR_CANNOT_DELETE_SYSTEM: "Elementele de sistem nu pot fi șterse",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Nu se poate șterge: această categorie conține tranzacții. Mutați-le mai întâi",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Nu se poate șterge: acest proiect conține tranzacții. Mutați-le mai întâi",
+      ERROR_INTERNAL_SERVER: "Eroare internă de server",
     },
   },
   pl: {
@@ -187,6 +205,12 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Poczekaj chwilę, zaraz backend się obudzi i wszystko będzie śmigać! ☕ 🚀",
       placeholderDate: "rr.mm.dd",
+      ERROR_CANNOT_DELETE_SYSTEM: "Elementy systemowe nie mogą być usunięte",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Nie można usunąć: ta kategoria zawiera transakcje. Przenieś je najpierw",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Nie można usunąć: ten projekt zawiera transakcje. Przenieś je najpierw",
+      ERROR_INTERNAL_SERVER: "Wewnętrzny błąd serwera",
     },
   },
   de: {
@@ -234,6 +258,12 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Bitte warten Sie einen Moment, das Backend wacht сразу auf und dann läuft alles superschnell! ☕ 🚀",
       placeholderDate: "tt.mm.jjjj",
+      ERROR_CANNOT_DELETE_SYSTEM: "Systemelemente können nicht gelöscht werden",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Löschen nicht möglich: Diese Kategorie enthält Transaktionen. Verschieben Sie teile diese zuerst",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Löschen nicht möglich: Dieses Projekt enthält Transaktionen. Verschieben Sie teile diese zuerst",
+      ERROR_INTERNAL_SERVER: "Interner Serverfehler",
     },
   },
   es: {
@@ -281,6 +311,13 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "¡Espera un momento, el backend se está despertando y luego todo volará! ☕ 🚀",
       placeholderDate: "dd/mm/aaaa",
+      ERROR_CANNOT_DELETE_SYSTEM:
+        "No se pueden eliminar los elementos del sistema",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "No se puede eliminar: esta categoría contiene transacciones. Muévelas primero",
+      ERROR_PROJECT_NOT_EMPTY:
+        "No se puede eliminar: este proyecto contiene transacciones. Muévelas primero",
+      ERROR_INTERNAL_SERVER: "Error interno del servidor",
     },
   },
   fr: {
@@ -328,6 +365,13 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Attendez un instant, le backend se réveille et tout va s'envoler ! ☕ 🚀",
       placeholderDate: "jj/mm/aaaa",
+      ERROR_CANNOT_DELETE_SYSTEM:
+        "Les éléments système ne peuvent pas être supprimés",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Impossible de supprimer: cette catégorie contient des transactions. Déplacez-les d'abord",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Impossible de supprimer: ce projet contient des transactions. Déplacez-les d'abord",
+      ERROR_INTERNAL_SERVER: "Erreur interne du serveur",
     },
   },
   it: {
@@ -375,6 +419,13 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Aspetta un attimo, il backend si sta svegliando e poi tutto volerà! ☕ 🚀",
       placeholderDate: "gg/mm/aaaa",
+      ERROR_CANNOT_DELETE_SYSTEM:
+        "Gli elementi di sistema no possono essere eliminati",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Impossibile eliminare: questa categoria contiene transazioni. Spostale prima",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Impossibile eliminare: questo progetto contiene transazioni. Spostale prima",
+      ERROR_INTERNAL_SERVER: "Errore interno del server",
     },
   },
   ru: {
@@ -422,6 +473,12 @@ export const translations: Record<LangCode, LanguagePackage> = {
       backendWakingUp:
         "Подождите немного, сейчас бэкенд проснется и будет все летать! ☕ 🚀",
       placeholderDate: "дд.мм.гггг",
+      ERROR_CANNOT_DELETE_SYSTEM: "Системные элементы нельзя удалить",
+      ERROR_CATEGORY_NOT_EMPTY:
+        "Нельзя удалить: в категории есть записи. Сначала перенесите их",
+      ERROR_PROJECT_NOT_EMPTY:
+        "Нельзя удалить: в проекте есть записи. Сначала перенесите их",
+      ERROR_INTERNAL_SERVER: "Внутренняя ошибка сервера",
     },
   },
 };

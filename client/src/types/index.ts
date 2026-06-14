@@ -89,4 +89,8 @@ export interface TranslationData {
   resetAll: string;
   backendWakingUp: string;
   placeholderDate: string;
+  ERROR_CANNOT_DELETE_SYSTEM: string;
+  ERROR_CATEGORY_NOT_EMPTY: string;
+  ERROR_PROJECT_NOT_EMPTY: string;
+  ERROR_INTERNAL_SERVER: string;
 }
