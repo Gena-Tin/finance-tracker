@@ -42,7 +42,7 @@
 
 .resetBtn {
   background: var(--alert);
-  color: var(--text-l);
+  color: white;
 }
 
 .categoryCard:hover,

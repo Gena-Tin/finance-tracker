@@ -12,7 +12,7 @@ const ResetButton: React.FC<ResetButtonProps> = ({ onClick, label }) => {
       <IconClose
         className="icon-svg"
         style={{
-          color: "var(--text-l)",
+          color: "white",
         }}
       />
       {label}

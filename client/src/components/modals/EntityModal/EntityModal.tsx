@@ -56,14 +56,6 @@ const EntityModal: React.FC<EntityModalProps> = ({
     if (!name.trim()) return;
     setAlertMessage(null);
 
-    // await fetch(`${import.meta.env.VITE_API_URL}/${apiUrl}`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ name, icon }),
-    // });
-
-    // setName("");
-    // onUpdate();
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/${apiUrl}`,
@@ -110,7 +102,6 @@ const EntityModal: React.FC<EntityModalProps> = ({
       const result = await response.json();
 
       if (!response.ok) {
-        // setAlertMessage(result.error || "Server error");
         const errorCode = result.code;
 
         // Динамически ищем перевод по коду ответа бэкенда

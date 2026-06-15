@@ -31,7 +31,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     variables: {
       "--text": "rgb(107, 99, 117)",
       "--text-h": "rgb(8, 6, 13)",
-      "--text-l": "rgb(229, 228, 231)",
+      "--text-l": "rgb(255, 255, 255)",
       "--bg": "rgb(255, 255, 255)",
       "--border": "rgb(229, 228, 231)",
       "--code-bg": "rgb(244, 243, 236)",
