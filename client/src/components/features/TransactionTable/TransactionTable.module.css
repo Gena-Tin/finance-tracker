@@ -52,6 +52,7 @@ td {
   font-weight: bold;
   height: 45px;
   box-shadow: 0 2px 8px var(--shadow);
+  width: auto;
 }
 
 .moveBtn {
@@ -70,7 +71,6 @@ td {
   border: 1px solid var(--accent-border);
   color: var(--text);
   box-shadow: 0 2px 8px var(--shadow);
-  height: 45px;
 }
 
 .table {
@@ -150,4 +150,12 @@ td {
 .tableContainer tr:nth-child(even) td:first-child,
 .tableContainer tr:nth-child(even) td:nth-child(2) {
   background-color: var(--accent-bg-alt);
+}
+
+@media (max-width: 380px) {
+  .deleteBtn,
+  .moveBtn,
+  .projectSelect {
+    height: 65px;
+  }
 }
