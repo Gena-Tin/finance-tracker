@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { useLanguage } from "../../../hooks/useLanguage";
 import { AnimatePresence } from "framer-motion";
-import styles from "./TransactionTable.module.css";
 import Checkbox from "../../ui/Checkbox/Checkbox";
 import { Project, Transaction } from "@/types";
 import { TransactionRow } from "./TransactionRow";
+import { TransactionTableHeader } from "./TransactionTableHeader"; // Наш новый компонент
 
+import styles from "./TransactionTable.module.css";
 interface TransactionTableProps {
   transactions: Transaction[];
   filteredByCategory: Transaction[];
@@ -31,7 +31,6 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
   projects,
   onMove,
 }) => {
-  const [targetProjectId, setTargetProjectId] = useState<number>(1);
   const { translator } = useLanguage();
 
   const isAllSelected =
@@ -39,46 +38,15 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
 
   return (
     <div className={styles.tableContainer}>
-      {/* Шапка таблицы: Логика массовых операций удаления/перемещения записей */}
-      <div className={styles.tableHeader}>
-        {selectedIds.length <= 0 ? (
-          <h2>{translator.lastOperations}:</h2>
-        ) : (
-          <>
-            <button
-              type="button"
-              onClick={onDelete}
-              className={styles.deleteBtn}
-              title={translator.deleteSelected}
-            >
-              ({selectedIds.length}) {translator.delete} 🗑
-            </button>
-            <button
-              type="button"
-              onClick={() => onMove(targetProjectId)}
-              className={styles.moveBtn}
-              title={translator.moveSelected}
-            >
-              ({selectedIds.length}) {translator.moveTo} 👉
-            </button>
+      {/*  шапка  */}
+      <TransactionTableHeader
+        selectedCount={selectedIds.length}
+        projects={projects}
+        onDelete={onDelete}
+        onMove={onMove}
+      />
 
-            <select
-              name="project-target"
-              className={styles.projectSelect}
-              value={targetProjectId}
-              onChange={(e) => setTargetProjectId(Number(e.target.value))}
-            >
-              {projects.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.icon} {p.name}
-                </option>
-              ))}
-            </select>
-          </>
-        )}
-      </div>
-
-      {/* HTML-таблица */}
+      {/* таблица */}
       <table className={styles.table}>
         <thead>
           <tr className={styles.headRow}>
@@ -120,13 +88,11 @@ export default TransactionTable;
 
 // import { useState } from "react";
 // import { useLanguage } from "../../../hooks/useLanguage";
-
-// import { motion, AnimatePresence } from "framer-motion";
-
+// import { AnimatePresence } from "framer-motion";
 // import styles from "./TransactionTable.module.css";
 // import Checkbox from "../../ui/Checkbox/Checkbox";
-
-// import { Project, Transaction, TranslationData } from "@/types";
+// import { Project, Transaction } from "@/types";
+// import { TransactionRow } from "./TransactionRow";
 
 // interface TransactionTableProps {
 //   transactions: Transaction[];
@@ -156,8 +122,12 @@ export default TransactionTable;
 //   const [targetProjectId, setTargetProjectId] = useState<number>(1);
 //   const { translator } = useLanguage();
 
+//   const isAllSelected =
+//     selectedIds.length === transactions.length && transactions.length > 0;
+
 //   return (
 //     <div className={styles.tableContainer}>
+//       {/* Шапка таблицы: Логика массовых операций удаления/перемещения записей */}
 //       <div className={styles.tableHeader}>
 //         {selectedIds.length <= 0 ? (
 //           <h2>{translator.lastOperations}:</h2>
@@ -196,6 +166,7 @@ export default TransactionTable;
 //         )}
 //       </div>
 
+//       {/* HTML-таблица */}
 //       <table className={styles.table}>
 //         <thead>
 //           <tr className={styles.headRow}>
@@ -203,10 +174,7 @@ export default TransactionTable;
 //               <Checkbox
 //                 type="checkbox"
 //                 onChange={(e) => onToggleAll(e.target.checked)}
-//                 checked={
-//                   selectedIds.length === transactions.length &&
-//                   transactions.length > 0
-//                 }
+//                 checked={isAllSelected}
 //               />
 //             </th>
 //             <th>{translator.sum}</th>
@@ -219,70 +187,16 @@ export default TransactionTable;
 //         </thead>
 //         <tbody>
 //           <AnimatePresence mode="popLayout">
-//             {filteredByCategory.map((t) => {
-//               const isSelected = selectedIds.includes(t.id);
-
-//               return (
-//                 <motion.tr
-//                   key={t.id}
-//                   layout // <--- ЭТО заставляет строки плавно съезжаться
-//                   initial={{ opacity: 0, y: 10 }}
-//                   animate={{ opacity: 1, y: 0 }}
-//                   exit={{ opacity: 0, scale: 0.95, x: -10 }}
-//                   transition={{ duration: 0.2 }}
-//                   className={`${styles.row} ${
-//                     isSelected ? styles.rowSelected : ""
-//                   }`}
-//                 >
-//                   <td>
-//                     <Checkbox
-//                       type="checkbox"
-//                       checked={isSelected}
-//                       onChange={() => onToggleSelect(t.id)}
-//                     />
-//                   </td>
-
-//                   <td
-//                     className={`${styles.amountCell} ${
-//                       t.type === "expense"
-//                         ? styles.expenseStyle
-//                         : styles.incomeStyle
-//                     }`}
-//                   >
-//                     {t.type === "expense" ? "-" : "+"}
-//                     {t.amount}
-//                   </td>
-
-//                   <td>{t.description}</td>
-
-//                   <td className={styles.dataCell}>
-//                     {new Date(t.created_at).toLocaleDateString("ru-RU", {
-//                       day: "2-digit",
-//                       month: "2-digit",
-//                       year: "2-digit",
-//                     })}
-//                   </td>
-//                   <td>
-//                     {isSelected && !editingId && (
-//                       <button
-//                         type="button"
-//                         onClick={() => onEdit(t)}
-//                         className={styles.editBtn}
-//                         title="Редактировать"
-//                       >
-//                         ✏️
-//                       </button>
-//                     )}
-//                   </td>
-//                   <td>
-//                     {t.category_icon}&nbsp;{t.category_name}
-//                   </td>
-//                   <td>
-//                     {t.project_icon}&nbsp;{t.project_name}
-//                   </td>
-//                 </motion.tr>
-//               );
-//             })}
+//             {filteredByCategory.map((t) => (
+//               <TransactionRow
+//                 key={t.id}
+//                 transaction={t}
+//                 isSelected={selectedIds.includes(t.id)}
+//                 isEditingAny={!!editingId}
+//                 onToggleSelect={onToggleSelect}
+//                 onEdit={onEdit}
+//               />
+//             ))}
 //           </AnimatePresence>
 //         </tbody>
 //       </table>
