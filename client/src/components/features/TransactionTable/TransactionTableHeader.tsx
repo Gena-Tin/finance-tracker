@@ -1,14 +1,8 @@
+import styles from "./TransactionTable.module.css";
 import { useState } from "react";
 import { useLanguage } from "../../../hooks/useLanguage";
-import styles from "./TransactionTable.module.css";
-import { Project } from "@/types";
 
-interface TransactionTableHeaderProps {
-  selectedCount: number;
-  projects: Project[];
-  onDelete: () => void;
-  onMove: (targetProjectId: number) => void | Promise<void>;
-}
+import { TransactionTableHeaderProps } from "./types";
 
 export const TransactionTableHeader: React.FC<TransactionTableHeaderProps> = ({
   selectedCount,

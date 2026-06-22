@@ -1,23 +1,11 @@
+import styles from "./TransactionTable.module.css";
+import Checkbox from "../../ui/Checkbox/Checkbox";
 import { useLanguage } from "../../../hooks/useLanguage";
 import { AnimatePresence } from "framer-motion";
-import Checkbox from "../../ui/Checkbox/Checkbox";
-import { Project, Transaction } from "@/types";
 import { TransactionRow } from "./TransactionRow";
 import { TransactionTableHeader } from "./TransactionTableHeader"; // Наш новый компонент
 
-import styles from "./TransactionTable.module.css";
-interface TransactionTableProps {
-  transactions: Transaction[];
-  filteredByCategory: Transaction[];
-  projects: Project[];
-  selectedIds: number[];
-  editingId?: number | null;
-  onToggleSelect: (id: number) => void;
-  onToggleAll: (checked: boolean) => void;
-  onDelete: () => void;
-  onEdit: (transaction: Transaction) => void;
-  onMove: (targetProjectId: number) => void | Promise<void>;
-}
+import { TransactionTableProps } from "./types";
 
 const TransactionTable: React.FC<TransactionTableProps> = ({
   transactions,

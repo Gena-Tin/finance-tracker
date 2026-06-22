@@ -1,16 +1,9 @@
+import styles from "./TransactionTable.module.css";
+import Checkbox from "../../ui/Checkbox/Checkbox";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../../hooks/useLanguage";
-import Checkbox from "../../ui/Checkbox/Checkbox";
-import { Transaction } from "@/types";
-import styles from "./TransactionTable.module.css";
 
-interface TransactionRowProps {
-  transaction: Transaction;
-  isSelected: boolean;
-  isEditingAny: boolean;
-  onToggleSelect: (id: number) => void;
-  onEdit: (transaction: Transaction) => void;
-}
+import { TransactionRowProps } from "./types";
 
 export const TransactionRow: React.FC<TransactionRowProps> = ({
   transaction,
@@ -29,8 +22,8 @@ export const TransactionRow: React.FC<TransactionRowProps> = ({
     {
       day: "2-digit",
       month: "2-digit",
-      year: "numeric",
-      //   year: "2-digit",
+      year: "2-digit",
+      // year: "numeric",
     }
   );
 

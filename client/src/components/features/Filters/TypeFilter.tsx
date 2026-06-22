@@ -1,13 +1,7 @@
-import { IconMinus, IconPlus } from "../../ui/SvgLib";
 import styles from "./Filters.module.css";
+import { IconMinus, IconPlus } from "../../ui/SvgLib";
 
-interface TypeFilterProps {
-  value: "income" | "expense" | "";
-  onChange: (type: "income" | "expense" | "") => void;
-  incomeLabel: string;
-  expenseLabel: string;
-  resetLabel: string;
-}
+import { TypeFilterProps } from "./types";
 
 const TypeFilter: React.FC<TypeFilterProps> = ({
   value,

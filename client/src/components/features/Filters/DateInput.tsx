@@ -1,12 +1,6 @@
 import styles from "./Filters.module.css";
 
-interface DateInputProps {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  placeholder: string;
-  hasValueReference?: string; // для проверки startDate ? "date" : "text"
-}
+import { DateInputProps } from "./types";
 
 const DateInput: React.FC<DateInputProps> = ({
   label,

@@ -19,25 +19,10 @@ import ModalsManager from "./components/modals/EntityModal/ModalsManager";
 import Spinner from "./components/ui/Spinner/Spinner";
 import Skeleton from "./components/ui/Skeleton/Skeleton";
 import ConfirmModal from "./components/modals/ConfirmModal";
-// Импортируем наши типы
+
+// Типы
 import { Transaction, TransactionType } from "@/types";
-
-// Описываем интерфейс для локального стейта фильтров
-interface FilterState {
-  filterCatIds: number[];
-  startDate: string;
-  endDate: string;
-  searchQuery: string;
-  filterType: TransactionType | "";
-  projId: number;
-}
-
-// Тип для состояния модалки
-interface ConfirmState {
-  isOpen: boolean;
-  title: string;
-  onConfirm: () => void;
-}
+import { FilterState, ConfirmState } from "./App.types";
 
 function App() {
   const { translator } = useLanguage();

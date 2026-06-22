@@ -1,10 +1,6 @@
 import { PieChart, Pie, Tooltip, Legend } from "recharts";
-import { StatEntry, ColoredStatEntry } from "../types";
 
-interface CategoryPieChartProps {
-  totalStats: StatEntry[];
-  coloredCategoryStats: ColoredStatEntry[];
-}
+import { CategoryPieChartProps } from "../types";
 
 export const CategoryPieChart: React.FC<CategoryPieChartProps> = ({
   totalStats,

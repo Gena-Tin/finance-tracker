@@ -1,11 +1,7 @@
-import { IconSearch } from "../../ui/SvgLib";
 import styles from "./Filters.module.css";
+import { IconSearch } from "../../ui/SvgLib";
 
-interface SearchInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  placeholder: string;
-}
+import { SearchInputProps } from "./types";
 
 const SearchInput: React.FC<SearchInputProps> = ({
   value,

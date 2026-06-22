@@ -7,13 +7,8 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { TimelineGroup } from "../types";
 
-interface TimelineLineChartProps {
-  data: TimelineGroup[];
-  incomeLabel: string;
-  expenseLabel: string;
-}
+import { TimelineLineChartProps } from "../types";
 
 export const TimelineLineChart: React.FC<TimelineLineChartProps> = ({
   data,

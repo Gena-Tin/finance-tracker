@@ -31,3 +31,14 @@ export interface AnalyticsProps {
   totalStats: StatEntry[];
   filteredByCategory: TransactionItem[];
 }
+
+export interface CategoryPieChartProps {
+  totalStats: StatEntry[];
+  coloredCategoryStats: ColoredStatEntry[];
+}
+
+export interface TimelineLineChartProps {
+  data: TimelineGroup[];
+  incomeLabel: string;
+  expenseLabel: string;
+}

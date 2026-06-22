@@ -6,27 +6,8 @@ import TypeFilter from "./TypeFilter";
 import ResetButton from "./ResetButton";
 
 import { useLanguage } from "../../../hooks/useLanguage";
-import { Category } from "@/types";
 
-interface FiltersProps {
-  categories: Category[];
-  filterCatIds: number[];
-  toggleFilterCategory: (id: number) => void;
-  setFilterCatIds: (id: number[]) => void;
-
-  startDate: string;
-  endDate: string;
-  setStartDate: (date: string) => void;
-  setEndDate: (date: string) => void;
-  clearDates: () => void;
-
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-
-  filterType: "income" | "expense" | "";
-  setFilterType: (type: "income" | "expense" | "") => void;
-  setIsCategoryManagerOpen: (open: boolean) => void;
-}
+import { FiltersProps } from "./types";
 
 const Filters: React.FC<FiltersProps> = ({
   categories,

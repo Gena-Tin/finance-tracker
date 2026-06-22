@@ -1,15 +1,8 @@
+import styles from "./Filters.module.css";
 import Checkbox from "../../ui/Checkbox/Checkbox";
 import { IconOptions } from "../../ui/SvgLib";
-import { Category } from "@/types";
-import styles from "./Filters.module.css";
 
-interface CategoryFilterProps {
-  categories: Category[];
-  filterCatIds: number[];
-  toggleFilterCategory: (id: number) => void;
-  setIsCategoryManagerOpen: (open: boolean) => void;
-  settingCategoriesLabel: string;
-}
+import { CategoryFilterProps } from "./types";
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({
   categories,

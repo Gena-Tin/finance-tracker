@@ -1,10 +1,7 @@
 import styles from "./Filters.module.css";
 import { IconClose } from "../../ui/SvgLib";
 
-interface ResetButtonProps {
-  onClick: () => void;
-  label: string;
-}
+import { ResetButtonProps } from "./types";
 
 const ResetButton: React.FC<ResetButtonProps> = ({ onClick, label }) => {
   return (
