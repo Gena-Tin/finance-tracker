@@ -1,15 +1,8 @@
+import styles from "./ToolsSection.module.css";
 import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
 import { IconChevronDown } from "../../ui/SvgLib";
-import styles from "./ToolsSection.module.css";
 
-interface AccordionItemProps {
-  title: React.ReactNode;
-  isOpen: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-  extraHeaderContent?: React.ReactNode;
-  customStyle?: React.CSSProperties;
-}
+import { AccordionItemProps } from "./types";
 
 const accordionAnimation: HTMLMotionProps<"div"> = {
   initial: { height: 0, opacity: 0, overflow: "hidden" },

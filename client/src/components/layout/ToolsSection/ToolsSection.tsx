@@ -9,8 +9,6 @@ import {
   IconClose,
 } from "../../ui/SvgLib";
 
-import { TranslationData } from "../../../types";
-
 // Компоненты:
 import TransactionForm from "../../features/TransactionForm/TransactionForm";
 import Analytics from "../../features/Analytics/Analytics";
@@ -19,22 +17,7 @@ import BalanceBoard from "../../features/BalanceBoard/BalanceBoard";
 
 import AccordionItem from "./AccordionItem";
 
-// 1. Описываем интерфейс пропсов для ToolsSection
-interface ToolsSectionProps {
-  translator: TranslationData;
-
-  isFormOpen: boolean;
-  setIsFormOpen: (open: boolean) => void;
-
-  // Для пропсов дочерних компонентов используем встроенный тип React.ComponentProps,
-  // чтобы не дублировать их ручное описание.
-  formProps: React.ComponentProps<typeof TransactionForm> & {
-    editingId: number | null;
-  };
-  analyticsProps: React.ComponentProps<typeof Analytics>;
-  filtersProps: React.ComponentProps<typeof Filters>;
-  balanceProps: React.ComponentProps<typeof BalanceBoard>;
-}
+import { ToolsSectionProps } from "./types";
 
 const ToolsSection: React.FC<ToolsSectionProps> = ({
   translator,

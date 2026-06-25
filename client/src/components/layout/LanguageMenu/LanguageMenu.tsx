@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import styles from "./LanguageMenu.module.css";
+import { useState } from "react";
 import { useLanguage } from "../../../hooks/useLanguage";
 import { translations } from "../../../locales/locales";
-import { LangCode } from "../../../types";
-import styles from "./LanguageMenu.module.css";
 import { IconGlobe } from "../../ui/SvgLib";
+
+import { LangCode } from "../../../types";
 
 const LanguageMenu: React.FC = () => {
   const { lang, switchLanguage, translator } = useLanguage();
