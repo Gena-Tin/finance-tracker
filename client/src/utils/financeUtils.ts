@@ -1,32 +1,5 @@
 import { Transaction, TransactionType } from "../types";
-
-interface Filters {
-  projId: number;
-  filterCatIds: number[];
-  startDate: string;
-  endDate: string;
-  searchQuery: string;
-  filterType: TransactionType | "";
-}
-
-interface Translator {
-  income?: string;
-  expense?: string;
-}
-
-interface ProcessedData {
-  filteredData: Transaction[];
-  totalIncome: number;
-  totalExpense: number;
-  balance: number;
-  categoryStats: { name: string; value: number; type: TransactionType }[];
-  totalStats: {
-    name: string;
-    value: number;
-    type: TransactionType;
-    fill: string;
-  }[];
-}
+import { Filters, ProcessedData, Translator } from "./types";
 
 export const getProcessedData = (
   transactions: Transaction[],

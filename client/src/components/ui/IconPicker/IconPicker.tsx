@@ -1,9 +1,6 @@
 import styles from "./IconPicker.module.css";
 import { COMMON_ICONS } from "../../../constants/icons";
-
-interface IconPickerProps {
-  onSelect: (emoji: string) => void;
-}
+import { IconPickerProps } from "./types";
 
 const IconPicker: React.FC<IconPickerProps> = ({ onSelect }) => {
   return (

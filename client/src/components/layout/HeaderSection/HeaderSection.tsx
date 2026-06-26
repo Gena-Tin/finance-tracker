@@ -1,7 +1,7 @@
 import styles from "./HeaderSection.module.css";
 import LanguageMenu from "../LanguageMenu/LanguageMenu.tsx";
 import { IconChevronUp, IconMenu } from "../../ui/SvgLib.tsx";
-import { THEMES } from "../../../constants/themes.ts";
+import { THEMES } from "../../../constants/themes/themes.ts";
 
 import { HeaderSectionProps } from "./types.ts";
 

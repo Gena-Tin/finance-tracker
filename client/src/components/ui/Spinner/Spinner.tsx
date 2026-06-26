@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import styles from "./Spinner.module.css";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../../../hooks/useLanguage";
 
 const Spinner = () => {

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "./hooks/useLanguage";
 import { useTransactions } from "./hooks/useTransactions";
 import { getProcessedData } from "./utils/financeUtils";
-import { THEMES } from "./constants/themes";
+import { THEMES } from "./constants/themes/themes";
 
 // Стили
 import styles from "./App.module.css";
