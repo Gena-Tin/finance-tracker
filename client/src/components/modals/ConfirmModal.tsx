@@ -1,14 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Modals.module.css";
-
-interface ConfirmModalProps {
-  isOpen: boolean;
-  title: string;
-  onClose: () => void;
-  onConfirm: () => void;
-  cancelText?: string;
-  confirmText?: string;
-}
+import { motion, AnimatePresence } from "framer-motion";
+import { ConfirmModalProps } from "./types";
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({
   isOpen,
@@ -30,7 +22,10 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             className={styles.modal}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className={styles.title}>{title}</h3>
+            <h3 className={styles.title}>
+              <span className={styles.sign}>⚠️</span>
+              {title}
+            </h3>
 
             <div className={styles.actions}>
               <button className={styles.cancelBtn} onClick={onClose}>

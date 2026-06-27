@@ -1,12 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Modals.module.css"; // Переиспользуем твои базовые стили модалок
-
-interface AlertModalProps {
-  isOpen: boolean;
-  message: string;
-  onClose: () => void;
-  buttonText?: string;
-}
+import { motion, AnimatePresence } from "framer-motion";
+import { AlertModalProps } from "./types";
 
 const AlertModal: React.FC<AlertModalProps> = ({
   isOpen,
@@ -26,30 +20,16 @@ const AlertModal: React.FC<AlertModalProps> = ({
             className={styles.modal}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3
-              className={styles.title}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-                alignItems: "center",
-              }}
-            >
-              <span style={{ fontSize: "2rem" }}>⚠️</span>
-              <span style={{ fontWeight: 400, fontSize: "1.05rem" }}>
-                {message}
-              </span>
+            <h3 className={styles.title}>
+              <span className={styles.sign}>⚠️</span>
+              <span>{message}</span>
             </h3>
 
-            <div
-              className={styles.actions}
-              style={{ justifyContent: "center" }}
-            >
+            <div className={styles.actions}>
               <button
                 type="button"
                 className={styles.confirmBtn}
                 onClick={onClose}
-                style={{ minWidth: "100px" }}
               >
                 {buttonText}
               </button>
