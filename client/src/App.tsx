@@ -15,7 +15,7 @@ import HeaderSection from "./components/layout/HeaderSection/HeaderSection";
 import ToolsSection from "./components/layout/ToolsSection/ToolsSection";
 import ProjectsSection from "./components/layout/ProjectsSection/ProjectsSection";
 import TransactionTable from "./components/features/TransactionTable/TransactionTable";
-import ModalsManager from "./components/modals/EntityModal/ModalsManager";
+import ModalsManager from "./components/modals/ManageItemModal/ModalsManager";
 import Spinner from "./components/ui/Spinner/Spinner";
 import Skeleton from "./components/ui/Skeleton/Skeleton";
 import ConfirmModal from "./components/modals/ConfirmModal";

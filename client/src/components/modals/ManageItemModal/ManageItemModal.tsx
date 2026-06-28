@@ -1,27 +1,14 @@
+import styles from "./ManageItemModal.module.css";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../../hooks/useLanguage";
 
 import AlertModal from "../AlertModal";
 import IconPicker from "../../ui/IconPicker/IconPicker";
-import styles from "./EntityModal.module.css";
 
-interface EntityItem {
-  id: number;
-  name: string;
-  icon?: string;
-  is_system?: boolean | number; // в зависимости от того, что возвращает PHP (0/1 или true/false)
-}
+import { ManageItemModalProps } from "./types";
 
-interface EntityModalProps {
-  items: EntityItem[];
-  onUpdate: () => void;
-  apiUrl: string;
-  onClose: () => void;
-  title: string;
-}
-
-const EntityModal: React.FC<EntityModalProps> = ({
+const ManageItemModal: React.FC<ManageItemModalProps> = ({
   items,
   onUpdate,
   apiUrl,
@@ -207,4 +194,4 @@ const EntityModal: React.FC<EntityModalProps> = ({
   );
 };
 
-export default EntityModal;
+export default ManageItemModal;

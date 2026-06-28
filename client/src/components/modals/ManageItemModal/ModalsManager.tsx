@@ -1,17 +1,8 @@
+import ManageItemModal from "./ManageItemModal";
 import { AnimatePresence } from "framer-motion";
-import EntityModal from "./EntityModal";
 import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../../constants/links";
-import { Category, Project, TranslationData } from "../../../types";
-interface ModalsManagerProps {
-  translator: TranslationData;
-  isCategoryManagerOpen: boolean;
-  isProjectManagerOpen: boolean;
-  setIsCategoryManagerOpen: (open: boolean) => void;
-  setIsProjectManagerOpen: (open: boolean) => void;
-  categories: Category[];
-  projects: Project[];
-  fetchData: () => Promise<void> | void; // Функция ничего не принимает и может быть асинхронной
-}
+
+import { ModalsManagerProps } from "./types";
 
 const ModalsManager: React.FC<ModalsManagerProps> = ({
   translator,
@@ -27,7 +18,7 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
     <>
       <AnimatePresence>
         {isCategoryManagerOpen && (
-          <EntityModal
+          <ManageItemModal
             title={translator.category}
             items={categories}
             onUpdate={fetchData}
@@ -39,7 +30,7 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
 
       <AnimatePresence>
         {isProjectManagerOpen && (
-          <EntityModal
+          <ManageItemModal
             title={translator.project}
             items={projects}
             onUpdate={fetchData}
