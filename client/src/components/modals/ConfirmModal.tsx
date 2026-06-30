@@ -2,7 +2,7 @@ import styles from "./Modals.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { ConfirmModalProps } from "./types";
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({
+export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   isOpen,
   title,
   onClose,
@@ -41,5 +41,3 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
     </AnimatePresence>
   );
 };
-
-export default ConfirmModal;

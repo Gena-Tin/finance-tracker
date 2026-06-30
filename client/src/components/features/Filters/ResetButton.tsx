@@ -3,7 +3,7 @@ import { IconClose } from "../../ui/SvgLib";
 
 import { ResetButtonProps } from "./types";
 
-const ResetButton: React.FC<ResetButtonProps> = ({ onClick, label }) => {
+export const ResetButton: React.FC<ResetButtonProps> = ({ onClick, label }) => {
   return (
     <button type="button" onClick={onClick} className={styles.resetBtn}>
       <IconClose
@@ -16,4 +16,3 @@ const ResetButton: React.FC<ResetButtonProps> = ({ onClick, label }) => {
     </button>
   );
 };
-export default ResetButton;

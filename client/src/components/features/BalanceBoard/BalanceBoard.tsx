@@ -3,7 +3,7 @@ import { useLanguage } from "../../../hooks/useLanguage";
 
 import { BalanceBoardProps } from "./types";
 
-const BalanceBoard: React.FC<BalanceBoardProps> = ({
+export const BalanceBoard: React.FC<BalanceBoardProps> = ({
   totalIncome,
   totalExpense,
   balance,
@@ -45,5 +45,3 @@ const BalanceBoard: React.FC<BalanceBoardProps> = ({
     </div>
   );
 };
-
-export default BalanceBoard;

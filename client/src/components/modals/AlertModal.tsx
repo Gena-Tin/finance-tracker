@@ -2,7 +2,7 @@ import styles from "./Modals.module.css"; // Переиспользуем тво
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertModalProps } from "./types";
 
-const AlertModal: React.FC<AlertModalProps> = ({
+export const AlertModal: React.FC<AlertModalProps> = ({
   isOpen,
   message,
   onClose,
@@ -40,5 +40,3 @@ const AlertModal: React.FC<AlertModalProps> = ({
     </AnimatePresence>
   );
 };
-
-export default AlertModal;

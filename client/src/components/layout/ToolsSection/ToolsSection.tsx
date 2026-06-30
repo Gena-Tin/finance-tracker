@@ -10,16 +10,16 @@ import {
 } from "../../ui/SvgLib";
 
 // Компоненты:
-import TransactionForm from "../../features/TransactionForm/TransactionForm";
-import Analytics from "../../features/Analytics/Analytics";
-import Filters from "../../features/Filters/Filters";
-import BalanceBoard from "../../features/BalanceBoard/BalanceBoard";
+import { TransactionForm } from "../../features/TransactionForm/TransactionForm";
+import { Analytics } from "../../features/Analytics/Analytics";
+import { Filters } from "../../features/Filters/Filters";
+import { BalanceBoard } from "../../features/BalanceBoard/BalanceBoard";
 
-import AccordionItem from "./AccordionItem";
+import { AccordionItem } from "./AccordionItem";
 
 import { ToolsSectionProps } from "./types";
 
-const ToolsSection: React.FC<ToolsSectionProps> = ({
+export const ToolsSection: React.FC<ToolsSectionProps> = ({
   translator,
   formProps,
   analyticsProps,
@@ -132,5 +132,3 @@ const ToolsSection: React.FC<ToolsSectionProps> = ({
     </>
   );
 };
-
-export default ToolsSection;

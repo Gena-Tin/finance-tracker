@@ -1,5 +1,5 @@
 import styles from "./ManageItemModal.module.css";
-import IconPicker from "../../ui/IconPicker/IconPicker";
+import { IconPicker } from "../../ui/IconPicker/IconPicker";
 
 import { AddItemFormProps } from "./types";
 

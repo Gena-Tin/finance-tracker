@@ -1,11 +1,11 @@
 import styles from "./HeaderSection.module.css";
-import LanguageMenu from "../LanguageMenu/LanguageMenu.tsx";
+import { LanguageMenu } from "../LanguageMenu/LanguageMenu.tsx";
 import { IconChevronUp, IconMenu } from "../../ui/SvgLib.tsx";
 import { THEMES } from "../../../constants/themes/themes.ts";
 
 import { HeaderSectionProps } from "./types.ts";
 
-const HeaderSection: React.FC<HeaderSectionProps> = ({
+export const HeaderSection: React.FC<HeaderSectionProps> = ({
   translator,
   currentTheme,
   setCurrentTheme,
@@ -52,5 +52,3 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({
     </div>
   );
 };
-
-export default HeaderSection;

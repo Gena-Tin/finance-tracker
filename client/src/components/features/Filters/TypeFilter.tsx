@@ -3,7 +3,7 @@ import { IconMinus, IconPlus } from "../../ui/SvgLib";
 
 import { TypeFilterProps } from "./types";
 
-const TypeFilter: React.FC<TypeFilterProps> = ({
+export const TypeFilter: React.FC<TypeFilterProps> = ({
   value,
   onChange,
   incomeLabel,
@@ -33,5 +33,3 @@ const TypeFilter: React.FC<TypeFilterProps> = ({
     </>
   );
 };
-
-export default TypeFilter;

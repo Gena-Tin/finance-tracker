@@ -1,10 +1,10 @@
-import ManageItemModal from "./ManageItemModal";
+import { ManageItemModal } from "./ManageItemModal";
 import { AnimatePresence } from "framer-motion";
 import { PROJECTS_MANAGE, CATEGORIES_MANAGE } from "../../../constants/links";
 
 import { ModalsManagerProps } from "./types";
 
-const ModalsManager: React.FC<ModalsManagerProps> = ({
+export const ModalsManager: React.FC<ModalsManagerProps> = ({
   translator,
   isCategoryManagerOpen,
   isProjectManagerOpen,
@@ -42,5 +42,3 @@ const ModalsManager: React.FC<ModalsManagerProps> = ({
     </>
   );
 };
-
-export default ModalsManager;

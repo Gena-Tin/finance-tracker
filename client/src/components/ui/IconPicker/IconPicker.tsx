@@ -2,7 +2,7 @@ import styles from "./IconPicker.module.css";
 import { COMMON_ICONS } from "../../../constants/icons";
 import { IconPickerProps } from "./types";
 
-const IconPicker: React.FC<IconPickerProps> = ({ onSelect }) => {
+export const IconPicker: React.FC<IconPickerProps> = ({ onSelect }) => {
   return (
     <div className={styles.iconGrid}>
       {COMMON_ICONS.map((emoji: string) => (
@@ -17,5 +17,3 @@ const IconPicker: React.FC<IconPickerProps> = ({ onSelect }) => {
     </div>
   );
 };
-
-export default IconPicker;

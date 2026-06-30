@@ -1,3 +1,5 @@
+import styles from "./App.module.css";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -7,28 +9,25 @@ import { useTransactions } from "./hooks/useTransactions";
 import { getProcessedData } from "./utils/financeUtils";
 import { THEMES } from "./constants/themes/themes";
 
-// Стили
-import styles from "./App.module.css";
-
 // Компоненты
-import HeaderSection from "./components/layout/HeaderSection/HeaderSection";
-import ToolsSection from "./components/layout/ToolsSection/ToolsSection";
-import ProjectsSection from "./components/layout/ProjectsSection/ProjectsSection";
-import TransactionTable from "./components/features/TransactionTable/TransactionTable";
-import ModalsManager from "./components/modals/ManageItemModal/ModalsManager";
-import Spinner from "./components/ui/Spinner/Spinner";
-import Skeleton from "./components/ui/Skeleton/Skeleton";
-import ConfirmModal from "./components/modals/ConfirmModal";
+import { HeaderSection } from "./components/layout/HeaderSection/HeaderSection";
+import { ToolsSection } from "./components/layout/ToolsSection/ToolsSection";
+import { ProjectsSection } from "./components/layout/ProjectsSection/ProjectsSection";
+import { TransactionTable } from "./components/features/TransactionTable/TransactionTable";
+import { ModalsManager } from "./components/modals/ManageItemModal/ModalsManager";
+import { Spinner } from "./components/ui/Spinner/Spinner";
+import { Skeleton } from "./components/ui/Skeleton/Skeleton";
+import { ConfirmModal } from "./components/modals/ConfirmModal";
 
 // Типы
 import { Transaction, TransactionType } from "@/types";
 import { FilterState, ConfirmState } from "./App.types";
 
-function App() {
+export const App = () => {
   const { translator } = useLanguage();
   const apiUrl = (import.meta.env.VITE_API_URL as string) || "";
 
-  // --- 1. Работа с данными через кастомный хук ---
+  // --- Работа с данными через кастомный хук ---
   const {
     transactions,
     categories,
@@ -40,7 +39,7 @@ function App() {
     moveTransactions,
   } = useTransactions(apiUrl);
 
-  // --- 2. Состояния интерфейса ---
+  // --- Состояния интерфейса ---
   const [currentTheme, setCurrentTheme] = useState<string>(
     () => localStorage.getItem("app-theme") || "theme-light"
   );
@@ -58,7 +57,7 @@ function App() {
     onConfirm: () => {},
   });
 
-  // --- 3. Состояния формы и фильтров (Строгая типизация) ---
+  // --- Состояния формы и фильтров (Строгая типизация) ---
   const [editingId, setEditingId] = useState<number | null>(null);
   const [amount, setAmount] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -82,7 +81,7 @@ function App() {
     projId: 1,
   });
 
-  // --- 4. Темы ---
+  // --- Темы ---
   useEffect(() => {
     const theme = THEMES[currentTheme];
     if (theme) {
@@ -94,7 +93,7 @@ function App() {
     }
   }, [currentTheme]);
 
-  // --- 5. Обработка данных (Фильтрация и расчеты) ---
+  // --- Обработка данных (Фильтрация и расчеты) ---
   const {
     filteredData,
     totalIncome,
@@ -104,7 +103,7 @@ function App() {
     totalStats,
   } = getProcessedData(transactions, filterState, selectedIds, translator);
 
-  // --- 6. Обработчики событий ---
+  // --- Обработчики событий ---
   const handleSubmit = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -151,7 +150,6 @@ function App() {
   };
 
   const handleDelete = async () => {
-    // Вызываем наше красивое окно вместо старого confirm!
     const confirmed = await openConfirm(
       translator?.deleteSelected || "Delete?"
     );
@@ -359,6 +357,4 @@ function App() {
       />
     </>
   );
-}
-
-export default App;
+};

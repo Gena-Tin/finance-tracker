@@ -1,7 +1,7 @@
 import styles from "./Checkbox.module.css";
 import { CheckboxProps } from "./types";
 
-const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   checked,
   onChange,
@@ -32,5 +32,3 @@ const Checkbox: React.FC<CheckboxProps> = ({
     </label>
   );
 };
-
-export default Checkbox;

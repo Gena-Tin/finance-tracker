@@ -14,7 +14,7 @@ import { TimelineLineChart } from "./components/TimelineLineChart";
 
 import { AnalyticsProps } from "./types";
 
-const Analytics: React.FC<AnalyticsProps> = ({
+export const Analytics: React.FC<AnalyticsProps> = ({
   categoryStats,
   totalStats,
   filteredByCategory,
@@ -80,5 +80,3 @@ const Analytics: React.FC<AnalyticsProps> = ({
     </div>
   );
 };
-
-export default Analytics;

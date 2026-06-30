@@ -2,7 +2,7 @@ import styles from "./Filters.module.css";
 
 import { DateInputProps } from "./types";
 
-const DateInput: React.FC<DateInputProps> = ({
+export const DateInput: React.FC<DateInputProps> = ({
   label,
   value,
   onChange,
@@ -24,5 +24,3 @@ const DateInput: React.FC<DateInputProps> = ({
     />
   </div>
 );
-
-export default DateInput;

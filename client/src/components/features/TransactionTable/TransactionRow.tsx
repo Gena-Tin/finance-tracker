@@ -1,5 +1,5 @@
 import styles from "./TransactionTable.module.css";
-import Checkbox from "../../ui/Checkbox/Checkbox";
+import { Checkbox } from "../../ui/Checkbox/Checkbox";
 import { motion } from "framer-motion";
 import { useLanguage } from "../../../hooks/useLanguage";
 

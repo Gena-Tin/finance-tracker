@@ -1,10 +1,10 @@
 import styles from "./Filters.module.css";
-import Checkbox from "../../ui/Checkbox/Checkbox";
+import { Checkbox } from "../../ui/Checkbox/Checkbox";
 import { IconOptions } from "../../ui/SvgLib";
 
 import { CategoryFilterProps } from "./types";
 
-const CategoryFilter: React.FC<CategoryFilterProps> = ({
+export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   categories,
   filterCatIds,
   toggleFilterCategory,
@@ -49,5 +49,3 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
     </>
   );
 };
-
-export default CategoryFilter;

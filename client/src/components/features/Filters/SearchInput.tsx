@@ -3,7 +3,7 @@ import { IconSearch } from "../../ui/SvgLib";
 
 import { SearchInputProps } from "./types";
 
-const SearchInput: React.FC<SearchInputProps> = ({
+export const SearchInput: React.FC<SearchInputProps> = ({
   value,
   onChange,
   placeholder,
@@ -23,5 +23,3 @@ const SearchInput: React.FC<SearchInputProps> = ({
     </>
   );
 };
-
-export default SearchInput;

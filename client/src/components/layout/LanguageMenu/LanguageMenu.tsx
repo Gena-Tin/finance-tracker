@@ -6,7 +6,7 @@ import { IconGlobe } from "../../ui/SvgLib";
 
 import { LangCode } from "../../../types";
 
-const LanguageMenu: React.FC = () => {
+export const LanguageMenu: React.FC = () => {
   const { lang, switchLanguage, translator } = useLanguage();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -55,5 +55,3 @@ const LanguageMenu: React.FC = () => {
     </div>
   );
 };
-
-export default LanguageMenu;

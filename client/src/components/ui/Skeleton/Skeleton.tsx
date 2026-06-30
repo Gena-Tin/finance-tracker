@@ -1,7 +1,7 @@
 import styles from "./Skeleton.module.css";
 import { SkeletonProps } from "./types";
 
-const Skeleton: React.FC<SkeletonProps> = ({ count = 15 }) => {
+export const Skeleton: React.FC<SkeletonProps> = ({ count = 15 }) => {
   const items: number[] = Array(count).fill(0);
 
   return (
@@ -12,5 +12,3 @@ const Skeleton: React.FC<SkeletonProps> = ({ count = 15 }) => {
     </>
   );
 };
-
-export default Skeleton;

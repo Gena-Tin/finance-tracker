@@ -3,7 +3,7 @@ import { IconOptions } from "../../ui/SvgLib";
 
 import { ProjectsSectionProps } from "./types";
 
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   translator,
   projId,
   setProjId,
@@ -44,5 +44,3 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     </>
   );
 };
-
-export default ProjectsSection;

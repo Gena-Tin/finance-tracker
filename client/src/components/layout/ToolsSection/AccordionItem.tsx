@@ -11,7 +11,7 @@ const accordionAnimation: HTMLMotionProps<"div"> = {
   transition: { duration: 0.3 },
 };
 
-const AccordionItem: React.FC<AccordionItemProps> = ({
+export const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
   isOpen,
   onToggle,
@@ -41,5 +41,3 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
     </>
   );
 };
-
-export default AccordionItem;

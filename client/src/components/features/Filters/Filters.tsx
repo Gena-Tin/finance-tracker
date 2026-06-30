@@ -1,15 +1,15 @@
 import styles from "./Filters.module.css";
-import CategoryFilter from "./CategoryFilter";
-import DateInput from "./DateInput";
-import SearchInput from "./SearchInput";
-import TypeFilter from "./TypeFilter";
-import ResetButton from "./ResetButton";
+import { CategoryFilter } from "./CategoryFilter";
+import { DateInput } from "./DateInput";
+import { SearchInput } from "./SearchInput";
+import { TypeFilter } from "./TypeFilter";
+import { ResetButton } from "./ResetButton";
 
 import { useLanguage } from "../../../hooks/useLanguage";
 
 import { FiltersProps } from "./types";
 
-const Filters: React.FC<FiltersProps> = ({
+export const Filters: React.FC<FiltersProps> = ({
   categories,
   clearDates,
   filterCatIds,
@@ -101,5 +101,3 @@ const Filters: React.FC<FiltersProps> = ({
     </div>
   );
 };
-
-export default Filters;

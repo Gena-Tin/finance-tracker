@@ -4,7 +4,7 @@ import { useLanguage } from "../../../hooks/useLanguage";
 import { TransactionType } from "@/types";
 import { TransactionFormProps } from "./types";
 
-const TransactionForm: React.FC<TransactionFormProps> = ({
+export const TransactionForm: React.FC<TransactionFormProps> = ({
   editingId,
   date,
   setDate,
@@ -104,5 +104,3 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
     </form>
   );
 };
-
-export default TransactionForm;

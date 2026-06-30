@@ -2,7 +2,7 @@ import styles from "./Spinner.module.css";
 import { useState, useEffect } from "react";
 import { useLanguage } from "../../../hooks/useLanguage";
 
-const Spinner = () => {
+export const Spinner = () => {
   const [showHint, setShowHint] = useState<boolean>(false);
   const { translator } = useLanguage();
 
@@ -22,5 +22,3 @@ const Spinner = () => {
     </div>
   );
 };
-
-export default Spinner;

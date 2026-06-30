@@ -1,5 +1,5 @@
 import styles from "./TransactionTable.module.css";
-import Checkbox from "../../ui/Checkbox/Checkbox";
+import { Checkbox } from "../../ui/Checkbox/Checkbox";
 import { useLanguage } from "../../../hooks/useLanguage";
 import { AnimatePresence } from "framer-motion";
 import { TransactionRow } from "./TransactionRow";
@@ -7,7 +7,7 @@ import { TransactionTableHeader } from "./TransactionTableHeader"; // Наш н�
 
 import { TransactionTableProps } from "./types";
 
-const TransactionTable: React.FC<TransactionTableProps> = ({
+export const TransactionTable: React.FC<TransactionTableProps> = ({
   transactions,
   filteredByCategory,
   selectedIds,
@@ -71,5 +71,3 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
     </div>
   );
 };
-
-export default TransactionTable;
