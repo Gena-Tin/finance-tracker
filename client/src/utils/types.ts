@@ -3,8 +3,8 @@ import { Transaction, TransactionType } from "@/types";
 export interface Filters {
   projId: number;
   filterCatIds: number[];
-  startDate: string;
-  endDate: string;
+  startDate: Date | null;
+  endDate: Date | null;
   searchQuery: string;
   filterType: TransactionType | "";
 }

@@ -74,8 +74,8 @@ export const App = () => {
   // Привязываем объект фильтров к нашему интерфейсу FilterState
   const [filterState, setFilterState] = useState<FilterState>({
     filterCatIds: [],
-    startDate: "",
-    endDate: "",
+    startDate: null,
+    endDate: null,
     searchQuery: "",
     filterType: "",
     projId: 1,
@@ -191,7 +191,7 @@ export const App = () => {
   };
 
   const clearDates = () =>
-    setFilterState((prev) => ({ ...prev, startDate: "", endDate: "" }));
+    setFilterState((prev) => ({ ...prev, startDate: null, endDate: null }));
 
   return (
     <>
@@ -231,7 +231,8 @@ export const App = () => {
                     description,
                     setDescription,
                     catId: String(catId), // Приводим к строке для <select>
-                    setCatId: (id) => setCatId(id),
+                    setCatId,
+                    // setCatId: (id) => setCatId(id),
                     type,
                     setType,
                     categories,
@@ -240,7 +241,7 @@ export const App = () => {
                     isSubmitting,
                     cancelEdit: resetForm,
                     projId: filterState.projId,
-                    setProjId: (id) =>
+                    setProjId: (id: number) =>
                       setFilterState({ ...filterState, projId: id }),
                   }}
                   analyticsProps={{
@@ -254,26 +255,26 @@ export const App = () => {
                     setIsCategoryManagerOpen,
 
                     filterCatIds: filterState.filterCatIds,
-                    setFilterCatIds: (ids) =>
+                    setFilterCatIds: (ids: number[]) =>
                       setFilterState({ ...filterState, filterCatIds: ids }),
 
                     startDate: filterState.startDate,
-                    setStartDate: (d) =>
+                    setStartDate: (d: Date | null) =>
                       setFilterState((prev) => ({ ...prev, startDate: d })),
 
                     endDate: filterState.endDate,
-                    setEndDate: (d) =>
+                    setEndDate: (d: Date | null) =>
                       setFilterState((prev) => ({ ...prev, endDate: d })),
 
                     searchQuery: filterState.searchQuery,
-                    setSearchQuery: (q) =>
+                    setSearchQuery: (q: string) =>
                       setFilterState((prev) => ({ ...prev, searchQuery: q })),
 
                     filterType: filterState.filterType,
-                    setFilterType: (t) =>
+                    setFilterType: (t: TransactionType) =>
                       setFilterState((prev) => ({ ...prev, filterType: t })),
 
-                    toggleFilterCategory: (id) => {
+                    toggleFilterCategory: (id: string | number) => {
                       const numericId = Number(id);
                       setFilterState((prev) => ({
                         ...prev,

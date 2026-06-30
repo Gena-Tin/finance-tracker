@@ -3,8 +3,8 @@ import { TransactionType } from "@/types";
 // Описываем интерфейс для локального стейта фильтров
 export interface FilterState {
   filterCatIds: number[];
-  startDate: string;
-  endDate: string;
+  startDate: Date | null;
+  endDate: Date | null;
   searchQuery: string;
   filterType: TransactionType | "";
   projId: number;

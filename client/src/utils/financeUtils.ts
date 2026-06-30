@@ -21,13 +21,21 @@ export const getProcessedData = (
   }
 
   if (filters.startDate) {
-    filtered = filtered.filter((t) => t.created_at >= filters.startDate);
+    const start = filters.startDate; // Сохраняем в константу для TS
+    filtered = filtered.filter((t) => {
+      const txDate = new Date(t.created_at);
+      return txDate >= start;
+    });
   }
 
   if (filters.endDate) {
-    filtered = filtered.filter(
-      (t) => t.created_at <= filters.endDate + " 23:59:59"
-    );
+    const endOfDay = new Date(filters.endDate);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    filtered = filtered.filter((t) => {
+      const txDate = new Date(t.created_at);
+      return txDate <= endOfDay;
+    });
   }
 
   if (filters.searchQuery) {

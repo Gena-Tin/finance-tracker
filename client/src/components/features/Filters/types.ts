@@ -6,10 +6,10 @@ export interface FiltersProps {
   toggleFilterCategory: (id: number) => void;
   setFilterCatIds: (id: number[]) => void;
 
-  startDate: string;
-  endDate: string;
-  setStartDate: (date: string) => void;
-  setEndDate: (date: string) => void;
+  startDate: Date | null;
+  endDate: Date | null;
+  setStartDate: (date: Date | null) => void;
+  setEndDate: (date: Date | null) => void;
   clearDates: () => void;
 
   searchQuery: string;
@@ -30,10 +30,12 @@ export interface CategoryFilterProps {
 
 export interface DateInputProps {
   label: string;
-  value: string;
-  onChange: (value: string) => void;
+  value: Date | null;
+
+  onChange: (date: Date | null) => void; // <-- Функция должна принимать Date | null, а не string!
+  // onChange: (value: string) => void;
   placeholder: string;
-  hasValueReference?: string; // для проверки startDate ? "date" : "text"
+  hasValueReference?: any; // для проверки startDate ? "date" : "text"
 }
 
 export interface ResetButtonProps {
