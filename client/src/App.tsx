@@ -271,7 +271,7 @@ export const App = () => {
                       setFilterState((prev) => ({ ...prev, searchQuery: q })),
 
                     filterType: filterState.filterType,
-                    setFilterType: (t: TransactionType) =>
+                    setFilterType: (t: "" | TransactionType) =>
                       setFilterState((prev) => ({ ...prev, filterType: t })),
 
                     toggleFilterCategory: (id: string | number) => {

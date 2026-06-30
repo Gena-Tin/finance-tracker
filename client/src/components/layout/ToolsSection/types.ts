@@ -1,10 +1,10 @@
 import { TranslationData } from "@/types";
 
 // type, Импортируем ИНТЕРФЕЙСЫ ПРОПСОВ, а не сами компоненты!
-import type TransactionForm from "@/components/features/TransactionForm/TransactionForm";
-import type Analytics from "@/components/features/Analytics/Analytics";
-import type Filters from "@/components/features/Filters/Filters";
-import type BalanceBoard from "@/components/features/BalanceBoard/BalanceBoard";
+import type { TransactionForm } from "@/components/features/TransactionForm/TransactionForm";
+import type { Analytics } from "@/components/features/Analytics/Analytics";
+import type { Filters } from "@/components/features/Filters/Filters";
+import type { BalanceBoard } from "@/components/features/BalanceBoard/BalanceBoard";
 
 export interface ToolsSectionProps {
   translator: TranslationData;
